@@ -1,8 +1,8 @@
 site_name: セキスペ合格ノート
 site_description: 情報処理安全確保支援士試験（SC）の学習ノート。質問ごとに図解付きの解説ページを追加していく。
-site_url: https://popo-fukuro.github.io/my-RISS-study/
-repo_url: https://github.com/popo-fukuro/my-RISS-study
-repo_name: popo-fukuro/my-RISS-study
+site_url: https://popo-fukuro.github.io/STUDY-RISS/
+repo_url: https://github.com/popo-fukuro/STUDY-RISS
+repo_name: popo-fukuro/STUDY-RISS
 edit_uri: edit/main/docs/
 copyright: 解説・図はオリジナル。外部の資料はリンクと出典で紹介しています。
 

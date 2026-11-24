@@ -1,8 +1,8 @@
-# my-RISS-study
+# STUDY-RISS
 
 情報処理安全確保支援士試験（SC）の学習ノートサイト「セキスペ合格ノート」。
 
-- 公開サイト：https://popo-fukuro.github.io/my-RISS-study/
+- 公開サイト：https://popo-fukuro.github.io/STUDY-RISS/
 - 質問するたびに、図解付きの解説ページを `docs/` に追加していく。
 - 作業ルールは [CLAUDE.md](CLAUDE.md)、ノートのひな形は [templates/note-template.md](templates/note-template.md)。
 

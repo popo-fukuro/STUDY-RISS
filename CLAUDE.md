@@ -1,7 +1,7 @@
 # セキスペ合格ノート：作業ルール
 
 情報処理安全確保支援士試験（SC）の学習ノートサイト。MkDocs Material で作り、GitHub Pages で公開している。
-公開URL：https://popo-fukuro.github.io/my-RISS-study/
+公開URL：https://popo-fukuro.github.io/STUDY-RISS/
 
 ## 目的
 
