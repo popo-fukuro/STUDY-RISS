@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" role="img" aria-labelledby="t d" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+  <title id="t">XSSとCSRFの違い</title>
+  <desc id="d">XSSは攻撃者のスクリプトが本物サイト経由で利用者のブラウザで動く。CSRFは罠サイトから本物サイトへ、利用者のログイン状態を使ったリクエストが勝手に送られる。</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c62828"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#455a64"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="400" rx="16" fill="#ffffff"/>
+
+  <!-- 左：XSS -->
+  <rect x="16" y="16" width="336" height="368" rx="12" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+  <text x="184" y="48" text-anchor="middle" font-size="22" font-weight="700" fill="#e65100">XSS</text>
+  <text x="184" y="72" text-anchor="middle" font-size="13" fill="#5d4037">罠のスクリプトが「本物サイトの一部」として動く</text>
+
+  <rect x="40" y="96" width="120" height="56" rx="10" fill="#ffebee" stroke="#c62828"/>
+  <text x="100" y="121" text-anchor="middle" font-size="14" fill="#b71c1c">攻撃者</text>
+  <text x="100" y="140" text-anchor="middle" font-size="11" fill="#b71c1c">スクリプト入りの罠</text>
+
+  <rect x="208" y="96" width="120" height="56" rx="10" fill="#e8eaf6" stroke="#3949ab"/>
+  <text x="268" y="121" text-anchor="middle" font-size="14" fill="#1a237e">本物サイト</text>
+  <text x="268" y="140" text-anchor="middle" font-size="11" fill="#1a237e">無害化せず表示</text>
+
+  <rect x="108" y="248" width="152" height="64" rx="10" fill="#e0f2f1" stroke="#00796b"/>
+  <text x="184" y="274" text-anchor="middle" font-size="14" fill="#004d40">利用者のブラウザ</text>
+  <text x="184" y="294" text-anchor="middle" font-size="11" fill="#004d40">ここでスクリプトが実行</text>
+
+  <line x1="160" y1="124" x2="204" y2="124" stroke="#c62828" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="182" y="114" text-anchor="middle" font-size="11" fill="#c62828">①</text>
+  <line x1="262" y1="154" x2="214" y2="244" stroke="#455a64" stroke-width="2.5" marker-end="url(#b)"/>
+  <text x="258" y="206" font-size="11" fill="#455a64">② 罠ごと表示</text>
+  <line x1="130" y1="246" x2="96" y2="156" stroke="#c62828" stroke-width="2.5" marker-end="url(#a)" stroke-dasharray="6 4"/>
+  <text x="26" y="200" font-size="11" fill="#c62828">③ Cookie等を</text>
+  <text x="26" y="216" font-size="11" fill="#c62828">攻撃者へ送信</text>
+
+  <rect x="36" y="332" width="296" height="36" rx="8" fill="#ffffff" stroke="#ef6c00"/>
+  <text x="184" y="355" text-anchor="middle" font-size="13" font-weight="700" fill="#e65100">対策の基本：出力時のエスケープ</text>
+
+  <!-- 右：CSRF -->
+  <rect x="368" y="16" width="336" height="368" rx="12" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="536" y="48" text-anchor="middle" font-size="22" font-weight="700" fill="#0d47a1">CSRF</text>
+  <text x="536" y="72" text-anchor="middle" font-size="13" fill="#263238">ログイン状態を悪用し「本人のふり」で操作させる</text>
+
+  <rect x="392" y="96" width="120" height="56" rx="10" fill="#ffebee" stroke="#c62828"/>
+  <text x="452" y="121" text-anchor="middle" font-size="14" fill="#b71c1c">罠サイト</text>
+  <text x="452" y="140" text-anchor="middle" font-size="11" fill="#b71c1c">自動送信フォーム</text>
+
+  <rect x="560" y="96" width="120" height="56" rx="10" fill="#e8eaf6" stroke="#3949ab"/>
+  <text x="620" y="121" text-anchor="middle" font-size="14" fill="#1a237e">本物サイト</text>
+  <text x="620" y="140" text-anchor="middle" font-size="11" fill="#1a237e">本人の操作と誤認</text>
+
+  <rect x="460" y="248" width="152" height="64" rx="10" fill="#e0f2f1" stroke="#00796b"/>
+  <text x="536" y="274" text-anchor="middle" font-size="14" fill="#004d40">利用者のブラウザ</text>
+  <text x="536" y="294" text-anchor="middle" font-size="11" fill="#004d40">本物サイトにログイン中</text>
+
+  <line x1="490" y1="246" x2="456" y2="156" stroke="#455a64" stroke-width="2.5" marker-end="url(#b)"/>
+  <text x="386" y="206" font-size="11" fill="#455a64">① 罠を開く</text>
+  <line x1="566" y1="246" x2="608" y2="156" stroke="#c62828" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="596" y="206" font-size="11" fill="#c62828">② Cookie付きで</text>
+  <text x="596" y="222" font-size="11" fill="#c62828">　 勝手に送信</text>
+
+  <rect x="388" y="332" width="296" height="36" rx="8" fill="#ffffff" stroke="#1565c0"/>
+  <text x="536" y="355" text-anchor="middle" font-size="13" font-weight="700" fill="#0d47a1">対策の基本：トークンで本人の操作か確認</text>
+</svg>

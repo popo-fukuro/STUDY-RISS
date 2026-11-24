@@ -1,0 +1,102 @@
+site_name: セキスペ合格ノート
+site_description: 情報処理安全確保支援士試験（SC）の学習ノート。質問ごとに図解付きの解説ページを追加していく。
+site_url: https://popo-fukuro.github.io/my-RISS-study/
+repo_url: https://github.com/popo-fukuro/my-RISS-study
+repo_name: popo-fukuro/my-RISS-study
+edit_uri: edit/main/docs/
+copyright: 解説・図はオリジナル。外部の資料はリンクと出典で紹介しています。
+
+theme:
+  name: material
+  language: ja
+  icon:
+    logo: material/shield-lock-outline
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: ダークモードに切り替え
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: ライトモードに切り替え
+  features:
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tooltips
+    - toc.follow
+
+plugins:
+  - search:
+      lang: ja
+  - tags
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - ホーム: index.md
+  - 試験ガイド: exam/guide.md
+  - 章ごとのノート:
+      - chapters/index.md
+      - 第1章 情報セキュリティ及びITの基礎:
+          - ch01/index.md
+      - 第2章 情報セキュリティにおける脅威:
+          - ch02/index.md
+      - 第3章 情報セキュリティにおける脆弱性:
+          - ch03/index.md
+          - XSSとCSRFの違い: ch03/xss-vs-csrf.md
+      - 第4章 情報セキュリティマネジメントの実践:
+          - ch04/index.md
+      - 第5章 対策技術（1）予防・検知・防御:
+          - ch05/index.md
+      - 第6章 対策技術（2）アクセス制御と認証:
+          - ch06/index.md
+      - 第7章 対策技術（3）暗号:
+          - ch07/index.md
+      - 第8章 システム開発におけるセキュリティ対策:
+          - ch08/index.md
+      - 第9章 情報セキュリティに関する法制度:
+          - ch09/index.md
+  - タグ一覧: tags.md

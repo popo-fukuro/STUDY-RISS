@@ -1,0 +1,23 @@
+/* 日本語を読みやすく */
+.md-typeset {
+  line-height: 1.8;
+}
+
+/* 図は横幅いっぱいまで、角を丸く */
+.md-typeset img[src$=".svg"] {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* 表をスマホで横スクロールしやすく */
+.md-typeset table:not([class]) {
+  font-size: 0.72rem;
+}
+
+/* Mermaidの図を中央寄せ */
+.md-typeset .mermaid {
+  text-align: center;
+}
