@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" role="img" aria-labelledby="t d" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+  <title id="t">境界型防御とゼロトラストの違い</title>
+  <desc id="d">左は境界型防御。ファイアウォールやVPNの門を通れば社内ネットワークの中は確認なしで行き来でき、侵入されると被害が横へ広がる。右はゼロトラスト。社内・自宅・外出先のどこからのアクセスでも、関所で本人・端末・状況・権限を毎回確認し、必要な資源にだけ個別に通す。攻撃者は関所で止められる。</desc>
+  <defs>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c62828"/>
+    </marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#455a64"/>
+    </marker>
+    <marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="760" height="440" rx="16" fill="#ffffff"/>
+
+  <!-- ===== 左：境界型防御 ===== -->
+  <rect x="16" y="16" width="356" height="408" rx="12" fill="#fff3e0" stroke="#ef6c00" stroke-width="2"/>
+  <text x="194" y="46" text-anchor="middle" font-size="21" font-weight="700" fill="#e65100">境界型防御（お城モデル）</text>
+  <text x="194" y="70" text-anchor="middle" font-size="13" fill="#5d4037">「壁の中は安全」と信じる</text>
+
+  <rect x="40" y="90" width="110" height="38" rx="8" fill="#ffffff" stroke="#455a64"/>
+  <text x="95" y="114" text-anchor="middle" font-size="13" fill="#263238">社外の利用者</text>
+  <rect x="238" y="90" width="110" height="38" rx="8" fill="#ffebee" stroke="#c62828"/>
+  <text x="293" y="114" text-anchor="middle" font-size="13" fill="#b71c1c">攻撃者</text>
+
+  <!-- 城壁（社内ネットワーク） -->
+  <rect x="32" y="160" width="324" height="180" rx="12" fill="#e8eaf6" stroke="#3949ab" stroke-width="4"/>
+  <rect x="146" y="148" width="96" height="26" rx="6" fill="#3949ab"/>
+  <text x="194" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">FW ／ VPN</text>
+  <text x="194" y="192" text-anchor="middle" font-size="12" fill="#1a237e">社内ネットワーク（城の中）</text>
+
+  <line x1="100" y1="130" x2="160" y2="146" stroke="#455a64" stroke-width="2" marker-end="url(#g)"/>
+  <line x1="288" y1="130" x2="228" y2="146" stroke="#c62828" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#r)"/>
+  <text x="262" y="146" font-size="10" fill="#c62828">すき間・</text>
+  <text x="300" y="146" font-size="10" fill="#c62828">盗んだID</text>
+
+  <rect x="42" y="204" width="114" height="36" rx="8" fill="#ffebee" stroke="#c62828" stroke-width="2"/>
+  <text x="99" y="227" text-anchor="middle" font-size="12" fill="#b71c1c">乗っ取られたPC</text>
+  <rect x="240" y="204" width="100" height="36" rx="8" fill="#ffffff" stroke="#3949ab"/>
+  <text x="290" y="227" text-anchor="middle" font-size="12" fill="#1a237e">ファイルサーバ</text>
+  <rect x="52" y="288" width="96" height="36" rx="8" fill="#ffffff" stroke="#3949ab"/>
+  <text x="100" y="311" text-anchor="middle" font-size="12" fill="#1a237e">社員のPC</text>
+  <rect x="240" y="288" width="100" height="36" rx="8" fill="#ffffff" stroke="#3949ab"/>
+  <text x="290" y="311" text-anchor="middle" font-size="12" fill="#1a237e">業務サーバ</text>
+
+  <line x1="158" y1="222" x2="236" y2="222" stroke="#c62828" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#r)"/>
+  <line x1="100" y1="242" x2="100" y2="284" stroke="#c62828" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#r)"/>
+  <line x1="150" y1="242" x2="236" y2="290" stroke="#c62828" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#r)"/>
+  <text x="197" y="214" text-anchor="middle" font-size="11" fill="#c62828">素通り</text>
+
+  <rect x="36" y="356" width="316" height="52" rx="8" fill="#ffffff" stroke="#ef6c00"/>
+  <text x="194" y="377" text-anchor="middle" font-size="13" font-weight="700" fill="#e65100">弱点：一度入られると中は素通り</text>
+  <text x="194" y="398" text-anchor="middle" font-size="12" fill="#5d4037">被害が横へ広がる（ラテラルムーブメント）</text>
+
+  <!-- ===== 右：ゼロトラスト ===== -->
+  <rect x="388" y="16" width="356" height="408" rx="12" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="566" y="46" text-anchor="middle" font-size="21" font-weight="700" fill="#1b5e20">ゼロトラスト</text>
+  <text x="566" y="70" text-anchor="middle" font-size="13" fill="#33691e">「だれも信じない、毎回確かめる」</text>
+
+  <!-- 利用者（場所を問わない） -->
+  <text x="437" y="104" text-anchor="middle" font-size="11" fill="#33691e">場所を問わない</text>
+  <rect x="400" y="116" width="74" height="36" rx="8" fill="#ffffff" stroke="#455a64"/>
+  <text x="437" y="139" text-anchor="middle" font-size="12" fill="#263238">社内から</text>
+  <rect x="400" y="172" width="74" height="36" rx="8" fill="#ffffff" stroke="#455a64"/>
+  <text x="437" y="195" text-anchor="middle" font-size="12" fill="#263238">自宅から</text>
+  <rect x="400" y="228" width="74" height="36" rx="8" fill="#ffffff" stroke="#455a64"/>
+  <text x="437" y="251" text-anchor="middle" font-size="12" fill="#263238">外出先から</text>
+  <rect x="400" y="296" width="74" height="36" rx="8" fill="#ffebee" stroke="#c62828"/>
+  <text x="437" y="319" text-anchor="middle" font-size="12" fill="#b71c1c">攻撃者</text>
+
+  <!-- 関所（PEP/PDP） -->
+  <rect x="500" y="110" width="130" height="226" rx="10" fill="#ffffff" stroke="#2e7d32" stroke-width="3"/>
+  <text x="565" y="134" text-anchor="middle" font-size="14" font-weight="700" fill="#1b5e20">関所</text>
+  <text x="565" y="152" text-anchor="middle" font-size="10" fill="#33691e">（PEP／PDP）</text>
+  <line x1="512" y1="162" x2="618" y2="162" stroke="#a5d6a7"/>
+  <text x="514" y="184" font-size="11" fill="#1b5e20">① 本人？</text>
+  <text x="526" y="200" font-size="10" fill="#33691e">多要素認証</text>
+  <text x="514" y="222" font-size="11" fill="#1b5e20">② 端末は安全？</text>
+  <text x="526" y="238" font-size="10" fill="#33691e">パッチ・EDR</text>
+  <text x="514" y="260" font-size="11" fill="#1b5e20">③ 状況は普通？</text>
+  <text x="526" y="276" font-size="10" fill="#33691e">場所・時刻・挙動</text>
+  <text x="514" y="298" font-size="11" fill="#1b5e20">④ 権限は最小？</text>
+  <text x="526" y="314" font-size="10" fill="#33691e">必要な分だけ</text>
+
+  <line x1="476" y1="134" x2="496" y2="150" stroke="#455a64" stroke-width="2" marker-end="url(#g)"/>
+  <line x1="476" y1="190" x2="496" y2="190" stroke="#455a64" stroke-width="2" marker-end="url(#g)"/>
+  <line x1="476" y1="246" x2="496" y2="232" stroke="#455a64" stroke-width="2" marker-end="url(#g)"/>
+  <line x1="476" y1="314" x2="496" y2="314" stroke="#c62828" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#r)"/>
+  <circle cx="487" cy="314" r="9" fill="#ffffff" stroke="#c62828" stroke-width="2"/>
+  <path d="M482,309 L492,319 M492,309 L482,319" stroke="#c62828" stroke-width="2.5"/>
+
+  <!-- 資源（個別に保護） -->
+  <text x="694" y="104" text-anchor="middle" font-size="11" fill="#33691e">一つずつ守る</text>
+  <rect x="658" y="132" width="74" height="36" rx="8" fill="#e3f2fd" stroke="#1565c0"/>
+  <text x="695" y="155" text-anchor="middle" font-size="12" fill="#0d47a1">業務アプリ</text>
+  <rect x="658" y="196" width="74" height="36" rx="8" fill="#e3f2fd" stroke="#1565c0"/>
+  <text x="695" y="219" text-anchor="middle" font-size="12" fill="#0d47a1">ファイル</text>
+  <rect x="658" y="260" width="74" height="36" rx="8" fill="#e3f2fd" stroke="#1565c0"/>
+  <text x="695" y="283" text-anchor="middle" font-size="12" fill="#0d47a1">クラウド</text>
+
+  <line x1="632" y1="168" x2="654" y2="152" stroke="#2e7d32" stroke-width="2.5" marker-end="url(#k)"/>
+  <line x1="632" y1="214" x2="654" y2="214" stroke="#2e7d32" stroke-width="2.5" marker-end="url(#k)"/>
+  <line x1="632" y1="260" x2="654" y2="276" stroke="#2e7d32" stroke-width="2.5" marker-end="url(#k)"/>
+
+  <rect x="408" y="356" width="316" height="52" rx="8" fill="#ffffff" stroke="#2e7d32"/>
+  <text x="566" y="377" text-anchor="middle" font-size="13" font-weight="700" fill="#1b5e20">アクセスのたびに確認して、</text>
+  <text x="566" y="398" text-anchor="middle" font-size="12" fill="#33691e">必要な資源にだけ通す（場所で信用しない）</text>
+</svg>

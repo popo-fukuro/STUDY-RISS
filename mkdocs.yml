@@ -82,6 +82,7 @@ nav:
       - chapters/index.md
       - 第1章 情報セキュリティ及びITの基礎:
           - ch01/index.md
+          - ゼロトラストとは: ch01/zero-trust.md
       - 第2章 情報セキュリティにおける脅威:
           - ch02/index.md
       - 第3章 情報セキュリティにおける脆弱性:
