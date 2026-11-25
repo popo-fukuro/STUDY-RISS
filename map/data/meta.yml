@@ -1,0 +1,273 @@
+# ページ全体の情報・試験制度・根拠。調査メモ map/research/ipa-research-2026-11-25.md と内容を一致させること。
+title: RISS 試験範囲マップ
+subtitle: 情報処理安全確保支援士試験（SC）の全体俯瞰
+created: "2026-11-25"          # 作成日（調査日）
+researchMemo: research/ipa-research-2026-11-25.md   # 調査メモ（map/ からの相対パス）。tools/check.py が内容を照合する
+siteUrl: https://popo-fukuro.github.io/STUDY-RISS/
+notice: 試験制度・日程は作成日（調査日）時点の情報。最新情報は必ずIPAの公式サイトで確認すること。
+
+# 地図の座標（tools/check.py もこの値で重なりを計算する）
+layout:
+  size: 2900           # 座標空間（正方形）
+  radius: 1040         # 大分類カードを並べる円の半径
+  centerRadius: 175    # 中心の円
+  cardWidth: 300
+  cardHeader: 60       # 分野色の帯
+  cardRow: 32          # 中分類1行の高さ
+  cardPad: 20          # 本文の上下の余白の合計
+  cardFooter: 50       # 優先度ピルの行
+  startAngle: -90      # 1番目のカードの角度（度。-90 = 真上、時計回り）
+  ringLabel: 1360      # 領域名の円弧の半径
+  ringTick: 1410       # 目盛りの半径
+  lodThreshold: 0.5    # これより拡大すると中分類を表示（画面px／座標）
+
+# 科目A-1が「土台」であることの注記（地図の右下）
+a1Note:
+  title: 地図の土台：科目A-1（共通知識）
+  text: 科目A-1は応用情報技術者試験レベルの共通知識（テクノロジ・マネジメント・ストラテジ）から30問。この地図の16分野すべてを支える土台にあたる。応用情報の合格などで2年間免除できる。
+  newText: 新制度では「ビジネス」「テクノロジ」「セキュリティ・倫理」の30中分類に再編され、45分・30問になる予定。
+
+priorityLegend:
+  high: 高
+  mid: 中
+  low: 低
+
+badges:
+  new-weight:
+    label: 新制度で重み増
+    desc: 新制度（2027年度〜予定）の出題範囲案・シラバス案で、項目の追加や強化が明記された分野。
+  sup:
+    label: 補
+    desc: 試験要綱・シラバス（現行・追補版・新制度のシラバス案）に用語としては載っていないが、理解のために追加した関連知識。
+  new:
+    label: 新案
+    desc: 新制度のシラバス案（Ver.0.1）に用語として載っているが、現行の要綱・シラバスには見当たらない用語。
+
+# 受験時期のタイムライン
+timeline:
+  - id: r7a
+    when: 2025年10月
+    name: 令和7年度秋期
+    status: done
+    system: current
+    text: 紙の試験として最後の回。問題・解答例・採点講評が公開されている最新回。
+  - id: r8z
+    when: 2026年10〜11月
+    name: 令和8年度前期
+    status: done
+    system: current
+    text: CBT方式の初回。科目A 10/17〜10/27、科目B 11/11〜11/23。合格発表は2027年2月頃の予定。問題は非公開。
+  - id: r8k
+    when: 2027年1〜3月
+    name: 令和8年度後期
+    status: next
+    system: current
+    text: 申込 2027/1/27〜2/27、科目A 2/20〜3/2、科目B 3/16〜3/28。現行制度は2026年度で終了予定のため、記述式の科目Bの最後の回になる見込み。
+  - id: new
+    when: 2027年度 夏頃〜秋頃
+    name: 新制度の開始
+    status: plan
+    system: new
+    text: 検討段階の予定。科目Bは120分・12問・全問解答になる見込み。具体的な申込期間・実施期間は未確認。
+
+# 現行制度と新制度の比較
+compare:
+  - aspect: 実施方式
+    current: CBT（前期・後期の年2回）
+    new: CBT（実施時期の詳細は未確認）
+  - aspect: 科目A-1
+    current: 50分・30問（四肢択一）
+    new: 45分・30問
+  - aspect: 科目A-2
+    current: 40分・25問（四肢択一）
+    new: 35分・25問
+  - aspect: 科目B 時間
+    current: 150分
+    new: 120分
+  - aspect: 科目B 形式
+    current: 記述式。4問から2問を選んで解答
+    new: 12問すべて解答。サンプル問題では解答群から選ぶ形式（1問1答×8問＋1問3答×4問＝20設問）
+  - aspect: 得意分野での選択
+    current: できる（4問から2問）
+    new: できない（全範囲から出る）
+  - aspect: 科目Aの分野体系
+    current: 共通の23中分類。SCの科目A-2は7中分類（セキュリティ◎4・ネットワーク◎4ほか）
+    new: 3分野・30中分類に再編。SCの科目A-2は●5（セキュリティ4中分類とネットワーク）・○5
+  - aspect: 科目Bの範囲
+    current: 4大項目（マネジメント／開発／利用／インシデント管理）
+    new: 4大項目を維持しつつ、大項目1を「組織的推進」に再編・強化。データ保護、AIの安全な利用に関する規程、セキュリティ運用状況の点検などを追加
+  - aspect: 合格基準
+    current: 各科目60点以上／100点
+    new: 未確認
+  - aspect: 問題の公開
+    current: CBT化後は非公開（公開問題は令和7年度秋期まで）
+    new: サンプル問題のみ公開（2026-08-31）
+
+# 科目A-2の出題分野と、この地図の分野との対応
+a2Current:
+  - code: "11"
+    name: セキュリティ
+    mark: ◎4
+    fields: [basics, threats, crypto, auth, netdef, osdb, cloud, web, vuln, ops, incident, risk, isms, law]
+    note: 追補版の5小分類（情報セキュリティ／情報セキュリティ管理／セキュリティ技術評価／情報セキュリティ対策／セキュリティ実装技術）
+  - code: "10"
+    name: ネットワーク
+    mark: ◎4
+    fields: [netbase, netdef]
+    note: ネットワーク方式／データ通信と制御／通信プロトコル／ネットワーク管理／ネットワーク応用
+  - code: "9"
+    name: データベース
+    mark: ○3
+    fields: [osdb]
+    note: データベース方式／設計／データ操作／トランザクション処理／応用
+  - code: "12"
+    name: システム開発技術
+    mark: ○3
+    fields: [devproc]
+    note: 要件定義から保守・廃棄まで
+  - code: "13"
+    name: ソフトウェア開発管理技術
+    mark: ○3
+    fields: [devproc]
+    note: 開発プロセス・手法／知的財産適用管理／開発環境管理／構成管理・変更管理
+  - code: "15"
+    name: サービスマネジメント
+    mark: ○3
+    fields: [ops]
+    note: SLA、サービスの運用、ファシリティマネジメントなど
+  - code: "16"
+    name: システム監査
+    mark: ○3
+    fields: [isms]
+    note: システム監査、内部統制
+a2New:
+  - code: "23"
+    name: 情報セキュリティの脅威
+    mark: ●
+    fields: [threats, basics]
+  - code: "24"
+    name: 情報セキュリティマネジメント
+    mark: ●
+    fields: [basics, risk, isms, law]
+  - code: "25"
+    name: 情報セキュリティ対策
+    mark: ●
+    fields: [crypto, auth, netdef, osdb, ops, incident]
+  - code: "26"
+    name: セキュリティ実装技術・評価
+    mark: ●
+    fields: [web, devproc, vuln, cloud, incident, osdb]
+  - code: "16"
+    name: ネットワーク
+    mark: ●
+    fields: [netbase, netdef]
+  - code: "17"
+    name: データベース
+    mark: ○
+    fields: [osdb]
+  - code: "4"
+    name: サービスマネジメント
+    mark: ○
+    fields: [ops]
+  - code: "12"
+    name: ガバナンス・監査
+    mark: ○
+    fields: [isms]
+  - code: "20"
+    name: システムライフサイクルプロセス
+    mark: ○
+    fields: [devproc]
+  - code: "21"
+    name: 開発・運用の方法論
+    mark: ○
+    fields: [devproc]
+a2Notes:
+  - 現行は試験要綱 Ver.5.6 の「試験区分別出題分野一覧表」のSC列。◎は重点分野、数字は技術レベル（4が最も高度）。
+  - 新制度は「出題範囲等の改定案 Ver.1.0」（2026-03-31）の表のSC列。●は「専門分野かつ重点分野」、○は出題範囲。技術レベルの数字は示されていない。
+  - 法令（現行の中分類23「法務」、新制度の中分類28〜30）は、SCの科目A-2の表には含まれない。科目A-1（共通知識）の範囲にあたる。
+
+# 科目Bの出題範囲（大項目）と、この地図の分野との対応
+bScope:
+  - no: 1
+    current: 情報セキュリティマネジメントの推進又は支援
+    items: 方針策定、リスクアセスメント・リスク対応、諸規程（事業継続計画を含む）、監査、動向・事例の収集と分析、関係者とのコミュニケーション
+    fields: [risk, isms, law, ops, basics]
+    newChange: 「組織的推進又は支援」に再編。AIの安全な導入・利用に関する規程、セキュリティ運用状況の管理・点検、デジタルガバナンス、脅威インテリジェンスの活用を追加。人的管理・サプライチェーン・コンプライアンス（AI関連ガイドラインを含む）が大項目3から移る。
+  - no: 2
+    current: 情報システムの企画・設計・開発・運用でのセキュリティ確保の推進又は支援
+    items: 要件定義、製品・サービスのセキュアな導入、アーキテクチャ設計、セキュリティ機能の設計・実装、セキュアプログラミング、セキュリティテスト、運用・保守、開発環境
+    fields: [devproc, web, vuln, cloud, osdb]
+    newChange: 「ライフサイクルプロセスにおける〜」に名称変更。製品・サービスに「IoT、クラウドサービスを含む」と明記。
+  - no: 3
+    current: 情報及び情報システムの利用におけるセキュリティ対策の適用の推進又は支援
+    items: 暗号利用と鍵管理、マルウェア対策、バックアップ、監視とログ、ネットワーク・機器、脆弱性への対応、物理的管理、アカウント・アクセス管理、人的管理、サプライチェーン、コンプライアンス
+    fields: [crypto, auth, netbase, netdef, osdb, vuln, ops, incident, isms, risk, law]
+    newChange: 「データ保護（情報の削除、データマスキング、漏えい防止、バックアップ）」を追加。人的管理・サプライチェーン・コンプライアンスは大項目1へ。
+  - no: 4
+    current: 情報セキュリティインシデント管理の推進又は支援
+    items: 管理体制（CSIRT）の構築、事象の評価（検知・初動・トリアージ）、インシデントへの対応（原因・復旧・報告・再発防止）、証拠の収集と分析
+    fields: [incident, ops]
+    newChange: 大きな変更なし。
+
+# 直近5回の科目B（午後）。優先度の根拠と、関係の「試験での現れ方」はここに載っている問だけを参照する。
+# 午後Ⅰ・午後Ⅱが統合された令和5年度秋期以降。テーマは出題趣旨・採点講評を自分の言葉で要約したもの。
+recentB:
+  - {id: R7秋-1, label: R7秋 問1, theme: Webアプリの脆弱性を悪用したインシデント, tech: XSS、CSP、ファイルアップロード、HTML/ECMAScript、開発プロセス, fields: [web, incident, devproc], note: CSPの理解と、開発プロセスでの対策を問う設問の正答率が低めだった}
+  - {id: R7秋-2, label: R7秋 問2, theme: 暗号資産交換業の暗号鍵管理, tech: 暗号化と復号、デジタル署名、鍵の暗号化, fields: [crypto], note: 暗号技術の使い分けを問う設問の正答率が低かった}
+  - {id: R7秋-3, label: R7秋 問3, theme: インターネットバンキングとリモートワーク環境の導入, tech: VPNサービス、ハードウェアトークン、認証基盤, fields: [netdef, auth, netbase], note: VPN接続前に必要な通信を問う設問の正答率が低かった}
+  - {id: R7秋-4, label: R7秋 問4, theme: サプライチェーンの中の企業のセキュリティ管理体制の構築, tech: 攻撃シナリオ、SCADA、マルウェア対策、バックアップとレジリエンス, fields: [risk, isms, cloud, incident, threats], note: マルウェア対策として利用者認証の強化は効果が薄い点に注意を促している}
+  - {id: R7春-1, label: R7春 問1, theme: システム開発企業のサプライチェーンリスク対策, tech: 委託先管理、SBOM、SAST/DAST/IAST, fields: [devproc, risk], note: SBOMの使い方とテストツールの違いの理解を求めている}
+  - {id: R7春-2, label: R7春 問2, theme: 公開サイトの脆弱性診断結果と対応優先度, tech: CVSSv3の評価指標、EPSS, fields: [vuln], note: CVSSの指標の意味とEPSSの使い方を問う設問の正答率が低かった}
+  - {id: R7春-3, label: R7春 問3, theme: スマートフォンアプリの脆弱性, tech: クラウドストレージのアクセスキー、プライベートCAのルート証明書、署名付きURL, fields: [web, cloud, crypto], note: 全体の正答率がやや低かった}
+  - {id: R7春-4, label: R7春 問4, theme: IT資産管理と脆弱性管理（ASM）, tech: サブドメインテイクオーバー（CNAMEの削除漏れ）、KEVカタログ, fields: [vuln, netbase], note: DNS設定の対策と優先度判断の設問の正答率が低かった}
+  - {id: R6秋-1, label: R6秋 問1, theme: 社内システムの運用とインシデント対応（エンドポイントのログ解析）, tech: ログ分析、マルウェアの挙動、ファイル持出し対策, fields: [ops, incident, threats, osdb], note: どのログを確認するかを書けていない解答が多かった}
+  - {id: R6秋-2, label: R6秋 問2, theme: ドメイン名変更に伴う新メールサービスとDMARCの導入, tech: SPF、DKIM、DMARC、S/MIME、メーリングリスト, fields: [netdef, netbase, crypto], note: DKIMの仕組みを問う設問の正答率が低かった}
+  - {id: R6秋-3, label: R6秋 問3, theme: ECサイトのWebスキミングによるカード情報漏えい, tech: XSSの3類型、DOM、アクセスログ, fields: [web, incident, ops], note: XSSの種類の区別がやや弱かった}
+  - {id: R6秋-4, label: R6秋 問4, theme: 個人情報を扱うWebサイトのセキュリティ診断, tech: セッションフィクセーション、HTTPレスポンスヘッダー、脆弱性の組合せ, fields: [vuln, web], note: HTTPヘッダーの効果を問う設問の正答率が低かった}
+  - {id: R6春-1, label: R6春 問1, theme: APIセキュリティ, tech: JWTの改ざんの検証、WAFの利点と課題, fields: [web, auth, netdef], note: JWTの検証方法の設問がやや低かった}
+  - {id: R6春-2, label: R6春 問2, theme: リモートワークとDDoS攻撃への対策, tech: アノマリ型IPS、多要素認証を突破する攻撃、SPA（Single Packet Authorization）, fields: [netdef, auth], note: 全体の正答率はやや高かった}
+  - {id: R6春-3, label: R6春 問3, theme: クラウド上に構築したWebサイトの脆弱性, tech: XSS、CSRF、クレデンシャルの取得方式, fields: [web, cloud], note: 全体の正答率がやや低かった}
+  - {id: R6春-4, label: R6春 問4, theme: Java＋RDBMSのWebアプリのセキュアプログラミング, tech: Linuxの権限設定、例外処理、リソースリーク, fields: [web, osdb], note: Javaの例外処理を問う設問の正答率が低かった}
+  - {id: R5秋-1, label: R5秋 問1, theme: Webアプリの脆弱性を悪用したインシデントへの対応, tech: XSS（反射型・格納型・DOM型の区別）、HTML/ECMAScript, fields: [web, incident], note: DOM Based XSSとの混同が見られた}
+  - {id: R5秋-2, label: R5秋 問2, theme: アパレル業のセキュリティ対策の見直し, tech: サーバ証明書の検証、秘密鍵の管理、無線LAN、FWの設定, fields: [crypto, netdef, netbase], note: サーバ証明書の検証項目を問う設問の正答率が低かった}
+  - {id: R5秋-3, label: R5秋 問3, theme: CIサービス提供企業と利用企業のインシデント対応, tech: コンテナ、WebAuthn／パスキー、HSM, fields: [cloud, auth, crypto, incident, threats], note: WebAuthnの仕組みを問う設問の正答率が低かった}
+  - {id: R5秋-4, label: R5秋 問4, theme: 業務委託関係にある企業間のリスクアセスメント, tech: リスク特定・分析・評価、攻撃シナリオ, fields: [risk], note: 特定したリスクの具体性が不足した解答が見られた}
+
+# 新制度のサンプル問題（優先度の根拠・関係の説明から「サンプル問1」のように参照できる）
+sampleB:
+  - {id: サンプル-1, label: サンプル問1, theme: 情報資産台帳の整備と各部署への助言（1問1答）, fields: [risk]}
+  - {id: サンプル-2, label: サンプル問2, theme: 個人情報を扱うWebサイトのセキュリティ診断とセッションフィクセーション（1問3答）, fields: [vuln, web]}
+
+priorityMethod:
+  - 優先度は、次の3つの公式情報だけを根拠に判断した。出題頻度を断定するものではない。
+  - ①試験要綱 Ver.5.6 の科目A-2の重点分野（セキュリティ◎4、ネットワーク◎4）
+  - ②直近5回（令和5年度秋期〜令和7年度秋期）の科目Bで、その分野が主な題材になった問
+  - ③新制度（2027年度〜予定）の出題範囲の改定案・シラバス案・サンプル問題での変更点
+  - 「高」は①②③のうち複数がはっきり当てはまる分野、「低」は①の対象外で②にも当てはまらない分野。
+
+readingGuide:
+  - {level: 第1階層, name: 試験範囲全体, text: 中心の円。情報処理安全確保支援士試験の全体。}
+  - {level: 第2階層, name: 大分類（16分野）, text: 円周上のカード。6つの領域ごとに色分けし、関連の深い分野が隣り合うように並べた。}
+  - {level: 第3階層, name: 中分類, text: カードの中の一覧（各分野4〜6個）。拡大すると表示される。}
+  - {level: 第4階層, name: 小分類（用語）, text: カードを選ぶと右のパネルに、分野別詳細タブでは樹形図で表示。各用語に1文の説明を付けた。}
+  - {level: バッジ, name: 補・新案, text: 「補」は公式文書に用語として載っていない補足の知識、「新案」は新制度のシラバス案にだけ載っている用語。}
+  - {level: 矢印, name: 分野間の関係, text: 太い実線は特に重要な7つの関係、細い破線はその他の関係。矢じりの向きが影響の向き（両端なら双方向）。}
+
+sources:
+  - {name: 試験要綱・シラバスについて, url: "https://www.ipa.go.jp/shiken/syllabus/gaiyou.html", note: 最終更新 2026-07-10}
+  - {name: 試験要綱 Ver.5.6（PDF）, url: "https://www.ipa.go.jp/shiken/syllabus/rcu1hd00000141gq-att/youkou_ver5_6.pdf", note: 2026-07-06掲載。科目A-2の出題分野（p.23）、科目Bの出題範囲（p.42〜43）}
+  - {name: 情報処理安全確保支援士試験 シラバス Ver.2.1（PDF）, url: "https://www.ipa.go.jp/shiken/syllabus/nq6ept00000014ir-att/syllabus_sc_ver2_1.pdf", note: 2023-12-25掲載。科目Bの細目}
+  - {name: シラバス追補版（科目A-2）Ver.4.0（PDF）, url: "https://www.ipa.go.jp/shiken/syllabus/nq6ept00000014hj-att/syllabus_sc_am2_tsuiho4_0.pdf", note: 2023-12-25掲載（2026-07-06に科目名の表記を更新）}
+  - {name: 情報処理技術者試験及び情報処理安全確保支援士試験の見直しの検討状況について, url: "https://www.ipa.go.jp/shiken/syllabus/henkou/2025/20260331.html", note: 2026-03-31公開、2026-04-28更新}
+  - {name: 出題範囲等の改定案 Ver.1.0（PDF）, url: "https://www.ipa.go.jp/shiken/syllabus/henkou/2025/rcu1hd0000008574-att/shinshiken-hani-kaiteian.pdf", note: 新制度の科目A・科目Bの出題範囲}
+  - {name: 科目Aの出題範囲体系案（新旧対応表）（PDF）, url: "https://www.ipa.go.jp/shiken/syllabus/henkou/2025/rcu1hd0000008574-att/shinshiken-hani-sinkyu.pdf", note: 2026-03-31}
+  - {name: 新試験制度のシラバス案について, url: "https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260630.html", note: 2026-06-30公開、2026-10-30更新}
+  - {name: 情報処理安全確保支援士試験 シラバス案 Ver.0.1（PDF）, url: "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf", note: 2026-08-31掲載}
+  - {name: 新試験制度のサンプル問題について, url: "https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260622.html", note: 2026-06-22公開、2026-10-30更新}
+  - {name: 情報処理安全確保支援士試験 科目B サンプル問題（PDF）, url: "https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001fnl8-att/sc_kamoku_b_sample.pdf", note: 2026-08-31掲載}
+  - {name: 令和8年度 申込受付期間及び試験実施期間, url: "https://www.ipa.go.jp/shiken/2026/ap_koudo_sc_kikan.html", note: 2026-09-17更新。「試験問題は非公開」の記載あり}
+  - {name: 情報処理安全確保支援士試験（試験区分のページ）, url: "https://www.ipa.go.jp/shiken/kubun/sc.html", note: 2026-07-06更新}
+  - {name: 過去問題, url: "https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html", note: 筆記試験の問題・解答例・採点講評（令和7年度まで）}
+  - {name: 令和7年度 問題冊子・解答例・採点講評, url: "https://www.ipa.go.jp/shiken/mondai-kaiotu/2025r07.html", note: R7春・R7秋}
+  - {name: 令和6年度 問題冊子・解答例・採点講評, url: "https://www.ipa.go.jp/shiken/mondai-kaiotu/2024r06.html", note: R6春・R6秋}
+  - {name: 令和5年度 問題冊子・解答例・採点講評, url: "https://www.ipa.go.jp/shiken/mondai-kaiotu/2023r05.html", note: R5秋}

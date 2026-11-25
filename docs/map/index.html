@@ -1,0 +1,1719 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RISS 試験範囲マップ</title>
+<meta name="description" content="情報処理安全確保支援士試験（SC）の全体俯瞰。16分野・中分類・用語と分野間の関係を放射状の地図で示す。作成日 2026-11-25。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&amp;family=Dela+Gothic+One&amp;display=swap">
+<!-- このファイルは map/tools/build.py で生成している。直接編集せず、map/data と map/src を直すこと。 -->
+<style>
+:root {
+  --d-base: #963A45;
+  --d-cryptoauth: #6A3F96;
+  --d-infra: #1D5C93;
+  --d-dev: #2C6E4C;
+  --d-resp: #9A4A12;
+  --d-mgmt: #45556E;
+  --f-basics: #8E3646;
+  --f-threats: #A3333A;
+  --f-crypto: #653C93;
+  --f-auth: #7A3A8C;
+  --f-netbase: #1B5A8E;
+  --f-netdef: #2A4F9E;
+  --f-osdb: #235F80;
+  --f-cloud: #1A6872;
+  --f-web: #2B714A;
+  --f-devproc: #3A6B2C;
+  --f-vuln: #22695A;
+  --f-ops: #8F4A12;
+  --f-incident: #A8441A;
+  --f-risk: #435789;
+  --f-isms: #3B4C66;
+  --f-law: #575B6E;
+}
+/* ===== 色・書体（すべてCSS変数で管理） ===== */
+:root {
+  color-scheme: light;
+  --bg: #E5ECF2;
+  --bg-2: #D9E2EB;
+  --surface: #F6F9FB;
+  --surface-2: #FFFFFF;
+  --ink: #12233A;
+  --ink-2: #3A4C64;
+  --ink-3: #5B6B80;
+  --line: #B7C5D3;
+  --line-2: #8EA2B7;
+  --grid: #9FB2C5;
+  --accent: #0B6E99;
+  --accent-ink: #FFFFFF;
+  --hit: #E8590C;
+  --link-line: #24364F;
+  --link-on: #C2410C;
+  --center: #12233A;
+  --center-ring: #2F4A6B;
+  --card-bg: #FFFFFF;
+  --card-ink: #12233A;
+  --card-ink-2: #44566D;
+  --sector-op: 0.09;
+  --trunk-op: 0.55;
+  --shadow: 0 6px 24px rgba(18, 35, 58, 0.16);
+  --pill-high-bg: #B42318;
+  --pill-high-ink: #FFFFFF;
+  --pill-mid-bg: #F2B23A;
+  --pill-mid-ink: #3B2600;
+  --pill-low-bg: #D3DAE2;
+  --pill-low-ink: #334155;
+  --badge-sup-bg: #EDE7F6;
+  --badge-sup-ink: #4A2C82;
+  --badge-new-bg: #DDF1EC;
+  --badge-new-ink: #0D5948;
+  --badge-weight-bg: #FFE8D9;
+  --badge-weight-ink: #8A3200;
+  --flash: #FFE38A;
+  --font-ui: "BIZ UDPGothic", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  --font-display: "Dela Gothic One", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  --topbar-h: 60px;
+  --radius: 12px;
+  --ease: 220ms cubic-bezier(.2, .7, .2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0D1621;
+    --bg-2: #111D2A;
+    --surface: #142130;
+    --surface-2: #1A2a3C;
+    --ink: #E2EAF3;
+    --ink-2: #B3C2D3;
+    --ink-3: #8C9DB1;
+    --line: #2C3E53;
+    --line-2: #46607C;
+    --grid: #3A5068;
+    --accent: #5CC2EA;
+    --accent-ink: #062030;
+    --hit: #FF9F5A;
+    --link-line: #C5D3E3;
+    --link-on: #FFB079;
+    --center: #1C3A5C;
+    --center-ring: #6F90B5;
+    --card-bg: #172534;
+    --card-ink: #E2EAF3;
+    --card-ink-2: #AEBDCE;
+    --sector-op: 0.13;
+    --trunk-op: 0.7;
+    --shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    --pill-high-bg: #C0281B;
+    --pill-mid-bg: #F2B23A;
+    --pill-low-bg: #3A4A5E;
+    --pill-low-ink: #E2EAF3;
+    --badge-sup-bg: #33275A;
+    --badge-sup-ink: #DCCFFF;
+    --badge-new-bg: #133F37;
+    --badge-new-ink: #B8EBDD;
+    --badge-weight-bg: #4A2510;
+    --badge-weight-ink: #FFD2B5;
+    --flash: #6B5A12;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0D1621;
+  --bg-2: #111D2A;
+  --surface: #142130;
+  --surface-2: #1A2a3C;
+  --ink: #E2EAF3;
+  --ink-2: #B3C2D3;
+  --ink-3: #8C9DB1;
+  --line: #2C3E53;
+  --line-2: #46607C;
+  --grid: #3A5068;
+  --accent: #5CC2EA;
+  --accent-ink: #062030;
+  --hit: #FF9F5A;
+  --link-line: #C5D3E3;
+  --link-on: #FFB079;
+  --center: #1C3A5C;
+  --center-ring: #6F90B5;
+  --card-bg: #172534;
+  --card-ink: #E2EAF3;
+  --card-ink-2: #AEBDCE;
+  --sector-op: 0.13;
+  --trunk-op: 0.7;
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  --pill-high-bg: #C0281B;
+  --pill-mid-bg: #F2B23A;
+  --pill-low-bg: #3A4A5E;
+  --pill-low-ink: #E2EAF3;
+  --badge-sup-bg: #33275A;
+  --badge-sup-ink: #DCCFFF;
+  --badge-new-bg: #133F37;
+  --badge-new-ink: #B8EBDD;
+  --badge-weight-bg: #4A2510;
+  --badge-weight-ink: #FFD2B5;
+  --flash: #6B5A12;
+}
+
+/* 分野色を背景の上に線として引くときの色（ダークでは少し明るく） */
+:root { --mix-line: 0%; }
+:root[data-theme="dark"] { --mix-line: 38%; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --mix-line: 38%; } }
+
+/* ===== 基本 ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+a { color: var(--accent); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 100; background: var(--surface-2); padding: 6px 12px; border-radius: 8px; }
+.skip:focus { top: 8px; }
+[hidden] { display: none !important; }
+
+/* ===== 上部バー ===== */
+.topbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: var(--topbar-h);
+  padding: 8px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  z-index: 30;
+}
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.brand-mark {
+  width: 34px; height: 34px; flex: none; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, var(--center) 0 38%, transparent 39% 52%, var(--center) 53% 58%, transparent 59%),
+              conic-gradient(var(--d-base) 0 60deg, var(--d-cryptoauth) 0 120deg, var(--d-infra) 0 180deg, var(--d-dev) 0 240deg, var(--d-resp) 0 300deg, var(--d-mgmt) 0);
+}
+.brand-title { font-family: var(--font-display); font-size: 18px; line-height: 1.2; letter-spacing: .02em; white-space: nowrap; }
+.brand-sub { font-size: 11.5px; color: var(--ink-3); white-space: nowrap; }
+.tabs { display: flex; gap: 4px; margin-left: 8px; }
+.tabs a {
+  text-decoration: none; color: var(--ink-2); padding: 7px 12px; border-radius: 999px;
+  font-weight: 700; font-size: 14px; white-space: nowrap;
+}
+.tabs a:hover { background: var(--bg-2); }
+.tabs a[aria-selected="true"] { background: var(--ink); color: var(--surface); }
+.tabs .ts { display: none; }
+.panel-title:focus { outline: none; }
+.search { position: relative; margin-left: auto; width: min(320px, 32vw); }
+.search input {
+  width: 100%; height: 38px; padding: 0 12px 0 34px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: var(--surface-2); color: var(--ink); font: inherit;
+}
+.search::before {
+  content: ""; position: absolute; left: 13px; top: 12px; width: 10px; height: 10px;
+  border: 2px solid var(--ink-3); border-radius: 50%; pointer-events: none;
+}
+.search::after {
+  content: ""; position: absolute; left: 24px; top: 23px; width: 6px; height: 2px;
+  background: var(--ink-3); transform: rotate(45deg); pointer-events: none;
+}
+.search ul {
+  position: absolute; right: 0; top: 44px; width: min(440px, 92vw); max-height: 60vh; overflow: auto;
+  margin: 0; padding: 6px; list-style: none; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.search li { padding: 8px 10px; border-radius: 8px; cursor: pointer; line-height: 1.45; }
+.search li[aria-selected="true"], .search li:hover { background: var(--bg-2); }
+.search li .q-name { font-weight: 700; }
+.search li .q-path { display: block; font-size: 12px; color: var(--ink-3); }
+.search li.q-info { cursor: default; font-size: 12px; color: var(--ink-3); }
+.search li.q-info:hover { background: none; }
+.icon-btn {
+  flex: none; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line-2);
+  background: var(--surface-2); cursor: pointer; font-size: 17px; line-height: 1;
+}
+
+main { flex: 1; min-height: 0; position: relative; }
+.links-layout > *, .tables > *, .two-col > *, .exam-wrap section, .fsec-body > * { min-width: 0; }
+.view { position: absolute; inset: 0; overflow: auto; }
+
+/* ===== 地図 ===== */
+#view-map { overflow: hidden; }
+#map-wrap {
+  position: absolute; inset: 0; touch-action: none; cursor: grab;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 60%, color-mix(in srgb, var(--bg-2) 70%, transparent) 100%),
+    var(--bg);
+}
+#map-wrap.dragging { cursor: grabbing; }
+#map { width: 100%; height: 100%; display: block; user-select: none; -webkit-user-select: none; }
+#map text { font-family: var(--font-ui); }
+
+.ring { fill: none; stroke: var(--grid); stroke-width: 1.4; opacity: .55; }
+.ring.dash { stroke-dasharray: 6 10; }
+.tick { stroke: var(--grid); stroke-width: 2; opacity: .7; }
+.tick.major { stroke-width: 4; opacity: .9; }
+.tick-label { fill: var(--ink-3); font-size: 22px; letter-spacing: .08em; }
+.sector { fill: var(--c); opacity: var(--sector-op); }
+.sector-edge { stroke: var(--c); stroke-width: 3; opacity: .35; fill: none; }
+.domain-label { fill: var(--c); font-family: var(--font-display) !important; font-size: 46px; letter-spacing: .28em; }
+:root[data-theme="dark"] .domain-label { fill: color-mix(in srgb, var(--c) 55%, white); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .domain-label { fill: color-mix(in srgb, var(--c) 55%, white); } }
+
+.trunk { fill: none; stroke: color-mix(in srgb, var(--c), white var(--mix-line)); stroke-width: 18; stroke-linecap: round; opacity: var(--trunk-op); transition: opacity var(--ease); }
+.center-disc { fill: var(--center); stroke: var(--center-ring); stroke-width: 6; }
+.center-ring2 { fill: none; stroke: var(--center); stroke-width: 2; opacity: .5; }
+.center-title { fill: #FFFFFF; font-family: var(--font-display) !important; font-size: 50px; text-anchor: middle; }
+.center-sub { fill: #C9D7E6; font-size: 22px; text-anchor: middle; letter-spacing: .2em; }
+
+/* 関係の矢印 */
+.rel { cursor: pointer; transition: opacity var(--ease); }
+.rel-line { fill: none; stroke: var(--link-line); stroke-width: 4; opacity: .5; }
+.rel.core .rel-line { stroke-width: 9; opacity: .72; }
+.rel:not(.core) .rel-line { stroke-dasharray: 16 12; }
+.rel-head { fill: var(--link-line); opacity: .65; }
+.rel.core .rel-head { opacity: .8; }
+.rel-hit { fill: none; stroke: transparent; stroke-width: 34; }
+.rel-label { display: none; pointer-events: none; }
+.rel-label rect { fill: var(--surface-2); stroke: var(--link-on); stroke-width: 2.5; }
+.rel-label text { fill: var(--ink); font-size: 24px; font-weight: 700; text-anchor: middle; }
+.labels-on .rel-label { display: inline; }
+.rel.on .rel-label, .rel:hover .rel-label, .rel:focus-visible .rel-label { display: inline; }
+.rel.on .rel-line, .rel:hover .rel-line, .rel:focus-visible .rel-line { stroke: var(--link-on); opacity: 1; }
+.rel.on .rel-head, .rel:hover .rel-head, .rel:focus-visible .rel-head { fill: var(--link-on); opacity: 1; }
+.rel:focus-visible { outline: none; }
+.rel:focus-visible .rel-line { stroke-width: 12; }
+.no-links .rel { display: none; }
+.core-only .rel:not(.core) { display: none; }
+
+/* 大分類カード */
+.card { cursor: pointer; transition: opacity var(--ease); }
+.card:focus { outline: none; }
+.card-bg { fill: var(--card-bg); stroke: color-mix(in srgb, var(--c) 45%, var(--line)); stroke-width: 2; }
+.card-band, .card-band-sq { fill: var(--c); }
+.card-short { fill: #FFFFFF; font-weight: 700; font-size: 27px; text-anchor: middle; }
+.sub-sq { fill: var(--c); opacity: .85; }
+.sub-name { fill: var(--card-ink); font-size: 20px; }
+.card-foot-sep { stroke: var(--line); stroke-width: 1.5; }
+.pill-bg.high { fill: var(--pill-high-bg); }
+.pill-bg.mid { fill: var(--pill-mid-bg); }
+.pill-bg.low { fill: var(--pill-low-bg); }
+.pill-text { font-size: 18px; font-weight: 700; text-anchor: middle; }
+.pill-text.high { fill: var(--pill-high-ink); }
+.pill-text.mid { fill: var(--pill-mid-ink); }
+.pill-text.low { fill: var(--pill-low-ink); }
+.card-open { fill: var(--accent); font-size: 17px; font-weight: 700; text-anchor: end; }
+.card-weight { fill: var(--badge-weight-ink); font-size: 15px; font-weight: 700; }
+.card-weight-bg { fill: var(--badge-weight-bg); }
+.card-compact-bg { fill: var(--c); stroke: color-mix(in srgb, var(--c) 70%, black); stroke-width: 2; }
+.card-big { fill: #FFFFFF; font-family: var(--font-display) !important; text-anchor: middle; }
+.card-ring { fill: none; stroke: transparent; stroke-width: 10; }
+.card:focus-visible .card-ring { stroke: var(--accent); }
+.card.hit .card-ring { stroke: var(--hit); stroke-dasharray: 22 10; }
+.card.is-focus .card-ring { stroke: var(--ink); }
+.lod-detail-only { display: none; }
+.lod-detail .lod-detail-only { display: inline; }
+.lod-detail .lod-compact-only { display: none; }
+
+.focusing .card.is-dim, .focusing .rel.is-dim, .focusing .trunk.is-dim { opacity: .18; }
+.focusing .trunk.is-on { opacity: .95; }
+
+/* 操作ボタン */
+.zoom-ctl {
+  position: absolute; right: 16px; top: 16px; display: flex; flex-direction: column; gap: 6px; z-index: 5;
+}
+.zoom-ctl button {
+  width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line-2);
+  background: var(--surface-2); cursor: pointer; font-size: 22px; font-weight: 700; box-shadow: var(--shadow);
+}
+.zoom-ctl button.fit { font-size: 13px; }
+
+/* 左上パネル */
+.legend-panel {
+  position: absolute; left: 16px; top: 16px; width: 290px; max-height: calc(100% - 32px); overflow: auto;
+  background: color-mix(in srgb, var(--surface) 94%, transparent); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); z-index: 5; font-size: 13px; line-height: 1.6;
+}
+.legend-panel > summary {
+  cursor: pointer; padding: 10px 14px; font-weight: 700; list-style: none; display: flex; align-items: center; gap: 8px;
+}
+.legend-panel > summary::-webkit-details-marker { display: none; }
+.legend-panel > summary::before { content: "▸"; transition: transform var(--ease); }
+.legend-panel[open] > summary::before { transform: rotate(90deg); }
+.legend-body { padding: 0 14px 12px; }
+.legend-body h3 { font-size: 12.5px; margin: 10px 0 4px; color: var(--ink-2); letter-spacing: .06em; }
+.legend-body ol { margin: 0; padding-left: 1.3em; }
+.legend-body label { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 2px 0; }
+.legend-body input { width: 16px; height: 16px; accent-color: var(--accent); }
+.legend-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.legend-list li { display: flex; align-items: center; gap: 8px; }
+.legend-list.cols { grid-template-columns: 1fr 1fr; gap: 3px 8px; }
+.swatch { width: 14px; height: 14px; border-radius: 3px; background: var(--c); flex: none; }
+.line-sample { width: 36px; height: 0; border-top: 4px solid var(--link-line); flex: none; }
+.line-sample.dash { border-top: 2px dashed var(--link-line); }
+.legend-note { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 12px; }
+
+/* 右下の注記 */
+.a1-note {
+  position: absolute; right: 16px; bottom: 16px; width: 270px; z-index: 4;
+  background: color-mix(in srgb, var(--surface) 94%, transparent); border: 1px solid var(--line);
+  border-left: 6px solid var(--ink); border-radius: var(--radius); padding: 10px 14px; font-size: 12.5px; line-height: 1.6;
+  box-shadow: var(--shadow);
+}
+.a1-note strong { display: block; font-size: 13px; margin-bottom: 2px; }
+.a1-note p { margin: 0; }
+.a1-note .a1-new { margin-top: 4px; color: var(--ink-3); }
+
+/* ===== 右側パネル（スマホでは下からのシート） ===== */
+.panel {
+  position: fixed; right: 0; top: var(--topbar-actual, var(--topbar-h)); bottom: 0; width: min(460px, 100vw);
+  background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow);
+  transform: translateX(102%); transition: transform var(--ease), visibility var(--ease); visibility: hidden;
+  z-index: 40; display: flex; flex-direction: column;
+}
+.panel.open { transform: none; visibility: visible; }
+.panel-head { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 8px 10px 0 16px; }
+.panel-grip { display: none; }
+.panel-close {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface-2);
+  cursor: pointer; font-size: 20px; line-height: 1;
+}
+.panel-body { flex: 1; overflow: auto; padding: 4px 18px 28px; }
+.crumb { margin: 0; font-size: 12.5px; color: var(--ink-3); }
+.crumb b { color: var(--ink-2); }
+.panel-title { margin: 6px 0 8px; font-size: 21px; line-height: 1.4; display: flex; gap: 10px; align-items: flex-start; }
+.panel-title .swatch { width: 18px; height: 18px; margin-top: 6px; border-radius: 4px; }
+.panel h3 { font-size: 14px; margin: 18px 0 6px; padding-bottom: 4px; border-bottom: 2px solid var(--line); letter-spacing: .04em; }
+.panel p { margin: 6px 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); font-weight: 700; text-decoration: none;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.link-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.link-list button {
+  width: 100%; text-align: left; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line);
+  background: var(--surface-2); cursor: pointer; line-height: 1.5;
+}
+.link-list button:hover { border-color: var(--line-2); }
+.link-list .lk-to { font-weight: 700; }
+.link-list .lk-label { display: block; font-size: 12.5px; color: var(--ink-3); }
+.kind { display: inline-block; font-size: 11px; font-weight: 700; padding: 0 6px; border-radius: 6px; border: 1px solid var(--line-2); color: var(--ink-2); margin-left: 6px; vertical-align: 1px; }
+.kind.core { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+
+/* ピル・バッジ */
+.pill { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 10px; border-radius: 999px; line-height: 1.7; white-space: nowrap; }
+.pill.high { background: var(--pill-high-bg); color: var(--pill-high-ink); }
+.pill.mid { background: var(--pill-mid-bg); color: var(--pill-mid-ink); }
+.pill.low { background: var(--pill-low-bg); color: var(--pill-low-ink); }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 0 6px; border-radius: 6px; line-height: 1.6; vertical-align: 1px; white-space: nowrap; }
+.badge.sup { background: var(--badge-sup-bg); color: var(--badge-sup-ink); }
+.badge.new { background: var(--badge-new-bg); color: var(--badge-new-ink); }
+.badge.weight { background: var(--badge-weight-bg); color: var(--badge-weight-ink); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+/* 樹形図（├─ 形式の線） */
+.tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+.tree ul { padding-left: 14px; }
+.tree li { position: relative; padding-left: 20px; }
+.tree li::before {
+  content: ""; position: absolute; left: 0; top: 0; width: 14px; height: .95em;
+  border-left: 2px solid var(--line-2); border-bottom: 2px solid var(--line-2);
+}
+.tree li:not(:last-child)::after { content: ""; position: absolute; left: 0; top: .95em; bottom: 0; border-left: 2px solid var(--line-2); }
+.tree > li { padding-left: 0; }
+.tree > li::before, .tree > li::after { display: none; }
+.tree .t-root { font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+.tree .t-sub { font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; }
+.tree .t-sub .swatch { width: 11px; height: 11px; border-radius: 2px; }
+.tree .t-term { padding: 1px 0; line-height: 1.55; border-radius: 6px; }
+.tree .t-name { font-weight: 700; }
+.tree .t-desc { color: var(--ink-2); }
+.tree .t-term.flash { background: var(--flash); box-shadow: 0 0 0 4px var(--flash); }
+@media (prefers-reduced-motion: no-preference) {
+  .tree .t-term.flash { transition: background 600ms, box-shadow 600ms; }
+}
+.note-link { font-size: 12px; margin-left: 4px; white-space: nowrap; }
+
+dl.info { margin: 0; display: grid; gap: 8px; }
+dl.info dt { font-weight: 700; font-size: 12.5px; color: var(--ink-2); }
+dl.info dd { margin: 0; }
+dl.info ul { margin: 0; padding-left: 1.2em; }
+.chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 12px; padding: 1px 8px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: var(--surface-2); color: var(--ink); text-decoration: none; cursor: pointer; white-space: nowrap;
+}
+.chip .swatch { width: 9px; height: 9px; border-radius: 50%; }
+.kw { display: inline-block; font-size: 12.5px; padding: 0 7px; border-radius: 6px; background: var(--bg-2); margin: 0 4px 4px 0; }
+
+/* ===== 分野別詳細 ===== */
+.detail-layout { display: grid; grid-template-columns: 290px 1fr; min-height: 100%; }
+.detail-layout { background: linear-gradient(to right, var(--surface) 290px, transparent 290px); }
+.detail-nav {
+  position: sticky; top: 0; align-self: start; overflow: auto; padding: 16px;
+  max-height: calc(100vh - var(--topbar-actual, var(--topbar-h)));
+  border-right: 1px solid var(--line); background: var(--surface);
+}
+.detail-nav h2 { font-size: 14px; margin: 0 0 8px; }
+.filter { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; }
+.filter button { padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--surface-2); cursor: pointer; font-size: 13px; font-weight: 700; }
+.filter button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.nav-domain { margin: 10px 0 4px; font-size: 12px; font-weight: 700; color: var(--ink-3); display: flex; align-items: center; gap: 6px; }
+.nav-list { list-style: none; margin: 0; padding: 0; }
+.nav-list a { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 8px; text-decoration: none; color: var(--ink); font-size: 13.5px; }
+.nav-list a:hover { background: var(--bg-2); }
+.nav-list .pill { margin-left: auto; font-size: 11px; padding: 0 8px; }
+.detail-body { padding: 20px clamp(16px, 3vw, 36px) 60px; min-width: 0; }
+.page-head { max-width: 1100px; margin-bottom: 18px; }
+.page-head h1 { font-family: var(--font-display); font-size: 26px; margin: 0 0 4px; line-height: 1.3; font-weight: 400; }
+.page-head p { margin: 0; color: var(--ink-2); }
+.notice { font-size: 12.5px; color: var(--ink-3); margin-top: 6px !important; }
+.fsec { max-width: 1100px; margin: 0 0 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; scroll-margin-top: 12px; }
+.fsec-head { background: var(--c); color: #FFFFFF; padding: 12px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.fsec-head h2 { margin: 0; font-size: 19px; line-height: 1.4; }
+.fsec-head .dom { font-size: 12px; opacity: .92; }
+.fsec-head .pills { margin-left: auto; }
+.fsec-body { padding: 14px 18px 18px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px 28px; }
+.fsec-body h3 { font-size: 14px; margin: 4px 0 8px; padding-bottom: 4px; border-bottom: 2px solid var(--line); }
+.fsec-summary { grid-column: 1 / -1; margin: 0; }
+.fsec-links { grid-column: 1 / -1; }
+
+/* ===== 分野間の関係 ===== */
+.links-layout { display: grid; grid-template-columns: minmax(300px, 520px) 1fr; gap: 24px; padding: 20px clamp(16px, 3vw, 36px) 60px; align-items: start; }
+.links-layout .page-head { grid-column: 1 / -1; margin-bottom: 0; }
+.mini-wrap { position: sticky; top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; }
+.mini-wrap svg { width: 100%; height: auto; display: block; }
+.mini-wrap p { margin: 4px 4px 0; font-size: 12px; color: var(--ink-3); }
+.mini-node circle { fill: var(--c); stroke: var(--surface); stroke-width: 3; }
+.mini-node text { font-size: 21px; fill: var(--ink); font-weight: 700; }
+.mini-rel path { fill: none; stroke: var(--link-line); stroke-width: 2; opacity: .45; }
+.mini-rel.core path { stroke-width: 4; opacity: .65; }
+.mini-rel:not(.core) path { stroke-dasharray: 6 5; }
+.mini-rel polygon { fill: var(--link-line); opacity: .55; }
+.mini.sel .mini-rel, .mini.sel .mini-node { opacity: .2; }
+.mini.sel .mini-rel.on, .mini.sel .mini-node.on { opacity: 1; }
+.mini-rel.on path { stroke: var(--link-on); opacity: 1; }
+.mini-rel.on polygon { fill: var(--link-on); opacity: 1; }
+.mini-node.on circle { stroke: var(--link-on); stroke-width: 5; }
+.rel-groups { min-width: 0; }
+.rel-group { margin-bottom: 22px; }
+.rel-group > h2 { font-size: 16px; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+.rel-group > h2 .num { font-family: var(--font-display); font-weight: 400; display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--surface); font-size: 13px; }
+.rel-cards { display: grid; gap: 10px; }
+.rel-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; cursor: pointer; text-align: left; width: 100%; line-height: 1.65; }
+.rel-card:hover { border-color: var(--line-2); }
+.rel-card.sel { border-color: var(--link-on); box-shadow: 0 0 0 2px var(--link-on); }
+.rel-card .rc-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-weight: 700; }
+.rel-card .rc-arrow { color: var(--ink-3); }
+.rel-card .rc-label { display: block; font-size: 15px; margin: 2px 0 4px; color: var(--link-on); font-weight: 700; }
+.rel-card dl { margin: 0; display: grid; grid-template-columns: 7.5em 1fr; gap: 3px 10px; font-size: 13.5px; }
+.rel-card dt { font-weight: 700; color: var(--ink-2); }
+.rel-card dd { margin: 0; }
+.tables { grid-column: 1 / -1; display: grid; gap: 28px; }
+.tables h2 { font-size: 18px; margin: 0 0 10px; }
+.tbl-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; line-height: 1.6; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+thead th { background: var(--bg-2); font-size: 12.5px; white-space: nowrap; }
+tbody th { white-space: nowrap; }
+tr:last-child td, tr:last-child th { border-bottom: none; }
+.pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.pair { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.pair h3 { margin: 0 0 6px; font-size: 15px; }
+.pair dl { margin: 0 0 6px; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 13.5px; }
+.pair dt { font-weight: 700; white-space: nowrap; }
+.pair dd { margin: 0; color: var(--ink-2); }
+.pair .point { margin: 6px 0 0; font-size: 13px; padding: 6px 8px; border-radius: 8px; background: var(--bg-2); }
+.pair .point::before { content: "見分け方："; font-weight: 700; }
+
+/* ===== 試験制度と根拠 ===== */
+.exam-wrap { padding: 20px clamp(16px, 3vw, 36px) 60px; max-width: 1180px; }
+.exam-wrap section { margin-bottom: 30px; }
+.exam-wrap h2 { font-size: 18px; margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
+.exam-wrap h2::before { content: ""; width: 6px; height: 22px; border-radius: 3px; background: var(--ink); }
+.exam-wrap p { margin: 6px 0; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 4%; right: 4%; top: 15px; border-top: 3px solid var(--line-2); }
+.timeline li { position: relative; padding: 36px 12px 0; }
+.timeline li::before {
+  content: ""; position: absolute; left: 12px; top: 6px; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--surface); border: 4px solid var(--line-2);
+}
+.timeline li.done::before { background: var(--line-2); }
+.timeline li.next::before { background: var(--hit); border-color: var(--hit); box-shadow: 0 0 0 5px color-mix(in srgb, var(--hit) 25%, transparent); }
+.timeline li.plan::before { border-style: dashed; border-color: var(--accent); }
+.timeline .tl-when { font-size: 12.5px; color: var(--ink-3); }
+.timeline .tl-name { font-weight: 700; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.timeline .tl-text { font-size: 13px; color: var(--ink-2); margin: 2px 0 0; }
+.status { font-size: 11px; font-weight: 700; padding: 0 7px; border-radius: 6px; border: 1px solid var(--line-2); }
+.status.next { background: var(--hit); color: #FFFFFF; border-color: var(--hit); }
+.status.plan { border-style: dashed; border-color: var(--accent); color: var(--accent); }
+.sys { font-size: 11px; font-weight: 700; padding: 0 6px; border-radius: 6px; }
+.sys.current { background: var(--bg-2); color: var(--ink-2); }
+.sys.new { background: var(--badge-new-bg); color: var(--badge-new-ink); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.two-col h3 { font-size: 14px; margin: 0 0 6px; }
+.src-list { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; font-size: 13.5px; }
+.src-list .src-note { color: var(--ink-3); font-size: 12.5px; }
+.guide { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.guide div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; font-size: 13.5px; }
+.guide b { display: block; }
+.guide .lv { font-size: 11.5px; color: var(--ink-3); font-weight: 700; }
+.method { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 4px; }
+.footer-note { font-size: 12.5px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 12px; }
+
+/* ===== スマホ ===== */
+@media (max-width: 860px) {
+  .topbar { flex-wrap: wrap; gap: 8px 10px; padding: 8px 12px; }
+  .brand-sub { display: none; }
+  .brand-title { font-size: 16px; }
+  .tabs { order: 3; width: 100%; margin: 0; overflow-x: auto; scrollbar-width: none; }
+  .tabs a { padding: 6px 12px; font-size: 13.5px; flex: 1; text-align: center; }
+  .tabs .tl { display: none; }
+  .tabs .ts { display: inline; }
+  .search { order: 2; width: auto; flex: 1; margin-left: 0; min-width: 120px; }
+  .icon-btn { order: 1; margin-left: auto; }
+  .brand { order: 0; }
+  .legend-panel { left: 10px; top: 10px; width: min(290px, calc(100% - 76px)); }
+  .zoom-ctl { right: 10px; top: 10px; }
+  .a1-note { left: 10px; right: auto; bottom: 10px; width: min(300px, calc(100% - 20px)); padding: 8px 12px; font-size: 12px; }
+  .a1-note .a1-new { display: none; }
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-layout { background: none; }
+  .detail-nav { position: static; height: auto; max-height: none; border-right: none; border-bottom: 1px solid var(--line); }
+  .nav-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
+  .fsec-body { grid-template-columns: 1fr; }
+  .links-layout { grid-template-columns: 1fr; }
+  .mini-wrap { position: static; }
+  .timeline { grid-template-columns: 1fr; }
+  .timeline::before { left: 21px; right: auto; top: 10px; bottom: 10px; border-top: none; border-left: 3px solid var(--line-2); }
+  .timeline li { padding: 0 0 16px 46px; }
+  .timeline li::before { left: 12px; top: 3px; }
+  .two-col { grid-template-columns: 1fr; }
+  .rel-card dl { grid-template-columns: 1fr; }
+  .panel {
+    top: auto; left: 0; right: 0; bottom: 0; width: 100%; height: min(78vh, 720px);
+    border-left: none; border-top: 1px solid var(--line); border-radius: 18px 18px 0 0; transform: translateY(102%);
+  }
+  .panel-head { padding: 6px 10px 0 16px; }
+  .panel-grip { display: block; position: absolute; left: 50%; top: 6px; width: 44px; height: 5px; margin-left: -22px; border-radius: 3px; background: var(--line-2); }
+}
+@media (max-width: 480px) {
+  .legend-panel:not([open]) { width: auto; }
+  .nav-groups { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="topbar" id="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <div>
+      <div class="brand-title">RISS 試験範囲マップ</div>
+      <div class="brand-sub">情報処理安全確保支援士試験（SC）の全体俯瞰</div>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="表示の切り替え">
+    <a role="tab" id="tab-map" href="#map" aria-controls="view-map" aria-label="全体俯瞰マップ"><span class="tl">全体俯瞰マップ</span><span class="ts" aria-hidden="true">地図</span></a>
+    <a role="tab" id="tab-detail" href="#detail" aria-controls="view-detail" aria-label="分野別詳細"><span class="tl">分野別詳細</span><span class="ts" aria-hidden="true">分野別</span></a>
+    <a role="tab" id="tab-links" href="#links" aria-controls="view-links" aria-label="分野間の関係"><span class="tl">分野間の関係</span><span class="ts" aria-hidden="true">関係</span></a>
+    <a role="tab" id="tab-exam" href="#exam" aria-controls="view-exam" aria-label="試験制度と根拠"><span class="tl">試験制度と根拠</span><span class="ts" aria-hidden="true">試験制度</span></a>
+  </nav>
+  <div class="search">
+    <label for="q" class="sr-only">用語検索</label>
+    <input id="q" type="search" placeholder="用語を検索（例：DMARC）" autocomplete="off" spellcheck="false"
+      role="combobox" aria-expanded="false" aria-controls="q-list" aria-autocomplete="list">
+    <ul id="q-list" role="listbox" aria-label="検索結果" hidden></ul>
+  </div>
+  <button type="button" id="theme-toggle" class="icon-btn" aria-label="ライトモードとダークモードを切り替える" title="表示色の切り替え">◐</button>
+</header>
+
+<main id="main">
+  <section id="view-map" class="view" role="tabpanel" aria-labelledby="tab-map">
+    <div id="map-wrap">
+      <svg id="map" aria-label="情報処理安全確保支援士試験の範囲を、中心から16分野へ放射状に描いた地図。カードはTabキーで選び、Enterキーで詳細を開ける。"></svg>
+    </div>
+    <div class="zoom-ctl" role="group" aria-label="拡大縮小">
+      <button type="button" id="zoom-in" aria-label="拡大">＋</button>
+      <button type="button" id="zoom-out" aria-label="縮小">－</button>
+      <button type="button" id="zoom-fit" class="fit" aria-label="全体を表示">全体</button>
+    </div>
+    <details class="legend-panel" id="legend" open>
+      <summary>使い方・表示設定・凡例</summary>
+      <div class="legend-body" id="legend-body"></div>
+    </details>
+    <aside class="a1-note" id="a1-note" aria-label="科目A-1についての注記"></aside>
+  </section>
+
+  <section id="view-detail" class="view" role="tabpanel" aria-labelledby="tab-detail" hidden></section>
+  <section id="view-links" class="view" role="tabpanel" aria-labelledby="tab-links" hidden></section>
+  <section id="view-exam" class="view" role="tabpanel" aria-labelledby="tab-exam" hidden></section>
+</main>
+
+<aside id="panel" class="panel" role="dialog" aria-modal="false" aria-labelledby="panel-title" aria-hidden="true" tabindex="-1">
+  <div class="panel-head">
+    <span class="panel-grip" aria-hidden="true"></span>
+    <span></span>
+    <button type="button" class="panel-close" id="panel-close" aria-label="パネルを閉じる（Escキー）">×</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</aside>
+
+<script type="application/json" id="map-data">{"meta":{"title":"RISS 試験範囲マップ","subtitle":"情報処理安全確保支援士試験（SC）の全体俯瞰","created":"2026-11-25","researchMemo":"research/ipa-research-2026-11-25.md","siteUrl":"https://popo-fukuro.github.io/STUDY-RISS/","notice":"試験制度・日程は作成日（調査日）時点の情報。最新情報は必ずIPAの公式サイトで確認すること。","layout":{"size":2900,"radius":1040,"centerRadius":175,"cardWidth":300,"cardHeader":60,"cardRow":32,"cardPad":20,"cardFooter":50,"startAngle":-90,"ringLabel":1360,"ringTick":1410,"lodThreshold":0.5},"a1Note":{"title":"地図の土台：科目A-1（共通知識）","text":"科目A-1は応用情報技術者試験レベルの共通知識（テクノロジ・マネジメント・ストラテジ）から30問。この地図の16分野すべてを支える土台にあたる。応用情報の合格などで2年間免除できる。","newText":"新制度では「ビジネス」「テクノロジ」「セキュリティ・倫理」の30中分類に再編され、45分・30問になる予定。"},"priorityLegend":{"high":"高","mid":"中","low":"低"},"badges":{"new-weight":{"label":"新制度で重み増","desc":"新制度（2027年度〜予定）の出題範囲案・シラバス案で、項目の追加や強化が明記された分野。"},"sup":{"label":"補","desc":"試験要綱・シラバス（現行・追補版・新制度のシラバス案）に用語としては載っていないが、理解のために追加した関連知識。"},"new":{"label":"新案","desc":"新制度のシラバス案（Ver.0.1）に用語として載っているが、現行の要綱・シラバスには見当たらない用語。"}},"timeline":[{"id":"r7a","when":"2025年10月","name":"令和7年度秋期","status":"done","system":"current","text":"紙の試験として最後の回。問題・解答例・採点講評が公開されている最新回。"},{"id":"r8z","when":"2026年10〜11月","name":"令和8年度前期","status":"done","system":"current","text":"CBT方式の初回。科目A 10/17〜10/27、科目B 11/11〜11/23。合格発表は2027年2月頃の予定。問題は非公開。"},{"id":"r8k","when":"2027年1〜3月","name":"令和8年度後期","status":"next","system":"current","text":"申込 2027/1/27〜2/27、科目A 2/20〜3/2、科目B 3/16〜3/28。現行制度は2026年度で終了予定のため、記述式の科目Bの最後の回になる見込み。"},{"id":"new","when":"2027年度 夏頃〜秋頃","name":"新制度の開始","status":"plan","system":"new","text":"検討段階の予定。科目Bは120分・12問・全問解答になる見込み。具体的な申込期間・実施期間は未確認。"}],"compare":[{"aspect":"実施方式","current":"CBT（前期・後期の年2回）","new":"CBT（実施時期の詳細は未確認）"},{"aspect":"科目A-1","current":"50分・30問（四肢択一）","new":"45分・30問"},{"aspect":"科目A-2","current":"40分・25問（四肢択一）","new":"35分・25問"},{"aspect":"科目B 時間","current":"150分","new":"120分"},{"aspect":"科目B 形式","current":"記述式。4問から2問を選んで解答","new":"12問すべて解答。サンプル問題では解答群から選ぶ形式（1問1答×8問＋1問3答×4問＝20設問）"},{"aspect":"得意分野での選択","current":"できる（4問から2問）","new":"できない（全範囲から出る）"},{"aspect":"科目Aの分野体系","current":"共通の23中分類。SCの科目A-2は7中分類（セキュリティ◎4・ネットワーク◎4ほか）","new":"3分野・30中分類に再編。SCの科目A-2は●5（セキュリティ4中分類とネットワーク）・○5"},{"aspect":"科目Bの範囲","current":"4大項目（マネジメント／開発／利用／インシデント管理）","new":"4大項目を維持しつつ、大項目1を「組織的推進」に再編・強化。データ保護、AIの安全な利用に関する規程、セキュリティ運用状況の点検などを追加"},{"aspect":"合格基準","current":"各科目60点以上／100点","new":"未確認"},{"aspect":"問題の公開","current":"CBT化後は非公開（公開問題は令和7年度秋期まで）","new":"サンプル問題のみ公開（2026-08-31）"}],"a2Current":[{"code":"11","name":"セキュリティ","mark":"◎4","fields":["basics","threats","crypto","auth","netdef","osdb","cloud","web","vuln","ops","incident","risk","isms","law"],"note":"追補版の5小分類（情報セキュリティ／情報セキュリティ管理／セキュリティ技術評価／情報セキュリティ対策／セキュリティ実装技術）"},{"code":"10","name":"ネットワーク","mark":"◎4","fields":["netbase","netdef"],"note":"ネットワーク方式／データ通信と制御／通信プロトコル／ネットワーク管理／ネットワーク応用"},{"code":"9","name":"データベース","mark":"○3","fields":["osdb"],"note":"データベース方式／設計／データ操作／トランザクション処理／応用"},{"code":"12","name":"システム開発技術","mark":"○3","fields":["devproc"],"note":"要件定義から保守・廃棄まで"},{"code":"13","name":"ソフトウェア開発管理技術","mark":"○3","fields":["devproc"],"note":"開発プロセス・手法／知的財産適用管理／開発環境管理／構成管理・変更管理"},{"code":"15","name":"サービスマネジメント","mark":"○3","fields":["ops"],"note":"SLA、サービスの運用、ファシリティマネジメントなど"},{"code":"16","name":"システム監査","mark":"○3","fields":["isms"],"note":"システム監査、内部統制"}],"a2New":[{"code":"23","name":"情報セキュリティの脅威","mark":"●","fields":["threats","basics"]},{"code":"24","name":"情報セキュリティマネジメント","mark":"●","fields":["basics","risk","isms","law"]},{"code":"25","name":"情報セキュリティ対策","mark":"●","fields":["crypto","auth","netdef","osdb","ops","incident"]},{"code":"26","name":"セキュリティ実装技術・評価","mark":"●","fields":["web","devproc","vuln","cloud","incident","osdb"]},{"code":"16","name":"ネットワーク","mark":"●","fields":["netbase","netdef"]},{"code":"17","name":"データベース","mark":"○","fields":["osdb"]},{"code":"4","name":"サービスマネジメント","mark":"○","fields":["ops"]},{"code":"12","name":"ガバナンス・監査","mark":"○","fields":["isms"]},{"code":"20","name":"システムライフサイクルプロセス","mark":"○","fields":["devproc"]},{"code":"21","name":"開発・運用の方法論","mark":"○","fields":["devproc"]}],"a2Notes":["現行は試験要綱 Ver.5.6 の「試験区分別出題分野一覧表」のSC列。◎は重点分野、数字は技術レベル（4が最も高度）。","新制度は「出題範囲等の改定案 Ver.1.0」（2026-03-31）の表のSC列。●は「専門分野かつ重点分野」、○は出題範囲。技術レベルの数字は示されていない。","法令（現行の中分類23「法務」、新制度の中分類28〜30）は、SCの科目A-2の表には含まれない。科目A-1（共通知識）の範囲にあたる。"],"bScope":[{"false":1,"current":"情報セキュリティマネジメントの推進又は支援","items":"方針策定、リスクアセスメント・リスク対応、諸規程（事業継続計画を含む）、監査、動向・事例の収集と分析、関係者とのコミュニケーション","fields":["risk","isms","law","ops","basics"],"newChange":"「組織的推進又は支援」に再編。AIの安全な導入・利用に関する規程、セキュリティ運用状況の管理・点検、デジタルガバナンス、脅威インテリジェンスの活用を追加。人的管理・サプライチェーン・コンプライアンス（AI関連ガイドラインを含む）が大項目3から移る。"},{"false":2,"current":"情報システムの企画・設計・開発・運用でのセキュリティ確保の推進又は支援","items":"要件定義、製品・サービスのセキュアな導入、アーキテクチャ設計、セキュリティ機能の設計・実装、セキュアプログラミング、セキュリティテスト、運用・保守、開発環境","fields":["devproc","web","vuln","cloud","osdb"],"newChange":"「ライフサイクルプロセスにおける〜」に名称変更。製品・サービスに「IoT、クラウドサービスを含む」と明記。"},{"false":3,"current":"情報及び情報システムの利用におけるセキュリティ対策の適用の推進又は支援","items":"暗号利用と鍵管理、マルウェア対策、バックアップ、監視とログ、ネットワーク・機器、脆弱性への対応、物理的管理、アカウント・アクセス管理、人的管理、サプライチェーン、コンプライアンス","fields":["crypto","auth","netbase","netdef","osdb","vuln","ops","incident","isms","risk","law"],"newChange":"「データ保護（情報の削除、データマスキング、漏えい防止、バックアップ）」を追加。人的管理・サプライチェーン・コンプライアンスは大項目1へ。"},{"false":4,"current":"情報セキュリティインシデント管理の推進又は支援","items":"管理体制（CSIRT）の構築、事象の評価（検知・初動・トリアージ）、インシデントへの対応（原因・復旧・報告・再発防止）、証拠の収集と分析","fields":["incident","ops"],"newChange":"大きな変更なし。"}],"recentB":[{"id":"R7秋-1","label":"R7秋 問1","theme":"Webアプリの脆弱性を悪用したインシデント","tech":"XSS、CSP、ファイルアップロード、HTML/ECMAScript、開発プロセス","fields":["web","incident","devproc"],"note":"CSPの理解と、開発プロセスでの対策を問う設問の正答率が低めだった"},{"id":"R7秋-2","label":"R7秋 問2","theme":"暗号資産交換業の暗号鍵管理","tech":"暗号化と復号、デジタル署名、鍵の暗号化","fields":["crypto"],"note":"暗号技術の使い分けを問う設問の正答率が低かった"},{"id":"R7秋-3","label":"R7秋 問3","theme":"インターネットバンキングとリモートワーク環境の導入","tech":"VPNサービス、ハードウェアトークン、認証基盤","fields":["netdef","auth","netbase"],"note":"VPN接続前に必要な通信を問う設問の正答率が低かった"},{"id":"R7秋-4","label":"R7秋 問4","theme":"サプライチェーンの中の企業のセキュリティ管理体制の構築","tech":"攻撃シナリオ、SCADA、マルウェア対策、バックアップとレジリエンス","fields":["risk","isms","cloud","incident","threats"],"note":"マルウェア対策として利用者認証の強化は効果が薄い点に注意を促している"},{"id":"R7春-1","label":"R7春 問1","theme":"システム開発企業のサプライチェーンリスク対策","tech":"委託先管理、SBOM、SAST/DAST/IAST","fields":["devproc","risk"],"note":"SBOMの使い方とテストツールの違いの理解を求めている"},{"id":"R7春-2","label":"R7春 問2","theme":"公開サイトの脆弱性診断結果と対応優先度","tech":"CVSSv3の評価指標、EPSS","fields":["vuln"],"note":"CVSSの指標の意味とEPSSの使い方を問う設問の正答率が低かった"},{"id":"R7春-3","label":"R7春 問3","theme":"スマートフォンアプリの脆弱性","tech":"クラウドストレージのアクセスキー、プライベートCAのルート証明書、署名付きURL","fields":["web","cloud","crypto"],"note":"全体の正答率がやや低かった"},{"id":"R7春-4","label":"R7春 問4","theme":"IT資産管理と脆弱性管理（ASM）","tech":"サブドメインテイクオーバー（CNAMEの削除漏れ）、KEVカタログ","fields":["vuln","netbase"],"note":"DNS設定の対策と優先度判断の設問の正答率が低かった"},{"id":"R6秋-1","label":"R6秋 問1","theme":"社内システムの運用とインシデント対応（エンドポイントのログ解析）","tech":"ログ分析、マルウェアの挙動、ファイル持出し対策","fields":["ops","incident","threats","osdb"],"note":"どのログを確認するかを書けていない解答が多かった"},{"id":"R6秋-2","label":"R6秋 問2","theme":"ドメイン名変更に伴う新メールサービスとDMARCの導入","tech":"SPF、DKIM、DMARC、S/MIME、メーリングリスト","fields":["netdef","netbase","crypto"],"note":"DKIMの仕組みを問う設問の正答率が低かった"},{"id":"R6秋-3","label":"R6秋 問3","theme":"ECサイトのWebスキミングによるカード情報漏えい","tech":"XSSの3類型、DOM、アクセスログ","fields":["web","incident","ops"],"note":"XSSの種類の区別がやや弱かった"},{"id":"R6秋-4","label":"R6秋 問4","theme":"個人情報を扱うWebサイトのセキュリティ診断","tech":"セッションフィクセーション、HTTPレスポンスヘッダー、脆弱性の組合せ","fields":["vuln","web"],"note":"HTTPヘッダーの効果を問う設問の正答率が低かった"},{"id":"R6春-1","label":"R6春 問1","theme":"APIセキュリティ","tech":"JWTの改ざんの検証、WAFの利点と課題","fields":["web","auth","netdef"],"note":"JWTの検証方法の設問がやや低かった"},{"id":"R6春-2","label":"R6春 問2","theme":"リモートワークとDDoS攻撃への対策","tech":"アノマリ型IPS、多要素認証を突破する攻撃、SPA（Single Packet Authorization）","fields":["netdef","auth"],"note":"全体の正答率はやや高かった"},{"id":"R6春-3","label":"R6春 問3","theme":"クラウド上に構築したWebサイトの脆弱性","tech":"XSS、CSRF、クレデンシャルの取得方式","fields":["web","cloud"],"note":"全体の正答率がやや低かった"},{"id":"R6春-4","label":"R6春 問4","theme":"Java＋RDBMSのWebアプリのセキュアプログラミング","tech":"Linuxの権限設定、例外処理、リソースリーク","fields":["web","osdb"],"note":"Javaの例外処理を問う設問の正答率が低かった"},{"id":"R5秋-1","label":"R5秋 問1","theme":"Webアプリの脆弱性を悪用したインシデントへの対応","tech":"XSS（反射型・格納型・DOM型の区別）、HTML/ECMAScript","fields":["web","incident"],"note":"DOM Based XSSとの混同が見られた"},{"id":"R5秋-2","label":"R5秋 問2","theme":"アパレル業のセキュリティ対策の見直し","tech":"サーバ証明書の検証、秘密鍵の管理、無線LAN、FWの設定","fields":["crypto","netdef","netbase"],"note":"サーバ証明書の検証項目を問う設問の正答率が低かった"},{"id":"R5秋-3","label":"R5秋 問3","theme":"CIサービス提供企業と利用企業のインシデント対応","tech":"コンテナ、WebAuthn／パスキー、HSM","fields":["cloud","auth","crypto","incident","threats"],"note":"WebAuthnの仕組みを問う設問の正答率が低かった"},{"id":"R5秋-4","label":"R5秋 問4","theme":"業務委託関係にある企業間のリスクアセスメント","tech":"リスク特定・分析・評価、攻撃シナリオ","fields":["risk"],"note":"特定したリスクの具体性が不足した解答が見られた"}],"sampleB":[{"id":"サンプル-1","label":"サンプル問1","theme":"情報資産台帳の整備と各部署への助言（1問1答）","fields":["risk"]},{"id":"サンプル-2","label":"サンプル問2","theme":"個人情報を扱うWebサイトのセキュリティ診断とセッションフィクセーション（1問3答）","fields":["vuln","web"]}],"priorityMethod":["優先度は、次の3つの公式情報だけを根拠に判断した。出題頻度を断定するものではない。","①試験要綱 Ver.5.6 の科目A-2の重点分野（セキュリティ◎4、ネットワーク◎4）","②直近5回（令和5年度秋期〜令和7年度秋期）の科目Bで、その分野が主な題材になった問","③新制度（2027年度〜予定）の出題範囲の改定案・シラバス案・サンプル問題での変更点","「高」は①②③のうち複数がはっきり当てはまる分野、「低」は①の対象外で②にも当てはまらない分野。"],"readingGuide":[{"level":"第1階層","name":"試験範囲全体","text":"中心の円。情報処理安全確保支援士試験の全体。"},{"level":"第2階層","name":"大分類（16分野）","text":"円周上のカード。6つの領域ごとに色分けし、関連の深い分野が隣り合うように並べた。"},{"level":"第3階層","name":"中分類","text":"カードの中の一覧（各分野4〜6個）。拡大すると表示される。"},{"level":"第4階層","name":"小分類（用語）","text":"カードを選ぶと右のパネルに、分野別詳細タブでは樹形図で表示。各用語に1文の説明を付けた。"},{"level":"バッジ","name":"補・新案","text":"「補」は公式文書に用語として載っていない補足の知識、「新案」は新制度のシラバス案にだけ載っている用語。"},{"level":"矢印","name":"分野間の関係","text":"太い実線は特に重要な7つの関係、細い破線はその他の関係。矢じりの向きが影響の向き（両端なら双方向）。"}],"sources":[{"name":"試験要綱・シラバスについて","url":"https://www.ipa.go.jp/shiken/syllabus/gaiyou.html","note":"最終更新 2026-07-10"},{"name":"試験要綱 Ver.5.6（PDF）","url":"https://www.ipa.go.jp/shiken/syllabus/rcu1hd00000141gq-att/youkou_ver5_6.pdf","note":"2026-07-06掲載。科目A-2の出題分野（p.23）、科目Bの出題範囲（p.42〜43）"},{"name":"情報処理安全確保支援士試験 シラバス Ver.2.1（PDF）","url":"https://www.ipa.go.jp/shiken/syllabus/nq6ept00000014ir-att/syllabus_sc_ver2_1.pdf","note":"2023-12-25掲載。科目Bの細目"},{"name":"シラバス追補版（科目A-2）Ver.4.0（PDF）","url":"https://www.ipa.go.jp/shiken/syllabus/nq6ept00000014hj-att/syllabus_sc_am2_tsuiho4_0.pdf","note":"2023-12-25掲載（2026-07-06に科目名の表記を更新）"},{"name":"情報処理技術者試験及び情報処理安全確保支援士試験の見直しの検討状況について","url":"https://www.ipa.go.jp/shiken/syllabus/henkou/2025/20260331.html","note":"2026-03-31公開、2026-04-28更新"},{"name":"出題範囲等の改定案 Ver.1.0（PDF）","url":"https://www.ipa.go.jp/shiken/syllabus/henkou/2025/rcu1hd0000008574-att/shinshiken-hani-kaiteian.pdf","note":"新制度の科目A・科目Bの出題範囲"},{"name":"科目Aの出題範囲体系案（新旧対応表）（PDF）","url":"https://www.ipa.go.jp/shiken/syllabus/henkou/2025/rcu1hd0000008574-att/shinshiken-hani-sinkyu.pdf","note":"2026-03-31"},{"name":"新試験制度のシラバス案について","url":"https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260630.html","note":"2026-06-30公開、2026-10-30更新"},{"name":"情報処理安全確保支援士試験 シラバス案 Ver.0.1（PDF）","url":"https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001g5rk-att/syllabus_sc_ver0_1.pdf","note":"2026-08-31掲載"},{"name":"新試験制度のサンプル問題について","url":"https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260622.html","note":"2026-06-22公開、2026-10-30更新"},{"name":"情報処理安全確保支援士試験 科目B サンプル問題（PDF）","url":"https://www.ipa.go.jp/shiken/syllabus/minaoshi/rcu1hd000001fnl8-att/sc_kamoku_b_sample.pdf","note":"2026-08-31掲載"},{"name":"令和8年度 申込受付期間及び試験実施期間","url":"https://www.ipa.go.jp/shiken/2026/ap_koudo_sc_kikan.html","note":"2026-09-17更新。「試験問題は非公開」の記載あり"},{"name":"情報処理安全確保支援士試験（試験区分のページ）","url":"https://www.ipa.go.jp/shiken/kubun/sc.html","note":"2026-07-06更新"},{"name":"過去問題","url":"https://www.ipa.go.jp/shiken/mondai-kaiotu/index.html","note":"筆記試験の問題・解答例・採点講評（令和7年度まで）"},{"name":"令和7年度 問題冊子・解答例・採点講評","url":"https://www.ipa.go.jp/shiken/mondai-kaiotu/2025r07.html","note":"R7春・R7秋"},{"name":"令和6年度 問題冊子・解答例・採点講評","url":"https://www.ipa.go.jp/shiken/mondai-kaiotu/2024r06.html","note":"R6春・R6秋"},{"name":"令和5年度 問題冊子・解答例・採点講評","url":"https://www.ipa.go.jp/shiken/mondai-kaiotu/2023r05.html","note":"R5秋"}]},"domains":[{"id":"base","name":"基礎と脅威","color":"#963A45"},{"id":"cryptoauth","name":"暗号と認証","color":"#6A3F96"},{"id":"infra","name":"インフラと基盤","color":"#1D5C93"},{"id":"dev","name":"開発と評価","color":"#2C6E4C"},{"id":"resp","name":"運用と対応","color":"#9A4A12"},{"id":"mgmt","name":"マネジメントと法","color":"#45556E"}],"fields":[{"id":"basics","order":1,"domain":"base","color":"#8E3646","name":"情報セキュリティの基礎理論","short":"セキュリティ基礎","shortLines":["セキュリティ","基礎"],"priority":"mid","badges":[],"summary":"情報セキュリティで「何を」「なぜ」守るのかを整理する土台。機密性・完全性・可用性（CIA）などの考え方は、ほかのすべての分野で対策を選ぶときの物差しになる。","themes":["CIAと、真正性・責任追跡性・否認防止・信頼性を加えた7要素の区別","脅威・脆弱性・リスクの関係","多層防御・最小権限・セキュリティ・バイ・デザインなどの設計原則","ゼロトラストと境界型防御の違い","不正のトライアングルと内部不正"],"keywords":["機密性","完全性","可用性","否認防止","多層防御","最小権限","ゼロトラスト","不正のトライアングル"],"examA2":"用語の定義や要素の区別を問う知識問題として出る（例：ある対策が7要素のどれを高めるか）。","examB":"直近5回の科目Bで、この分野だけを主な題材にした問はない。各問で「この対策は何を守るためか」「何が損なわれたか」を説明するときの共通の言葉として使う。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類11 セキュリティ（◎4）"},{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「1. 情報セキュリティ」"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類24「1 情報セキュリティの考え方」"}],"priorityReason":"試験要綱の科目A-2重点分野（セキュリティ◎4）に含まれる基礎事項。直近5回の科目B（R5秋〜R7秋）で、この分野を主な題材にした問はない。新制度のシラバス案では「セキュリティ・バイ・デザイン」「攻撃対象領域の最小化」などの原則が用語例に明記されたが、範囲そのものの拡大ではない。","textbook":["1.1","1.2","1.7"],"subs":[{"id":"basics-cia","name":"CIAと7要素","terms":[{"id":"basics-cia-1","name":"機密性","desc":"許可された人だけが情報を見られる性質。暗号化やアクセス制御で守る。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-cia-2","name":"完全性","desc":"情報が正しく、勝手に書き換えられていない性質。ハッシュ値や署名で確かめる。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-cia-3","name":"可用性","desc":"必要なときに情報やシステムを使える性質。冗長化やバックアップで守る。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-cia-4","name":"真正性","desc":"利用者や情報が「本物である」と確かめられる性質。認証で確保する。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-cia-5","name":"責任追跡性","desc":"誰がいつ何をしたかを後からたどれる性質。ログの記録で確保する。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-cia-6","name":"否認防止","desc":"行った操作や送った事実を、後から「やっていない」と言えなくする性質。デジタル署名などで実現する。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-cia-7","name":"信頼性","desc":"システムが意図したとおりに、一貫して動く性質。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"basics-risk","name":"脅威・脆弱性・リスク","terms":[{"id":"basics-risk-1","name":"情報資産","desc":"守る対象となる情報・機器・サービス・人の知識など、組織にとって価値のあるもの。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-risk-2","name":"脅威","desc":"情報資産に損害を与えるおそれのある原因。攻撃者、災害、操作ミスなど。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-risk-3","name":"脆弱性","desc":"脅威につけ込まれる弱点。設定ミス、プログラムの欠陥、教育不足など。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-risk-4","name":"攻撃対象領域（アタックサーフェス）","desc":"外部から攻撃できる入口の総量。公開サーバや開いているポートが増えるほど広がる。","sup":false,"new":false,"aka":["攻撃対象領域","アタックサーフェス"],"note":null}]},{"id":"basics-principle","name":"設計原則","terms":[{"id":"basics-principle-1","name":"多層防御","desc":"性質の異なる対策を何重にも重ね、一つが破られても次で止める考え方。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-principle-2","name":"最小権限の原則","desc":"利用者やプログラムに、仕事に必要な最小限の権限だけを与える考え方。","sup":false,"new":false,"aka":["最小権限"],"note":null},{"id":"basics-principle-3","name":"need-to-knowの原則","desc":"業務上知る必要がある人だけに情報を見せる原則。","sup":false,"new":false,"aka":["need-to-know"],"note":null},{"id":"basics-principle-4","name":"セキュリティ・バイ・デザイン","desc":"企画・設計の段階からセキュリティを組み込む考え方。後から足すより安く確実。","sup":false,"new":false,"aka":["セキュリティバイデザイン"],"note":null},{"id":"basics-principle-5","name":"セキュア・バイ・デフォルト","desc":"初期設定のままで安全な状態になるように製品を作る考え方。","sup":false,"new":true,"aka":[],"note":null},{"id":"basics-principle-6","name":"フェイルセーフ／フェイルセキュア","desc":"故障時に被害が出ない側（止める）へ倒すのがフェイルセーフ、守りを固める側（閉じる）へ倒すのがフェイルセキュア。","sup":false,"new":false,"aka":["フェイルセーフ","フェイルセキュア","フェールセーフ"],"note":null}]},{"id":"basics-zt","name":"ゼロトラストと境界防御","terms":[{"id":"basics-zt-1","name":"境界型防御","desc":"社内と社外の境目にファイアウォールなどを置き、内側を信頼する守り方。","sup":false,"new":true,"aka":["境界防御"],"note":null},{"id":"basics-zt-2","name":"ゼロトラスト","desc":"場所にかかわらずすべてのアクセスを信頼せず、毎回確かめてから必要な分だけ許可する考え方。","sup":false,"new":false,"aka":[],"note":"ch01/zero-trust.md"},{"id":"basics-zt-3","name":"マイクロセグメンテーション","desc":"ネットワークを細かい区画に分け、区画の間の通信を必要なものだけに絞る手法。","sup":false,"new":true,"aka":[],"note":null},{"id":"basics-zt-4","name":"PDP／PEP","desc":"ゼロトラストで、アクセスの可否を判断する部分（PDP）と、その判断を実際に適用する部分（PEP）。","sup":false,"new":true,"aka":["ポリシー決定ポイント","PDP"],"note":null}]},{"id":"basics-actor","name":"攻撃者と不正の動機","terms":[{"id":"basics-actor-1","name":"不正のトライアングル","desc":"「動機」「機会」「正当化」の3つがそろうと不正が起きやすいという考え方。内部不正対策の基本。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-actor-2","name":"内部不正","desc":"従業員や委託先など、正規の権限を持つ人による情報の持出しや破壊。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-actor-3","name":"ハクティビズム","desc":"政治的・社会的な主張のために行うサイバー攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"basics-actor-4","name":"APT","desc":"特定の組織を狙い、長い期間潜伏しながら情報を盗み続ける高度な攻撃。","sup":false,"new":false,"aka":["APT"],"note":null}]}]},{"id":"threats","order":2,"domain":"base","color":"#A3333A","name":"サイバー攻撃・脅威・脆弱性","short":"脅威・攻撃手法","shortLines":["脅威・","攻撃手法"],"priority":"high","badges":["new-weight"],"summary":"攻撃者が「どこから入り、何をして、どう広がるか」を知る分野。攻撃の手口がわかると、守る側の対策の意味がはっきりする。","themes":["サイバーキルチェーンやMITRE ATT&CKで攻撃の流れをつかむ","ランサムウェアと二重恐喝","クレデンシャルスタッフィング・MFA疲労攻撃などの認証への攻撃","DDoS攻撃・リフレクション攻撃","標的型攻撃メール・ビジネスメール詐欺","AIを悪用した攻撃とAIシステムへの攻撃（新制度のシラバス案で追加）"],"keywords":["サイバーキルチェーン","MITRE ATT&CK","ラテラルムーブメント","C2サーバ","ランサムウェア","クレデンシャルスタッフィング","DDoS攻撃","プロンプトインジェクション"],"examA2":"攻撃手法の名前と仕組みの対応（例：どの攻撃の説明か）を選ぶ問題として出る。","examB":"ログや通信の記録から攻撃者の行動を読み解く設問の前提になる（R6秋 問1：エンドポイントのログ、R5秋 問3：CIサービスを経由した攻撃の流れ、R7秋 問4：攻撃シナリオの検討）。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類11 セキュリティ（◎4）"},{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「1. 情報セキュリティ」の(3)脅威・(7)攻撃手法"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類23 情報セキュリティの脅威"}],"priorityReason":"試験要綱の科目A-2重点分野（セキュリティ◎4）の中心。直近の科目Bでは、R6秋 問1（エンドポイントのログから攻撃を推測）、R5秋 問3（CIサービスを経由した攻撃の流れ）、R7秋 問4（攻撃シナリオの検討）が攻撃の流れを題材にしている。新制度のシラバス案では中分類23として独立し、AIを悪用した攻撃・AIシステムに対する攻撃・サプライチェーンを狙った攻撃が用語例に加わった。","textbook":["2.1","2.2","2.4","2.7","2.9"],"subs":[{"id":"threats-lifecycle","name":"攻撃のライフサイクル","terms":[{"id":"threats-lifecycle-1","name":"サイバーキルチェーン","desc":"偵察から目的の達成まで、攻撃を段階に分けて捉えるモデル。どの段階で止めるかを考えるのに使う。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-lifecycle-2","name":"MITRE ATT&CK","desc":"実際の攻撃で観測された戦術・技術を体系的にまとめた知識ベース。","sup":false,"new":false,"aka":["ATT&CK"],"note":null},{"id":"threats-lifecycle-3","name":"権限昇格","desc":"一般利用者の権限から、管理者権限などを不正に手に入れること。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-lifecycle-4","name":"ラテラルムーブメント","desc":"侵入した端末から、社内の別の端末やサーバへ横に広がっていくこと。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-lifecycle-5","name":"C2サーバ","desc":"感染した端末に命令を送り、盗んだ情報を受け取る攻撃者のサーバ。C&Cサーバとも呼ぶ。","sup":false,"new":false,"aka":["C2","C&C"],"note":null}]},{"id":"threats-malware","name":"マルウェア","terms":[{"id":"threats-malware-1","name":"ランサムウェア","desc":"データを暗号化して使えなくし、元に戻す代わりに身代金を要求するマルウェア。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-malware-2","name":"二重恐喝（多重恐喝）","desc":"暗号化に加えて「盗んだデータを公開する」と脅し、支払いを迫る手口。","sup":false,"new":true,"aka":["二重恐喝"],"note":null},{"id":"threats-malware-3","name":"RaaS","desc":"ランサムウェアを攻撃者に貸し出し、成功報酬を分け合うビジネス形態。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-malware-4","name":"ファイルレスマルウェア","desc":"実行ファイルをディスクに残さず、メモリ上やOSの標準ツールを使って動くマルウェア。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"threats-authattack","name":"認証・セッションへの攻撃","terms":[{"id":"threats-authattack-1","name":"ブルートフォース攻撃","desc":"パスワードを総当たりで試す攻撃。ログイン失敗が続いたらロックする対策が基本。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-authattack-2","name":"リバースブルートフォース攻撃","desc":"よく使われるパスワードを固定し、IDのほうを次々に変えて試す攻撃。アカウントロックがかかりにくい。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-authattack-3","name":"クレデンシャルスタッフィング","desc":"別のサイトから漏れたIDとパスワードの組を使い回してログインを試す攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-authattack-4","name":"MFA疲労攻撃","desc":"多要素認証の承認通知を大量に送りつけ、利用者が根負けして承認するのを狙う攻撃。","sup":false,"new":true,"aka":[],"note":null},{"id":"threats-authattack-5","name":"レインボーテーブル攻撃","desc":"ハッシュ値と元のパスワードの対応表を使い、ハッシュ値から素早くパスワードを割り出す攻撃。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"threats-dos","name":"DoS・ネットワーク攻撃","terms":[{"id":"threats-dos-1","name":"DDoS攻撃","desc":"多数の機器から大量の通信を送りつけ、サービスを止める攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-dos-2","name":"リフレクション攻撃（DNSアンプ攻撃）","desc":"送信元を標的に偽った小さな問合せで、第三者のサーバから大きな応答を標的に送らせる攻撃。","sup":false,"new":false,"aka":["リフレクション攻撃","DNSアンプ"],"note":null},{"id":"threats-dos-3","name":"ポートスキャン","desc":"どのポートが開いているかを調べ、攻撃の入口を探す偵察行為。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-dos-4","name":"DNSキャッシュポイズニング","desc":"キャッシュDNSサーバに偽の応答を覚えさせ、利用者を偽サイトへ誘導する攻撃。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"threats-social","name":"人をだます攻撃","terms":[{"id":"threats-social-1","name":"ソーシャルエンジニアリング","desc":"技術ではなく人の心理のすきを突いて、パスワードなどを聞き出す手口。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-social-2","name":"標的型攻撃メール","desc":"特定の組織あてに、業務を装ったメールで添付ファイルやリンクを開かせる攻撃。","sup":false,"new":false,"aka":["標的型攻撃"],"note":null},{"id":"threats-social-3","name":"ビジネスメール詐欺（BEC）","desc":"取引先や経営者になりすましたメールで、偽の口座へ送金させる詐欺。","sup":false,"new":false,"aka":["ビジネスメール詐欺","BEC"],"note":null},{"id":"threats-social-4","name":"フィッシング","desc":"本物そっくりの偽サイトに誘導し、IDやカード番号を入力させる手口。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"threats-advanced","name":"AIと高度な攻撃","terms":[{"id":"threats-advanced-1","name":"プロンプトインジェクション","desc":"生成AIへの入力や参照データに命令文を紛れ込ませ、開発者の意図しない動作をさせる攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-advanced-2","name":"データポイズニング","desc":"AIの学習データに不正なデータを混ぜ、判断をゆがめる攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-advanced-3","name":"ディープフェイク","desc":"AIで作った偽の映像や音声。経営者になりすました送金指示などに悪用される。","sup":false,"new":false,"aka":[],"note":null},{"id":"threats-advanced-4","name":"ソフトウェアサプライチェーン攻撃","desc":"正規ソフトの更新配信や部品（ライブラリ）を汚染し、利用者全体に被害を広げる攻撃。","sup":false,"new":true,"aka":[],"note":null}]}]},{"id":"crypto","order":3,"domain":"cryptoauth","color":"#653C93","name":"暗号技術","short":"暗号技術","priority":"high","badges":[],"summary":"情報を「読めなくする」「改ざんを見破る」「本人が作ったと証明する」ための道具箱。認証・安全な通信・電子署名など、多くの技術の部品になる。","themes":["共通鍵暗号と公開鍵暗号の使い分け（ハイブリッド暗号）","ハッシュ・MAC・デジタル署名の違い","証明書の検証とPKI（証明書チェーン、失効確認）","鍵管理（HSM、鍵の暗号化、鍵のライフサイクル）","前方秘匿性と耐量子計算機暗号"],"keywords":["AES","RSA暗号","楕円曲線暗号","SHA-256","HMAC","デジタル署名","PKI","OCSP","HSM","前方秘匿性"],"examA2":"暗号方式の特徴、ハッシュ関数の性質、証明書の失効確認などの知識を問う。","examB":"R7秋 問2で暗号鍵の管理と署名の生成・検証、R5秋 問2でサーバ証明書の検証と秘密鍵の管理、R7春 問3でプライベートCAのルート証明書が題材になった。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類11 セキュリティ（◎4）"},{"doc":"シラバス Ver.2.1","where":"科目B 3-1 暗号利用及び鍵管理"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類25「7 暗号技術」"}],"priorityReason":"試験要綱の科目A-2重点分野（セキュリティ◎4）。直近の科目Bでは、R7秋 問2（暗号資産交換業の暗号鍵管理）、R5秋 問2（サーバ証明書の検証・秘密鍵の管理）、R7春 問3（プライベートCAのルート証明書）、R5秋 問3（HSM）が暗号を題材にしている。新制度のシラバス案でも小分類「暗号技術」として独立し、耐量子計算機暗号（PQC）や暗号アジリティが用語例に加わった。","textbook":["7.1","7.4","7.7"],"subs":[{"id":"crypto-symmetric","name":"共通鍵暗号","terms":[{"id":"crypto-symmetric-1","name":"AES","desc":"現在の標準的な共通鍵のブロック暗号。鍵の長さは128・192・256ビット。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-symmetric-2","name":"ブロック暗号／ストリーム暗号","desc":"決まった長さのかたまりごとに暗号化する方式と、ビットやバイトの単位で連続して暗号化する方式。","sup":false,"new":false,"aka":["ブロック暗号","ストリーム暗号"],"note":null},{"id":"crypto-symmetric-3","name":"暗号利用モード","desc":"ブロック暗号で長いデータを暗号化するときのつなぎ方（CBC、CTR、GCMなど）。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-symmetric-4","name":"認証付き暗号（AEAD）","desc":"暗号化と改ざんの検知を同時に行う方式。AES-GCMが代表例。","sup":false,"new":false,"aka":["AEAD","認証付き暗号"],"note":null}]},{"id":"crypto-pubkey","name":"公開鍵暗号と鍵交換","terms":[{"id":"crypto-pubkey-1","name":"RSA暗号","desc":"大きな数の素因数分解が難しいことを安全性の根拠にする公開鍵暗号。","sup":false,"new":false,"aka":["RSA"],"note":null},{"id":"crypto-pubkey-2","name":"楕円曲線暗号","desc":"RSAより短い鍵で同じ程度の強さを出せる公開鍵暗号。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-pubkey-3","name":"ハイブリッド暗号","desc":"データは高速な共通鍵暗号で暗号化し、その共通鍵を公開鍵暗号で安全に渡す方式。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-pubkey-4","name":"Diffie-Hellman鍵交換","desc":"盗聴されている通信路でも、双方だけが知る共通の鍵を作れる手順。","sup":false,"new":false,"aka":["Diffie-Hellman"],"note":null},{"id":"crypto-pubkey-5","name":"前方秘匿性（PFS）","desc":"長く使う秘密鍵が後で漏れても、過去の通信は解読されない性質。","sup":false,"new":false,"aka":["前方秘匿性","PFS"],"note":null}]},{"id":"crypto-hash","name":"ハッシュとMAC","terms":[{"id":"crypto-hash-1","name":"ハッシュ関数","desc":"どんな長さのデータからも固定長の値を作る関数。元に戻せず、少しの変更で値が大きく変わる。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-hash-2","name":"衝突発見困難性","desc":"同じハッシュ値になる別々のデータを見つけるのが難しい性質。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-hash-3","name":"SHA-256","desc":"広く使われるSHA-2系のハッシュ関数。MD5やSHA-1は安全性が失われている。","sup":false,"new":false,"aka":["SHA-2","SHA-256"],"note":null},{"id":"crypto-hash-4","name":"メッセージ認証符号（MAC）","desc":"共通鍵とデータから作る値。改ざんと、鍵を持つ相手が作ったことを確かめられる。","sup":false,"new":false,"aka":["メッセージ認証符号"],"note":null},{"id":"crypto-hash-5","name":"HMAC","desc":"ハッシュ関数と共通鍵を組み合わせてMACを作る代表的な方式。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"crypto-pki","name":"デジタル署名とPKI","terms":[{"id":"crypto-pki-1","name":"デジタル署名","desc":"秘密鍵で署名し、公開鍵で検証する仕組み。改ざんの検知と否認防止ができる。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-pki-2","name":"認証局（CA）","desc":"公開鍵の持ち主を確認し、デジタル証明書を発行する機関。","sup":false,"new":false,"aka":["認証局"],"note":null},{"id":"crypto-pki-3","name":"X.509証明書","desc":"公開鍵と持ち主の情報にCAが署名した、デジタル証明書の標準形式。","sup":false,"new":false,"aka":["X.509"],"note":null},{"id":"crypto-pki-4","name":"証明書パス検証","desc":"サーバ証明書から中間CA、ルートCAへと署名を順にたどり、信頼できるかを確かめること。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-pki-5","name":"CRL／OCSP","desc":"証明書が失効していないかを確かめる仕組み。失効した証明書の一覧を配る方式と、問合せに答える方式。","sup":false,"new":false,"aka":["CRL","OCSP"],"note":null}]},{"id":"crypto-keymgmt","name":"鍵管理とHSM","terms":[{"id":"crypto-keymgmt-1","name":"鍵のライフサイクル","desc":"鍵の生成・配送・保管・更新・廃棄までの一連の管理。","sup":false,"new":true,"aka":[],"note":null},{"id":"crypto-keymgmt-2","name":"HSM","desc":"暗号鍵を安全に生成・保管し、鍵を外に出さずに暗号処理を行う専用の装置。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-keymgmt-3","name":"鍵管理システム（KMS）","desc":"クラウドなどで、暗号鍵の作成・更新・利用権限を一元管理する仕組み。","sup":false,"new":false,"aka":["KMS","鍵管理システム"],"note":null},{"id":"crypto-keymgmt-4","name":"危殆化","desc":"計算機の進歩や攻撃手法の発見で、暗号の安全性が保てなくなること。","sup":false,"new":false,"aka":[],"note":null},{"id":"crypto-keymgmt-5","name":"CRYPTREC暗号リスト","desc":"日本の電子政府で使うことが推奨される暗号の一覧。","sup":false,"new":false,"aka":["CRYPTREC"],"note":null}]},{"id":"crypto-future","name":"新しい暗号技術","terms":[{"id":"crypto-future-1","name":"耐量子計算機暗号（PQC）","desc":"量子コンピュータでも解読が難しいとされる新しい公開鍵暗号。","sup":false,"new":false,"aka":["耐量子計算機暗号","PQC"],"note":null},{"id":"crypto-future-2","name":"暗号アジリティ","desc":"弱くなった暗号を、システムを大きく作り直さずに別の暗号へ切り替えられる設計。","sup":false,"new":true,"aka":[],"note":null}]}]},{"id":"auth","order":4,"domain":"cryptoauth","color":"#7A3A8C","name":"認証技術・ID管理・アクセス制御","short":"認証とアクセス制御","shortLines":["認証と","アクセス制御"],"priority":"high","badges":[],"summary":"「あなたは誰か（認証）」と「何をしてよいか（認可）」を決める分野。ID連携やパスキーなど、クラウド時代のログインの仕組みもここに含まれる。","themes":["認証と認可の区別","多要素認証とフィッシング耐性（FIDO2／WebAuthn、パスキー）","OAuth 2.0・OpenID Connect・SAMLの役割の違い","アクセス制御モデル（DAC／MAC／RBAC／ABAC）","特権IDの管理とアカウントのライフサイクル"],"keywords":["多要素認証","FIDO2","WebAuthn","パスキー","OAuth 2.0","OpenID Connect","SAML","JWT","RBAC","特権アクセス管理"],"examA2":"認証方式の特徴、生体認証の指標（FAR／FRR）、アクセス制御モデルの区別などを問う。","examB":"R5秋 問3でWebAuthn、R6春 問1でJWTの検証、R6春 問2で多要素認証を突破する攻撃、R7秋 問3でリモートワーク環境の認証基盤が題材になった。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類11 セキュリティ（◎4）"},{"doc":"シラバス Ver.2.1","where":"科目B 3-8 アカウント管理及びアクセス管理"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類25「4 技術的管理策（情報アクセスの管理）」"}],"priorityReason":"試験要綱の科目A-2重点分野（セキュリティ◎4）。直近の科目Bでは、R5秋 問3（WebAuthn）、R6春 問1（JWTの改ざんの検証）、R6春 問2（多要素認証の突破）、R7秋 問3（認証基盤とハードウェアトークン）が認証を題材にしている。新制度のシラバス案では、フィッシング耐性のある認証、PKCE、パスキーなどが用語例に明記された。","textbook":["6.1","6.2","6.4","6.5","6.8","6.9"],"subs":[{"id":"auth-methods","name":"本人認証の方式","terms":[{"id":"auth-methods-1","name":"認証と認可","desc":"認証は本人であることの確認、認可はその人に何を許すかの決定。OAuthは認可、OpenID Connectは認証の仕組み。","sup":false,"new":false,"aka":["認可"],"note":null},{"id":"auth-methods-2","name":"ワンタイムパスワード","desc":"一度しか使えないパスワード。トークンやアプリで生成し、盗聴されても再利用できない。","sup":false,"new":false,"aka":[],"note":null},{"id":"auth-methods-3","name":"チャレンジレスポンス認証","desc":"サーバが送る乱数（チャレンジ）と秘密の情報から計算した値を返し、パスワード自体は送らない方式。","sup":false,"new":false,"aka":["チャレンジレスポンス"],"note":null},{"id":"auth-methods-4","name":"生体認証（FAR／FRR）","desc":"指紋や顔などで本人を確かめる方式。他人を受け入れる率（FAR）と本人を拒否する率（FRR）は片方を下げるともう片方が上がる。","sup":false,"new":false,"aka":["他人受入率","本人拒否率"],"note":null},{"id":"auth-methods-5","name":"Kerberos","desc":"認証サーバが発行するチケットを使い、何度もパスワードを送らずに複数のサービスを使う認証方式。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"auth-mfa","name":"多要素・パスワードレス","terms":[{"id":"auth-mfa-1","name":"多要素認証","desc":"知識（パスワード）・所持（スマホなど）・生体（指紋など）のうち、異なる2つ以上を組み合わせる認証。","sup":false,"new":false,"aka":[],"note":null},{"id":"auth-mfa-2","name":"多段階認証","desc":"認証を複数回に分けて行う方式。同じ種類の要素を2回使う場合は多要素認証にならない。","sup":false,"new":false,"aka":[],"note":null},{"id":"auth-mfa-3","name":"リスクベース認証","desc":"いつもと違う場所や端末からのログインのときだけ、追加の確認を求める方式。","sup":false,"new":false,"aka":[],"note":null},{"id":"auth-mfa-4","name":"FIDO2／WebAuthn","desc":"端末内の秘密鍵で署名して認証する標準。パスワードを送らず、偽サイトでは使えないためフィッシングに強い。","sup":false,"new":false,"aka":["FIDO2","WebAuthn"],"note":null},{"id":"auth-mfa-5","name":"パスキー","desc":"FIDOの鍵を複数の端末で同期できるようにした、パスワード不要のログイン方式。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"auth-federation","name":"SSOとID連携","terms":[{"id":"auth-federation-1","name":"シングルサインオン（SSO）","desc":"一度のログインで複数のサービスを使えるようにする仕組み。","sup":false,"new":false,"aka":["シングルサインオン"],"note":null},{"id":"auth-federation-2","name":"SAML","desc":"XMLで認証結果（アサーション）をやり取りし、主に企業向けのSSOを実現する規格。","sup":false,"new":false,"aka":[],"note":null},{"id":"auth-federation-3","name":"OAuth 2.0","desc":"パスワードを渡さずに、サービスへのアクセス権（アクセストークン）だけを委ねる認可の仕組み。","sup":false,"new":false,"aka":["OAuth"],"note":null},{"id":"auth-federation-4","name":"OpenID Connect","desc":"OAuth 2.0の上に、本人確認の結果（IDトークン）を返す仕組みを加えた認証の規格。","sup":false,"new":false,"aka":[],"note":null},{"id":"auth-federation-5","name":"JWT","desc":"署名を付けてやり取りできるJSON形式のトークン。受け取った側が署名を正しく検証しないと改ざんされる。","sup":false,"new":true,"aka":[],"note":null},{"id":"auth-federation-6","name":"PKCE","desc":"認可コードを横取りされても使えないようにする、OAuth 2.0の拡張。","sup":false,"new":true,"aka":[],"note":null},{"id":"auth-federation-7","name":"IDaaS","desc":"ID管理や認証、SSOをクラウドで提供するサービス。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"auth-acmodel","name":"アクセス制御モデル","terms":[{"id":"auth-acmodel-1","name":"任意アクセス制御（DAC）","desc":"ファイルの所有者が、誰にどの権限を与えるかを自由に決める方式。","sup":false,"new":true,"aka":["任意アクセス制御"],"note":null},{"id":"auth-acmodel-2","name":"強制アクセス制御（MAC）","desc":"システムが決めた機密度のラベルに従って制御し、所有者でも変えられない方式。","sup":false,"new":false,"aka":["強制アクセス制御"],"note":null},{"id":"auth-acmodel-3","name":"ロールベースアクセス制御（RBAC）","desc":"「経理担当」などの役割に権限を付け、人には役割を割り当てる方式。","sup":false,"new":false,"aka":["ロールベースアクセス制御","RBAC"],"note":null},{"id":"auth-acmodel-4","name":"属性ベースアクセス制御（ABAC）","desc":"利用者・資源・時間帯などの属性を組み合わせたルールで許可を決める方式。","sup":false,"new":true,"aka":["属性ベースアクセス制御","ABAC"],"note":null}]},{"id":"auth-privileged","name":"特権・アカウント管理","terms":[{"id":"auth-privileged-1","name":"特権アクセス管理（PAM）","desc":"管理者権限の貸出し・利用の記録・パスワードの管理を一元的に行う仕組み。","sup":false,"new":true,"aka":["特権アクセス管理","PAM"],"note":null},{"id":"auth-privileged-2","name":"アクセス権のレビュー","desc":"異動・退職などに合わせて、不要なアカウントや過剰な権限を定期的に見直すこと。","sup":false,"new":false,"aka":["アカウント及びアクセス権のレビュー"],"note":null},{"id":"auth-privileged-3","name":"LDAP","desc":"利用者の情報を階層的に管理するディレクトリサービスにアクセスするためのプロトコル。","sup":false,"new":false,"aka":[],"note":null}]}]},{"id":"netbase","order":5,"domain":"infra","color":"#1B5A8E","name":"ネットワーク基礎","short":"ネットワーク基礎","shortLines":["ネットワーク","基礎"],"priority":"high","badges":[],"summary":"パケットがどう届くか、名前がどう解決されるか、メールやWebがどう動くかといった通信のしくみの基本。攻撃も防御も、このしくみの上で起きる。","themes":["TCP/IPの階層とポート番号","DNSの名前解決（権威DNSサーバとキャッシュDNSサーバの役割）","SMTP・POP・IMAPとメールの流れ","HTTPとCookie、プロキシ","無線LANと認証（WPA3、IEEE 802.1X）","NAT・VLAN・ネットワーク管理（SNMP、syslog、NTP）"],"keywords":["TCP","UDP","ARP","DHCP","DNS","CNAME","SMTP","HTTP","NAT","VLAN"],"examA2":"科目A-2の重点分野（ネットワーク◎4）。プロトコルの動作、ヘッダやポートの知識を問う。","examB":"設問の前提として、DNS・メール・HTTPの動作の理解が求められる（R7春 問4：CNAMEの削除漏れによるサブドメインテイクオーバー、R6秋 問2：メールサービスの設定、R7秋 問3：VPN接続前に必要な通信）。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類10 ネットワーク（◎4）"},{"doc":"シラバス追補版 Ver.4.0","where":"中分類10 ネットワーク"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類16 ネットワーク（科目A-2で●）"}],"priorityReason":"試験要綱で科目A-2の重点分野（ネットワーク◎4）に指定されており、新制度の科目A-2でも中分類16ネットワークが「専門分野かつ重点分野（●）」になっている。直近の科目Bでは、R7春 問4（DNSのCNAMEレコードの削除漏れ）、R6秋 問2（メールの送受信の設定）、R7秋 問3（VPN接続前に必要な通信）、R5秋 問2（無線LAN）がネットワークの理解を前提にしている。","textbook":["1.4","3.3","3.4","3.5"],"subs":[{"id":"netbase-tcpip","name":"TCP/IPと階層モデル","terms":[{"id":"netbase-tcpip-1","name":"OSI基本参照モデル","desc":"通信の機能を7つの層に分けて整理したモデル。","sup":false,"new":false,"aka":["OSI"],"note":null},{"id":"netbase-tcpip-2","name":"TCP／UDP","desc":"確認応答で確実に届けるTCPと、確認をせず軽く速いUDP。","sup":false,"new":false,"aka":["TCP","UDP"],"note":null},{"id":"netbase-tcpip-3","name":"ポート番号","desc":"1台の機器の中で、どのアプリあての通信かを区別する番号。Webは443、メール送信は25など。","sup":false,"new":false,"aka":["ポート番号"],"note":null},{"id":"netbase-tcpip-4","name":"ARP","desc":"IPアドレスから、同じLANの中にある機器のMACアドレスを調べるプロトコル。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-tcpip-5","name":"DHCP","desc":"接続した機器に、IPアドレスなどの設定を自動で配るプロトコル。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-tcpip-6","name":"NAT／NAPT","desc":"内部のプライベートIPアドレスを、外部用のグローバルIPアドレスに変換する技術。","sup":false,"new":false,"aka":["NAT","NAPT"],"note":null}]},{"id":"netbase-dns","name":"DNS","terms":[{"id":"netbase-dns-1","name":"権威DNSサーバ","desc":"自分が管理するドメインの正式な情報を答えるサーバ。","sup":true,"new":false,"aka":["権威DNS","権威サーバ"],"note":null},{"id":"netbase-dns-2","name":"キャッシュDNSサーバ","desc":"利用者の代わりに問合せを繰り返し、結果を一時的に保存するサーバ。フルリゾルバとも呼ぶ。","sup":true,"new":false,"aka":["キャッシュDNS","フルリゾルバ"],"note":null},{"id":"netbase-dns-3","name":"CNAMEレコード","desc":"ある名前を、別の名前の別名として登録するレコード。使わなくなったら削除しないと乗っ取りの原因になる。","sup":true,"new":false,"aka":["CNAME"],"note":null},{"id":"netbase-dns-4","name":"オープンリゾルバ","desc":"誰からの問合せにも答えてしまうキャッシュDNSサーバ。DNSアンプ攻撃の踏み台になる。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"netbase-mail","name":"メールの仕組み","terms":[{"id":"netbase-mail-1","name":"SMTP","desc":"メールを送信・転送するプロトコル。もともと送信者を確かめる機能がない。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-mail-2","name":"POP3／IMAP4","desc":"メールサーバからメールを受け取るプロトコル。IMAPはメールをサーバ上に置いたまま管理する。","sup":false,"new":false,"aka":["POP3","IMAP"],"note":null},{"id":"netbase-mail-3","name":"SMTP-AUTH","desc":"メールを送るときに、送信サーバで利用者を認証する仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-mail-4","name":"OP25B","desc":"プロバイダの網の中から外部への25番ポートの直接送信を止め、迷惑メールの送信を防ぐ対策。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"netbase-http","name":"HTTPとWeb通信","terms":[{"id":"netbase-http-1","name":"HTTP／HTTPS","desc":"Webのデータをやり取りするプロトコル。HTTPSはTLSで暗号化したもの。","sup":false,"new":false,"aka":["HTTP","HTTPS"],"note":null},{"id":"netbase-http-2","name":"Cookie","desc":"Webサーバがブラウザに保存させる小さなデータ。ログイン状態の維持などに使う。","sup":false,"new":false,"aka":["cookie"],"note":null},{"id":"netbase-http-3","name":"プロキシサーバ","desc":"利用者の代わりにWebサーバへアクセスする中継サーバ。アクセス制御やログの取得に使う。","sup":false,"new":false,"aka":["プロキシ"],"note":null},{"id":"netbase-http-4","name":"CDN","desc":"各地のサーバにコンテンツを複製して配信し、速く届ける仕組み。大量のアクセスの分散にも役立つ。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"netbase-lan","name":"LAN・無線LAN","terms":[{"id":"netbase-lan-1","name":"VLAN","desc":"1つのスイッチの中で、ネットワークを論理的に分ける技術。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-lan-2","name":"WPA3","desc":"無線LANの通信を暗号化・認証する最新の規格。Personal（事前共有鍵）とEnterprise（認証サーバ）がある。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-lan-3","name":"IEEE 802.1X","desc":"LANや無線LANにつなぐときに、利用者や端末を認証する規格。RADIUSサーバと組み合わせる。","sup":false,"new":false,"aka":["802.1X"],"note":null},{"id":"netbase-lan-4","name":"RADIUS","desc":"ネットワークへの接続時の認証・認可・利用記録を集中して行うプロトコル。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"netbase-mgmt","name":"ネットワーク管理","terms":[{"id":"netbase-mgmt-1","name":"SNMP","desc":"ネットワーク機器の状態を監視・管理するプロトコル。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-mgmt-2","name":"syslog","desc":"機器のログを集めるための標準的な仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-mgmt-3","name":"NTP","desc":"機器の時刻を合わせるプロトコル。複数の機器のログの時刻をそろえるために重要。","sup":false,"new":false,"aka":[],"note":null},{"id":"netbase-mgmt-4","name":"パケットキャプチャ","desc":"流れている通信を記録して中身を調べること。障害調査や攻撃の分析に使う。","sup":false,"new":false,"aka":["パケットアナライザ","パケットキャプチャ"],"note":null}]}]},{"id":"netdef","order":6,"domain":"infra","color":"#2A4F9E","name":"ネットワークセキュリティ・防御技術","short":"ネットワーク防御","shortLines":["ネットワーク","防御"],"priority":"high","badges":[],"summary":"通信の出入口で攻撃を止め、通信を暗号化し、離れた場所からの接続を安全にする技術。ファイアウォール、IDS／IPS、WAF、VPN、メールやDNSの防御が中心。","themes":["ファイアウォール・IDS・IPS・WAFの役割分担","VPNの方式とリモートアクセスの安全","TLSの仕組みと古いバージョンの廃止","送信ドメイン認証（SPF／DKIM／DMARC）","DNSSECとDoH／DoT","DDoS対策（CDN、スクラビング、レート制限）"],"keywords":["ファイアウォール","IDS","IPS","WAF","VPN","IPsec","TLS","SPF","DKIM","DMARC","DNSSEC","UTM"],"examA2":"各防御装置の役割や、プロトコル（TLS、IPsec、DNSSEC）の動作を問う。","examB":"R6秋 問2でDMARCの導入、R6春 問2でアノマリ型IPSとDDoS対策、R7秋 問3でVPNサービスの導入、R5秋 問2でファイアウォールのフィルタリング設定が題材になった。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類11 セキュリティ（◎4）・中分類10 ネットワーク（◎4）"},{"doc":"シラバス Ver.2.1","where":"科目B 3-5 ネットワーク及び機器のセキュリティ管理"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類25「6 技術的管理策（情報システムの適正利用の管理）」"}],"priorityReason":"試験要綱の科目A-2重点分野（セキュリティ◎4、ネットワーク◎4）の両方にまたがる。直近の科目Bでは、R6秋 問2（DMARC・SPF・DKIM）、R6春 問2（IPSとDDoS対策）、R7秋 問3（VPNサービス）、R5秋 問2（ファイアウォールの設定・無線LAN）、R6春 問1（WAFの利点と課題）が防御技術を題材にしている。新制度のシラバス案では、ZTNAやDoH／DoTなどが用語例に明記された。","textbook":["5.5","5.6","5.7","5.8","7.2","7.3","7.4","7.5"],"subs":[{"id":"netdef-perimeter","name":"境界防御","terms":[{"id":"netdef-perimeter-1","name":"ファイアウォール","desc":"送信元・宛先・ポートなどのルールで、通してよい通信だけを通す装置。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-perimeter-2","name":"ステートフルインスペクション","desc":"通信のやり取りの状態を覚えておき、正しい応答のパケットだけを通す方式。","sup":false,"new":false,"aka":["ステートフルパケットフィルタ"],"note":null},{"id":"netdef-perimeter-3","name":"DMZ","desc":"外部に公開するサーバを置くための、内部ネットワークとは分けた区画。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-perimeter-4","name":"UTM","desc":"ファイアウォール・IPS・マルウェア対策などを1台にまとめた装置。","sup":false,"new":false,"aka":["統合脅威管理"],"note":null}]},{"id":"netdef-detect","name":"検知・防御装置","terms":[{"id":"netdef-detect-1","name":"IDS","desc":"不正な通信を見つけて知らせる仕組み。通信を止めはしない。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-detect-2","name":"IPS","desc":"不正な通信を見つけて遮断する仕組み。誤検知すると正常な通信まで止めてしまう。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-detect-3","name":"シグネチャ型／アノマリ型","desc":"既知の攻撃パターンと照合する方式と、ふだんと違う振る舞いを異常とみなす方式。","sup":false,"new":false,"aka":["シグネチャ型","アノマリ型"],"note":null},{"id":"netdef-detect-4","name":"WAF","desc":"HTTPの中身を見て、Webアプリへの攻撃（SQLインジェクションなど）を止める装置。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-detect-5","name":"偽陽性／偽陰性","desc":"正常なものを攻撃と判断してしまうこと（フォールスポジティブ）と、攻撃を見逃すこと（フォールスネガティブ）。","sup":false,"new":false,"aka":["偽陽性","フォールスポジティブ"],"note":null}]},{"id":"netdef-vpn","name":"VPNとリモートアクセス","terms":[{"id":"netdef-vpn-1","name":"IPsec","desc":"IPの層で通信を暗号化・認証するプロトコル群（ESP、AH、IKE）。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-vpn-2","name":"TLS-VPN","desc":"TLSを使うVPN。ブラウザや専用ソフトで社内に接続する。SSL-VPNとも呼ぶ。","sup":true,"new":false,"aka":["SSL-VPN","TLS-VPN"],"note":null},{"id":"netdef-vpn-3","name":"ZTNA","desc":"利用者と端末を毎回確かめ、許可したアプリにだけ接続させるリモートアクセスの方式。","sup":false,"new":true,"aka":[],"note":null},{"id":"netdef-vpn-4","name":"VDI","desc":"画面だけを手元の端末に送り、データは社内のサーバに残す仮想デスクトップ。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-vpn-5","name":"検疫ネットワーク","desc":"社内につなぐ前に、端末のパッチやマルウェア対策の状態を確かめ、問題があれば隔離する仕組み。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"netdef-secure","name":"セキュア通信","terms":[{"id":"netdef-secure-1","name":"TLS","desc":"通信を暗号化し、サーバ証明書でサーバを確かめるプロトコル。現在はTLS 1.2と1.3を使い、SSLとTLS 1.0／1.1は廃止。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-secure-2","name":"暗号スイート","desc":"TLSで使う鍵交換・暗号・ハッシュの組合せ。","sup":false,"new":true,"aka":[],"note":null},{"id":"netdef-secure-3","name":"STARTTLS","desc":"平文で始めた通信を、途中からTLSに切り替える仕組み。メールの送受信で使う。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-secure-4","name":"S/MIME","desc":"メールの本文や添付ファイルを、公開鍵で暗号化したり署名したりする方式。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"netdef-maildns","name":"メール・DNSの防御","terms":[{"id":"netdef-maildns-1","name":"SPF","desc":"送信元のIPアドレスが、そのドメインの正規の送信サーバかをDNSで確かめる仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-maildns-2","name":"DKIM","desc":"送信サーバがメールに電子署名を付け、受信側がDNSにある公開鍵で改ざんと送信ドメインを確かめる仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-maildns-3","name":"DMARC","desc":"SPF・DKIMの結果とFromのドメインの一致を見て、失敗したメールの扱い（none／quarantine／reject）を送信側が宣言する仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-maildns-4","name":"DNSSEC","desc":"DNSの応答に電子署名を付け、偽の応答を見破る仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"netdef-maildns-5","name":"DoH／DoT","desc":"DNSの問合せをHTTPSやTLSで暗号化し、盗み見を防ぐ方式。","sup":false,"new":false,"aka":["DoH","DoT"],"note":null}]},{"id":"netdef-ddos","name":"DDoS対策","terms":[{"id":"netdef-ddos-1","name":"スクラビングセンター","desc":"大量の攻撃通信を引き受けて取り除き、正常な通信だけを届けるサービス。","sup":false,"new":true,"aka":[],"note":null},{"id":"netdef-ddos-2","name":"レート制限","desc":"一定時間あたりの要求回数に上限を設け、過剰なアクセスを抑える対策。","sup":false,"new":true,"aka":[],"note":null}]}]},{"id":"osdb","order":7,"domain":"infra","color":"#235F80","name":"OS・サーバ・データベース・端末のセキュリティ","short":"OS・DB・端末","shortLines":["OS・DB・","端末"],"priority":"mid","badges":[],"summary":"Webアプリやサービスを動かす「土台」の守り方。OSやサーバの設定を固め、データベースを守り、社員のPCやスマホを管理する。","themes":["要塞化（不要なサービスの停止、最小権限）","Linuxのファイル権限と管理者権限","データベースのアクセス制御と暗号化","EDR・MDMによる端末の管理","TPM・セキュアブートなどハードウェアによる守り"],"keywords":["要塞化","パーミッション","セキュアOS","パッチ管理","データベース暗号化","ストアドプロシージャ","MDM","EDR","TPM","セキュアブート"],"examA2":"データベース（○3）の正規化・トランザクションや、OSのアクセス制御、TPMなどを問う。","examB":"R6春 問4でLinuxの権限設定、R6秋 問1でエンドポイントのログとマルウェア対策が題材になった。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類9 データベース（○3）"},{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「5. セキュリティ実装技術」の(3)OSのセキュリティ・(5)データベースセキュリティ"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類17 データベース、中分類26「ハードウェアのセキュリティ」"}],"priorityReason":"試験要綱では科目A-2のデータベースは○3で、重点分野ではない。直近の科目Bでは、R6春 問4（Linuxの権限設定）とR6秋 問1（エンドポイントのログ）が題材にしているが、どちらもWebアプリやインシデント対応の問の一部として出ている。新制度でもデータベースは科目A-2の○（重点ではない）のまま。","textbook":["4.5","5.2","5.4","5.9"],"subs":[{"id":"osdb-harden","name":"OSとサーバの要塞化","terms":[{"id":"osdb-harden-1","name":"要塞化（ハードニング）","desc":"不要なサービスやアカウントを止め、設定を固めて攻撃の入口を減らすこと。","sup":false,"new":false,"aka":["要塞化","ハードニング"],"note":null},{"id":"osdb-harden-2","name":"パーミッション","desc":"ファイルごとに、所有者・グループ・その他の人が読める・書ける・実行できるかを決める設定。","sup":true,"new":false,"aka":[],"note":null},{"id":"osdb-harden-3","name":"rootとsudo","desc":"何でもできる管理者アカウントと、必要なときだけ一時的に管理者として命令を実行する仕組み。","sup":true,"new":false,"aka":[],"note":null},{"id":"osdb-harden-4","name":"セキュアOS","desc":"強制アクセス制御などで、管理者でも勝手な操作をできないようにしたOS。Trusted OSとも呼ぶ。","sup":false,"new":false,"aka":["セキュアOS","Trusted OS"],"note":null},{"id":"osdb-harden-5","name":"パッチ管理","desc":"OSやソフトの修正プログラムを、計画的に確認・適用すること。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"osdb-db","name":"データベースの安全","terms":[{"id":"osdb-db-1","name":"データベース暗号化","desc":"保存したデータを暗号化し、媒体の盗難やファイルの持出しから守る対策。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-db-2","name":"GRANT／REVOKE","desc":"表ごとに、誰が参照・更新できるかの権限を与えたり取り消したりするSQLの命令。","sup":false,"new":false,"aka":["GRANT"],"note":null},{"id":"osdb-db-3","name":"ビュー","desc":"表の一部だけを見せる仮想的な表。見せたくない列を隠すのに使える。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-db-4","name":"排他制御","desc":"複数の処理が同時に同じデータを更新しても、矛盾が起きないようにする仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-db-5","name":"ストアドプロシージャ","desc":"データベースの中に保存しておく一連の処理。アプリ側でSQLを組み立てずに済む。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"osdb-endpoint","name":"端末・モバイル管理","terms":[{"id":"osdb-endpoint-1","name":"MDM","desc":"会社が配るスマホやタブレットを一元管理し、紛失時には遠隔でロックやデータ消去を行う仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-endpoint-2","name":"リモートワイプ","desc":"紛失した端末のデータを、遠隔操作で消去すること。","sup":false,"new":false,"aka":["遠隔でのデータ消去"],"note":null},{"id":"osdb-endpoint-3","name":"BYOD","desc":"私物の端末を業務に使うこと。会社の管理が届きにくく、情報漏えいのおそれがある。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-endpoint-4","name":"シャドーIT","desc":"会社が把握・許可していないクラウドサービスや機器を、従業員が業務で使うこと。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"osdb-antimal","name":"マルウェア対策製品","terms":[{"id":"osdb-antimal-1","name":"マルウェア対策ソフト","desc":"既知のマルウェアの特徴をまとめた定義ファイルと照合して、検知・駆除するソフト。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-antimal-2","name":"ビヘイビア法（振る舞い検知）","desc":"プログラムの動きを観察し、怪しい挙動から未知のマルウェアを見つける方式。","sup":false,"new":false,"aka":["ビヘイビア法","振る舞い検知"],"note":null},{"id":"osdb-antimal-3","name":"EDR","desc":"端末の操作や通信を記録・監視し、侵入された後の検知・調査・隔離を助ける製品。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-antimal-4","name":"サンドボックス","desc":"隔離された環境で怪しいファイルを実際に動かし、挙動を観察する仕組み。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"osdb-hw","name":"ハードウェアの安全","terms":[{"id":"osdb-hw-1","name":"TPM","desc":"PCに内蔵され、鍵の保管や、起動時の状態の測定を行うセキュリティチップ。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-hw-2","name":"セキュアブート","desc":"起動するときに、署名を確かめた正規のプログラムだけを読み込む仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-hw-3","name":"耐タンパ性","desc":"装置をこじ開けたり解析したりしても、中の秘密情報を取り出しにくい性質。","sup":false,"new":false,"aka":[],"note":null},{"id":"osdb-hw-4","name":"自己暗号化ドライブ（SED）","desc":"書き込むデータを自動で暗号化する記憶装置。","sup":false,"new":false,"aka":["自己暗号化ドライブ"],"note":null}]}]},{"id":"cloud","order":8,"domain":"infra","color":"#1A6872","name":"クラウド・コンテナ・AI・IoT／制御システム","short":"クラウド・AI・IoT","shortLines":["クラウド・","AI・IoT"],"priority":"high","badges":["new-weight"],"summary":"クラウドやコンテナ、生成AI、IoT機器や工場の制御システムなど、新しい基盤ならではの守り方。「だれがどこまで守るか」という分担を押さえるのが鍵になる。","themes":["責任共有モデルとIaaS・PaaS・SaaSの違い","クラウドの設定ミスとアクセスキーの漏えい","コンテナとCI/CDパイプラインの安全","CASB・CSPM・SASEの役割","生成AIの安全な利用（プロンプトインジェクション対策、RAGのアクセス制御）","制御システムの安全（IEC 62443、ITとOTの分離）"],"keywords":["責任共有モデル","IaaS","SaaS","CASB","CSPM","SASE","コンテナ","IaC","プロンプトインジェクション対策","IEC 62443"],"examA2":"責任共有モデル、CASBやSASEの役割、IoT・制御システムの規格などを問う。","examB":"R5秋 問3でCIサービスとコンテナ、R6春 問3でクラウド上のWebサイト、R7春 問3でクラウドストレージのアクセスキー、R7秋 問4でSCADA（制御システム）が題材になった。","official":[{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「5. セキュリティ実装技術」の(8)IoTシステムの設計・開発におけるセキュリティ"},{"doc":"シラバス Ver.2.1","where":"科目B 2-3（仮想化、コンテナ技術に関する知識）"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類26「クラウド・コンテナのセキュリティ」「IoT・制御システムのセキュリティ」「AIシステムを守るための対策」"}],"priorityReason":"直近の科目Bでは、R5秋 問3（CIサービスとコンテナ）、R6春 問3（クラウド上のWebサイト）、R7春 問3（クラウドストレージのアクセスキー）、R7秋 問4（SCADA）がこの分野の基盤を題材にしている。新制度では、科目B大項目2の製品・サービスの導入に「IoT、クラウドサービスを含む」と明記され、諸規程に「AIの安全な導入・利用」が加わり、シラバス案に「AIシステムを守るための対策（Security for AI）」の項目ができた。","textbook":["1.5","1.8"],"subs":[{"id":"cloud-shared","name":"クラウドと責任共有","terms":[{"id":"cloud-shared-1","name":"責任共有モデル","desc":"クラウド事業者と利用者が、どこまでを守るかを分担する考え方。IaaS・PaaS・SaaSで境目が変わる。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-shared-2","name":"IaaS／PaaS／SaaS","desc":"事業者が提供する範囲で分けたクラウドの種類。IaaSは基盤だけ、SaaSはアプリまで提供する。","sup":false,"new":false,"aka":["IaaS","SaaS","PaaS"],"note":null},{"id":"cloud-shared-3","name":"クラウドの設定不備","desc":"ストレージの公開設定や過大な権限など、利用者側の設定ミス。情報漏えいの原因になる。","sup":false,"new":true,"aka":[],"note":null},{"id":"cloud-shared-4","name":"アクセスキー","desc":"プログラムからクラウドを操作するための認証情報。漏れると誰でもその権限で操作できてしまう。","sup":true,"new":false,"aka":[],"note":null},{"id":"cloud-shared-5","name":"署名付きURL","desc":"期限と権限を付けて、一時的にファイルへアクセスさせるURL。秘密の鍵を使うのでサーバ側で作る。","sup":true,"new":false,"aka":[],"note":null}]},{"id":"cloud-container","name":"仮想化・コンテナ","terms":[{"id":"cloud-container-1","name":"仮想化","desc":"1台の物理サーバの上で、複数の仮想マシンを動かす技術。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-container-2","name":"コンテナ","desc":"アプリと必要な部品をまとめ、OSのカーネルを共有して軽く動かす技術。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-container-3","name":"コンテナイメージの脆弱性管理","desc":"コンテナの元になるイメージに含まれる部品の脆弱性を、スキャンして管理すること。","sup":false,"new":true,"aka":[],"note":null},{"id":"cloud-container-4","name":"IaC","desc":"サーバやネットワークの構成をコードで書き、自動で構築する手法。設定ミスをスキャンで見つけられる。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-container-5","name":"CI/CDパイプライン","desc":"コードの変更を自動でビルド・テスト・配備する仕組み。乗っ取られると不正なコードが配られる。","sup":false,"new":true,"aka":["CI/CD"],"note":null}]},{"id":"cloud-protect","name":"SASE・クラウド保護","terms":[{"id":"cloud-protect-1","name":"CASB","desc":"従業員のクラウド利用を見える化し、許可しないサービスの利用やデータの持出しを制御する仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-protect-2","name":"CSPM","desc":"クラウドの設定を継続的に点検し、危険な設定ミスを見つける仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-protect-3","name":"CWPP","desc":"クラウド上の仮想マシンやコンテナなど、動いている処理そのものを守る仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-protect-4","name":"SASE","desc":"ネットワーク機能とセキュリティ機能をまとめて、クラウドから提供する考え方。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-protect-5","name":"インスタンスメタデータサービスの保護","desc":"仮想マシンから認証情報を取り出せる仕組みを、SSRFなどで悪用されないように守ること。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"cloud-ai","name":"AIのセキュリティ","terms":[{"id":"cloud-ai-1","name":"プロンプトインジェクション対策","desc":"指示と外部データを分ける、AIエージェントの権限を絞るなどして、不正な命令の実行を防ぐ対策。","sup":false,"new":true,"aka":[],"note":null},{"id":"cloud-ai-2","name":"RAGのアクセス制御","desc":"生成AIが参照する社内データに、利用者の権限に応じた参照制限をかけること。","sup":false,"new":true,"aka":["RAG"],"note":null},{"id":"cloud-ai-3","name":"OWASP Top 10 for LLM Applications","desc":"大規模言語モデルを使うアプリの主なリスクをまとめた一覧。","sup":false,"new":true,"aka":[],"note":null},{"id":"cloud-ai-4","name":"AI事業者ガイドライン","desc":"AIを開発・提供・利用する事業者が取り組むべきことをまとめた国のガイドライン。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"cloud-iot","name":"IoT・制御システム","terms":[{"id":"cloud-iot-1","name":"制御システム（SCADA）","desc":"工場・プラント・電力などの設備を監視・制御するシステム。止まると物理的な被害につながる。","sup":false,"new":false,"aka":["制御システム","SCADA"],"note":null},{"id":"cloud-iot-2","name":"IEC 62443","desc":"産業用の制御システムのセキュリティに関する国際規格群。","sup":false,"new":false,"aka":[],"note":null},{"id":"cloud-iot-3","name":"IT／OT境界のDMZ","desc":"情報システム（IT）と制御システム（OT）の間に緩衝区画を置き、直接の通信を防ぐ構成。","sup":false,"new":true,"aka":["IT／OT 境界の DMZ"],"note":null},{"id":"cloud-iot-4","name":"一方向ゲートウェイ","desc":"物理的に一方向にしかデータを流せない装置。制御システム側への侵入を防ぐ。","sup":false,"new":true,"aka":[],"note":null},{"id":"cloud-iot-5","name":"JC-STAR","desc":"IoT製品がセキュリティ要件を満たすかを評価し、ラベルを付ける国の制度。","sup":false,"new":true,"aka":[],"note":null}]}]},{"id":"web","order":9,"domain":"dev","color":"#2B714A","name":"Webアプリケーションセキュリティ・セキュアプログラミング","short":"Webセキュリティ","shortLines":["Web","セキュリティ"],"priority":"high","badges":[],"summary":"Webアプリの典型的な弱点と、作り方での防ぎ方。科目Bでは、HTML・JavaScript・Javaなどのコードを読んで、原因と対策を答える力が問われる。","themes":["XSS（反射型・格納型・DOM型）と出力時のエスケープ","SQLインジェクションとプレースホルダ","CSRFとトークン、セッション管理（固定化への対策）","CSP・Cookieの属性・CORSなどブラウザの防御機構","APIとJWT、スマホアプリに秘密情報を置かない設計","言語ごとの注意点（C/C++のバッファ、Javaの例外処理）"],"keywords":["XSS","SQLインジェクション","CSRF","セッションフィクセーション","CSP","SameSite","CORS","SRI","プレースホルダ","エスケープ処理"],"examA2":"攻撃と対策の対応（例：XSSには出力時のエスケープ、SQLインジェクションにはプレースホルダ）を問う。","examB":"直近5回の20問のうち、R5秋 問1、R6春 問1・問3・問4、R6秋 問3・問4、R7春 問3、R7秋 問1の8問が、Webアプリやアプリの実装を主な題材にしている。","official":[{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「5. セキュリティ実装技術」の(6)アプリケーションセキュリティ"},{"doc":"シラバス Ver.2.1","where":"科目B 2-5 セキュアプログラミング"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類26「アプリケーション開発のセキュリティ」"}],"priorityReason":"試験要綱の科目A-2重点分野（セキュリティ◎4）に含まれ、科目Bでは小項目2-5（セキュアプログラミング）に当たる。直近の科目Bでは、R5秋 問1、R6春 問1・問3・問4、R6秋 問3・問4、R7春 問3、R7秋 問1がWebアプリや実装を主な題材にしている。新制度のサンプル問2もWebサイトのセッションフィクセーションを題材にしている。","textbook":["2.5","2.8","3.6","8.2","8.3","8.4"],"subs":[{"id":"web-vuln","name":"Webの主な脆弱性","terms":[{"id":"web-vuln-1","name":"クロスサイトスクリプティング（XSS）","desc":"利用者の入力をそのままページに出力したため、悪意あるスクリプトが閲覧者のブラウザで動いてしまう脆弱性。","sup":false,"new":false,"aka":["クロスサイトスクリプティング"],"note":"ch03/xss-vs-csrf.md"},{"id":"web-vuln-2","name":"反射型／格納型／DOM型XSS","desc":"スクリプトがリクエストからそのまま返る型、サーバに保存されて表示される型、ブラウザ側のJavaScriptだけで起きる型。","sup":false,"new":false,"aka":["反射型","格納型"],"note":null},{"id":"web-vuln-3","name":"SQLインジェクション","desc":"入力にSQLの断片を混ぜて、データベースを不正に操作する攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-vuln-4","name":"クロスサイトリクエストフォージェリ（CSRF）","desc":"ログイン中の利用者に、罠のページから本人の意図しないリクエストを送らせる攻撃。","sup":false,"new":false,"aka":["クロスサイトリクエストフォージェリ","CSRF"],"note":"ch03/xss-vs-csrf.md"},{"id":"web-vuln-5","name":"OSコマンドインジェクション","desc":"入力を通じて、サーバ上でOSのコマンドを実行させる攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-vuln-6","name":"ディレクトリトラバーサル","desc":"「../」などでファイルの場所をさかのぼり、公開していないファイルを読む攻撃。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"web-session","name":"セッション管理","terms":[{"id":"web-session-1","name":"セッションハイジャック","desc":"他人のセッションIDを盗んで、その人になりすます攻撃。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-session-2","name":"セッションフィクセーション","desc":"攻撃者が用意したセッションIDを利用者に使わせ、ログイン後に乗っ取る攻撃。ログイン時にIDを新しく発行して防ぐ。","sup":false,"new":true,"aka":["セッション固定化","セッションフィクセーション"],"note":null},{"id":"web-session-3","name":"CSRFトークン","desc":"フォームに推測できない値を埋め込み、正規の画面からの送信かを確かめる対策。","sup":false,"new":true,"aka":[],"note":null},{"id":"web-session-4","name":"オープンリダイレクト","desc":"任意のURLへ転送できる機能を悪用し、正規のサイトを経由して偽サイトへ誘導する手口。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"web-browser","name":"ブラウザの防御機構","terms":[{"id":"web-browser-1","name":"同一オリジンポリシー","desc":"スキーム・ホスト・ポートの組が違うオリジンのデータを、スクリプトから勝手に読めないようにするブラウザの制限。","sup":false,"new":false,"aka":["Same Origin Policy"],"note":null},{"id":"web-browser-2","name":"CORS","desc":"同一オリジンポリシーの例外として、サーバが許可したほかのオリジンからのアクセスを認める仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-browser-3","name":"Cookieの属性","desc":"Secure（HTTPSでだけ送る）、HttpOnly（スクリプトから読ませない）、SameSite（ほかのサイトからの送信を制限）。","sup":false,"new":true,"aka":["HttpOnly","SameSite"],"note":null},{"id":"web-browser-4","name":"CSP","desc":"読み込んでよいスクリプトなどの出どころを、サーバからブラウザに指示する仕組み。XSSの被害を減らす。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-browser-5","name":"HSTS","desc":"以後はHTTPSでだけ接続するよう、ブラウザに覚えさせる仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-browser-6","name":"SRI","desc":"外部から読み込むスクリプトのハッシュ値を指定し、改ざんされていたら実行させない仕組み。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"web-api","name":"API・スマホアプリ","terms":[{"id":"web-api-1","name":"OWASP Top 10","desc":"Webアプリの重大なリスクをまとめた代表的な一覧。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-api-2","name":"OWASP API Security Top 10","desc":"APIに特有の主なリスク（認可の不備など）をまとめた一覧。","sup":false,"new":true,"aka":[],"note":null},{"id":"web-api-3","name":"認可の不備","desc":"IDを書き換えるだけで他人のデータを取得できるなど、権限の確認が漏れている脆弱性。","sup":false,"new":false,"aka":["認可・権限・アクセス制御の不備"],"note":null},{"id":"web-api-4","name":"パスワードのハードコード","desc":"秘密情報をプログラムに直接書き込むこと。アプリを解析されれば取り出されてしまう。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"web-code","name":"言語別の安全な実装","terms":[{"id":"web-code-1","name":"エスケープ処理","desc":"出力先で特別な意味を持つ文字を、ただの文字として表示されるよう変換すること。XSS対策の基本。","sup":false,"new":true,"aka":[],"note":null},{"id":"web-code-2","name":"プレースホルダ","desc":"SQL文の形を先に固定し、値を後から当てはめる方式。SQLインジェクション対策の基本。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-code-3","name":"バッファオーバーフロー","desc":"確保した領域を超えて書き込み、プログラムを異常終了させたり乗っ取ったりする脆弱性。C/C++で特に注意する。","sup":false,"new":false,"aka":[],"note":null},{"id":"web-code-4","name":"ソルトとストレッチング","desc":"パスワードのハッシュに利用者ごとの乱数を加え、計算を何度も繰り返して解読を遅らせる対策。","sup":false,"new":false,"aka":["ソルト","ストレッチング"],"note":null},{"id":"web-code-5","name":"例外処理とリソースの解放","desc":"例外が起きても後始末（Javaのfinallyなど）を必ず行い、情報漏えいや資源の枯渇を防ぐ実装。","sup":true,"new":false,"aka":[],"note":null},{"id":"web-code-6","name":"レースコンディション","desc":"複数の処理の実行順序のずれを突かれて、想定外の状態になる脆弱性。","sup":false,"new":false,"aka":[],"note":null}]}]},{"id":"devproc","order":10,"domain":"dev","color":"#3A6B2C","name":"システム開発・開発プロセスのセキュリティ","short":"セキュア開発工程","shortLines":["セキュア","開発工程"],"priority":"mid","badges":[],"summary":"作る前・作る途中・作った後のそれぞれの工程で、セキュリティを組み込む進め方。開発の委託や外部のライブラリなど、ソフトウェアの「供給網」の管理も含む。","themes":["要件定義でのセキュリティ要件と設計レビュー","SAST・DAST・IAST・ファジングの使い分け","開発環境・リポジトリ・シークレットの管理","SBOMとOSS（外部の部品）の管理","アジャイル開発とDevSecOps"],"keywords":["セキュリティ要件","SAST","DAST","IAST","ファジング","SBOM","SCA","構成管理","シークレット管理","アジャイル開発"],"examA2":"システム開発技術（○3）・ソフトウェア開発管理技術（○3）として、テストの手法、開発プロセス、構成管理などを問う。","examB":"R7春 問1でSBOMやSAST・DAST・IAST、R7秋 問1の設問4で脆弱性を見つけて直すための開発プロセスが問われた。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類12 システム開発技術（○3）・中分類13 ソフトウェア開発管理技術（○3）"},{"doc":"シラバス Ver.2.1","where":"科目B 2-1 企画・要件定義、2-6 セキュリティテスト、2-8 開発環境のセキュリティ確保"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類20 システムライフサイクルプロセス、中分類21 開発・運用の方法論"}],"priorityReason":"試験要綱では科目A-2のシステム開発技術・ソフトウェア開発管理技術はいずれも○3で、重点分野ではない。直近の科目Bでは、R7春 問1（サプライチェーンリスク対策、SBOM、SAST・DAST・IAST）とR7秋 問1（開発プロセスでの対策）が題材にしている。新制度の科目A-2でも○（重点ではない）。","textbook":["8.1"],"subs":[{"id":"devproc-req","name":"要件・設計の安全","terms":[{"id":"devproc-req-1","name":"セキュリティ要件","desc":"システムが満たすべきセキュリティ上の条件。認証・ログ・暗号化などを、脅威分析の結果から決める。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-req-2","name":"プライバシー・バイ・デザイン","desc":"設計の段階から、個人情報の保護を組み込む考え方。","sup":false,"new":false,"aka":["プライバシーバイデザイン"],"note":null},{"id":"devproc-req-3","name":"非機能要件","desc":"性能・可用性・セキュリティなど、機能以外にシステムに求める条件。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-req-4","name":"仕様書のレビュー","desc":"仕様書や設計書をセキュリティの観点で点検し、脆弱性の作り込みを早い段階で防ぐこと。","sup":false,"new":false,"aka":["仕様書をレビュー"],"note":null}]},{"id":"devproc-test","name":"セキュリティテスト","terms":[{"id":"devproc-test-1","name":"SAST","desc":"プログラムを動かさずに、ソースコードを解析して脆弱性を探すテスト（静的検査）。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-test-2","name":"DAST","desc":"動いているアプリに外から攻撃を模した入力を送り、脆弱性を探すテスト（動的検査）。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-test-3","name":"IAST","desc":"アプリの内部に検査の仕組みを組み込み、動かしながら脆弱性を見つけるテスト。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-test-4","name":"ファジング","desc":"想定外のデータを大量に入力し、異常な動作を引き起こす不具合を探すテスト。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-test-5","name":"回帰テスト","desc":"修正によって、それまで動いていた機能が壊れていないかを確かめるテスト。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"devproc-env","name":"開発環境と構成管理","terms":[{"id":"devproc-env-1","name":"構成管理","desc":"ソースコード・設定・文書の版を記録し、どの組合せが正しいかを管理すること。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-env-2","name":"バージョン管理","desc":"ソースコードの変更履歴を残し、誰がいつ何を変えたかを追えるようにすること。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-env-3","name":"シークレット管理","desc":"パスワードやAPIキーをコードに書かず、専用の保管庫で管理すること。","sup":false,"new":true,"aka":[],"note":null},{"id":"devproc-env-4","name":"署名付きコミット","desc":"コードの変更に署名を付け、誰が変更したかを確かめられるようにすること。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"devproc-supply","name":"ソフトウェア供給網","terms":[{"id":"devproc-supply-1","name":"SBOM","desc":"ソフトウェアに含まれる部品とその版の一覧。脆弱性が公表されたとき、影響を受けるかをすぐ調べられる。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-supply-2","name":"SCA（ソフトウェア構成分析）","desc":"使っているOSSなどの部品を洗い出し、既知の脆弱性やライセンスを確かめる手法。","sup":false,"new":false,"aka":["ソフトウェア構成分析","SCA"],"note":null},{"id":"devproc-supply-3","name":"依存関係混同","desc":"社内用の部品と同じ名前の悪意ある部品を公開の保管場所に置き、取り込ませる攻撃。","sup":false,"new":true,"aka":["依存関係混同","Dependency Confusion"],"note":null},{"id":"devproc-supply-4","name":"SLSA","desc":"ソフトウェアのビルドの過程が改ざんされていないことを保証するための枠組み。","sup":false,"new":true,"aka":[],"note":null},{"id":"devproc-supply-5","name":"委託先の成果物の確認","desc":"開発を外部に委託したとき、契約どおりのセキュリティが守られているかを確かめること。","sup":false,"new":false,"aka":["委託先からの成果物の確認"],"note":null}]},{"id":"devproc-process","name":"開発プロセス・手法","terms":[{"id":"devproc-process-1","name":"アジャイル開発","desc":"短い期間で計画・開発・確認を繰り返し、少しずつ作っていく開発手法。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-process-2","name":"ウォーターフォールモデル","desc":"要件定義から順に工程を進め、原則として前の工程に戻らない開発手法。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-process-3","name":"DevSecOps","desc":"開発と運用を一体で回す流れに、セキュリティの確認を自動化して組み込む考え方。","sup":false,"new":false,"aka":[],"note":null},{"id":"devproc-process-4","name":"SQuaRE","desc":"ソフトウェア製品の品質を定義し、評価するための規格群。","sup":false,"new":false,"aka":[],"note":null}]}]},{"id":"vuln","order":11,"domain":"dev","color":"#22695A","name":"脆弱性管理・脆弱性診断・セキュリティ評価","short":"脆弱性管理と診断","shortLines":["脆弱性管理","と診断"],"priority":"high","badges":[],"summary":"弱点を「見つける」「深刻さを測る」「優先順位を決めて直す」流れと、製品の安全性を第三者が評価する制度。","themes":["CVE・CWE・CVSSの区別","CVSSの指標と、EPSS・KEVによる優先度の判断","脆弱性診断とペネトレーションテストの違い","ASM（外部に公開している資産の把握）","JVNと情報セキュリティ早期警戒パートナーシップ","コモンクライテリア（ISO/IEC 15408）・JCMVP"],"keywords":["CVE","CWE","CVSS","EPSS","KEV","SSVC","JVN","脆弱性診断","ペネトレーションテスト","ASM","バグバウンティ"],"examA2":"CVSSの評価基準の内容、CVEとCWEの区別、評価制度（ISO/IEC 15408など）を問う。","examB":"R7春 問2でCVSSv3とEPSS、R7春 問4でASMとKEVカタログ、R6秋 問4でWebサイトの診断結果の評価が題材になった。","official":[{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「3. セキュリティ技術評価」"},{"doc":"シラバス Ver.2.1","where":"科目B 2-6 セキュリティテスト、3-6 脆弱性への対応"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類26「3 セキュリティ評価」"}],"priorityReason":"試験要綱の科目A-2重点分野（セキュリティ◎4）に含まれる（追補版の「セキュリティ技術評価」）。直近の科目Bでは、R7春 問2（CVSSv3とEPSSによる優先度の判断）、R7春 問4（ASMとKEVカタログ）、R6秋 問4（診断で見つかった脆弱性の評価）が題材にしている。新制度のシラバス案では、KEV、EPSS、SSVC、SBOMを利用した脆弱性管理が用語例に明記され、サンプル問2もセキュリティ診断を題材にしている。","textbook":["3.1","5.3"],"subs":[{"id":"vuln-ids","name":"脆弱性情報と識別子","terms":[{"id":"vuln-ids-1","name":"CVE","desc":"公開された個々の脆弱性に付ける、世界共通の識別番号。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-ids-2","name":"CWE","desc":"脆弱性の「種類」（例：SQLインジェクション）を分類した一覧。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-ids-3","name":"JVN","desc":"日本で使われているソフトウェアの脆弱性情報と対策をまとめたポータルサイト。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-ids-4","name":"情報セキュリティ早期警戒パートナーシップ","desc":"脆弱性の発見者からの届出を受け、開発者と調整してから公表する日本の仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-ids-5","name":"SCAP","desc":"脆弱性の識別や設定の点検を自動化するための標準の集まり。","sup":false,"new":false,"aka":["セキュリティ設定共通化手順"],"note":null}]},{"id":"vuln-score","name":"深刻度と優先度判断","terms":[{"id":"vuln-score-1","name":"CVSS","desc":"脆弱性の深刻度を0.0〜10.0で評価する共通の基準。基本・現状・環境の3つの評価基準がある。","sup":false,"new":false,"aka":["共通脆弱性評価システム"],"note":null},{"id":"vuln-score-2","name":"攻撃条件の複雑さ（AC）","desc":"CVSSの基本評価基準の指標の一つ。攻撃の成功に特別な条件が要るかどうかを表す。","sup":true,"new":false,"aka":[],"note":null},{"id":"vuln-score-3","name":"EPSS","desc":"その脆弱性が近いうちに悪用される確率を推定する指標。","sup":false,"new":true,"aka":[],"note":null},{"id":"vuln-score-4","name":"KEV","desc":"実際に悪用が確認された脆弱性をまとめたカタログ。優先して対処すべきものがわかる。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-score-5","name":"SSVC","desc":"悪用の状況や影響などの質問を木の形にたどり、対応の優先度を決める手法。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"vuln-assess","name":"脆弱性診断・ペンテスト","terms":[{"id":"vuln-assess-1","name":"脆弱性診断","desc":"ツールと手作業で、システムに既知の種類の脆弱性がないかを網羅的に調べること。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-assess-2","name":"ペネトレーションテスト","desc":"攻撃者の目線で実際に侵入を試み、目的（情報の取得など）を達成できるかを確かめるテスト。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-assess-3","name":"TLPT","desc":"実在する攻撃者の手口を想定したシナリオで、組織の検知・対応まで含めて試すペネトレーションテスト。","sup":true,"new":false,"aka":[],"note":null},{"id":"vuln-assess-4","name":"バグバウンティ","desc":"外部の研究者が見つけた脆弱性の報告に、報奨金を払う制度。","sup":false,"new":false,"aka":["バグバウンティ","脆弱性報奨金制度"],"note":null}]},{"id":"vuln-asm","name":"資産管理とASM","terms":[{"id":"vuln-asm-1","name":"ASM","desc":"インターネットから見える自社の資産を継続的に洗い出し、管理されていない入口を見つける活動。","sup":false,"new":true,"aka":["ASM","EASM"],"note":null},{"id":"vuln-asm-2","name":"資産インベントリ","desc":"社内のサーバ・端末・ソフト・ドメインなどの一覧。脆弱性への対応の出発点になる。","sup":false,"new":true,"aka":["資産インベントリ"],"note":null},{"id":"vuln-asm-3","name":"サブドメインテイクオーバー","desc":"使われなくなったサブドメインのDNSの設定が残り、第三者に乗っ取られること。","sup":true,"new":false,"aka":[],"note":null},{"id":"vuln-asm-4","name":"パッチ適用の判断","desc":"脆弱性の深刻度と業務への影響を比べ、修正プログラムを当てるか、いつ当てるかを決めること。","sup":false,"new":false,"aka":["脆弱性修正プログラムの適用"],"note":null}]},{"id":"vuln-eval","name":"製品・暗号の評価制度","terms":[{"id":"vuln-eval-1","name":"ISO/IEC 15408（コモンクライテリア）","desc":"IT製品のセキュリティ機能を、第三者が評価・認証するための国際規格。","sup":false,"new":false,"aka":["ISO/IEC 15408","コモンクライテリア"],"note":null},{"id":"vuln-eval-2","name":"EAL","desc":"コモンクライテリアで、評価の厳しさを7段階で示す指標（評価保証レベル）。","sup":false,"new":false,"aka":["EAL","評価保証レベル"],"note":null},{"id":"vuln-eval-3","name":"JISEC","desc":"日本のITセキュリティ評価及び認証制度。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-eval-4","name":"JCMVP","desc":"暗号モジュールが正しく安全に作られているかを試験・認証する日本の制度。","sup":false,"new":false,"aka":[],"note":null},{"id":"vuln-eval-5","name":"FIPS 140","desc":"暗号モジュールのセキュリティ要件を定めた米国の規格。","sup":false,"new":false,"aka":[],"note":null}]}]},{"id":"ops","order":12,"domain":"resp","color":"#8F4A12","name":"セキュリティ運用・監視","short":"運用・監視","priority":"mid","badges":["new-weight"],"summary":"ログを集めて見張り、異常にいち早く気づくための日々の運用。脅威情報の活用、データを漏らさない仕組み、ITサービスの管理もここに入る。","themes":["取得すべきログと、その保存・改ざん防止・時刻同期","SIEM・EDR・XDR・SOARの役割","SOCの運用と誤検知の減らし方","脅威インテリジェンス（IoC、STIX／TAXII）","DLPなどのデータ保護","サービスマネジメント（SLA、変更管理）"],"keywords":["ログ","時刻同期","SIEM","XDR","SOAR","SOC","IoC","STIX","TAXII","DLP","SLA"],"examA2":"SIEMなどの監視技術や、サービスマネジメント（○3）のSLA・変更管理などを問う。","examB":"R6秋 問1でエンドポイントのログの調査と検知の仕組み、R6秋 問3でアクセスログから影響を受けた利用者を特定する問題が出た。","official":[{"doc":"シラバス Ver.2.1","where":"科目B 3-4 セキュリティ監視並びにログの取得及び分析"},{"doc":"試験要綱 Ver.5.6","where":"科目A-2 中分類15 サービスマネジメント（○3）"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類25「ログ管理・監視・検知及び対応」「脅威インテリジェンス」「脆弱性管理・データ保護」"}],"priorityReason":"直近の科目Bでは、R6秋 問1（どのログに何が残るかを考えて検知の仕組みを設計）とR6秋 問3（アクセスログから影響範囲を特定）がログを題材にしている。新制度の科目Bでは、大項目1に「セキュリティ運用状況の管理・点検」と「脅威インテリジェンスの活用」、大項目3に「データ保護」が加わった。試験要綱のサービスマネジメントは科目A-2で○3（重点ではない）。","textbook":["5.10","5.11"],"subs":[{"id":"ops-log","name":"ログ管理と時刻同期","terms":[{"id":"ops-log-1","name":"ログの取得と保管","desc":"何を、どの機器で、どれだけの期間記録するかを決め、安全に保存すること。","sup":false,"new":false,"aka":["ログの取得","ログの保管"],"note":null},{"id":"ops-log-2","name":"ログの改ざん防止","desc":"ログを追記しかできない領域や別のサーバに保存し、攻撃者に消されないようにすること。","sup":false,"new":true,"aka":["改ざん防止"],"note":null},{"id":"ops-log-3","name":"時刻同期","desc":"機器の時計をNTPなどでそろえ、複数のログを時系列で正しく突き合わせられるようにすること。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-log-4","name":"相関分析","desc":"複数の機器のログを組み合わせ、単独では見えない攻撃の兆候を見つける分析。","sup":false,"new":false,"aka":["ログの相関分析"],"note":null}]},{"id":"ops-detect","name":"検知基盤","terms":[{"id":"ops-detect-1","name":"SIEM","desc":"さまざまな機器のログを集めて相関分析し、攻撃の兆候を知らせる仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-detect-2","name":"XDR","desc":"端末・ネットワーク・クラウドなどの検知情報をまとめて分析する仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-detect-3","name":"NDR","desc":"ネットワークの通信を分析し、侵入された後の不審な動きを見つける仕組み。","sup":false,"new":true,"aka":[],"note":null},{"id":"ops-detect-4","name":"SOAR","desc":"決まった対応の手順を自動化し、多くの警報を効率よく処理する仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-detect-5","name":"UEBA","desc":"利用者や機器のふだんの行動を学習し、そこから外れた動きを見つける仕組み。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"ops-soc","name":"SOCと運用サービス","terms":[{"id":"ops-soc-1","name":"SOC","desc":"組織のネットワークや機器を監視し、攻撃を検知・分析する専門のチーム。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-soc-2","name":"アラートトリアージ","desc":"大量の警報を、重要度や本物らしさで仕分けし、対応の順番を決めること。","sup":false,"new":true,"aka":[],"note":null},{"id":"ops-soc-3","name":"MSS／MDR","desc":"監視や、検知・対応を外部の専門事業者に任せるサービス。","sup":false,"new":false,"aka":["MSS","MDR"],"note":null},{"id":"ops-soc-4","name":"脅威ハンティング","desc":"警報を待たずに、侵入の痕跡が潜んでいないかを自分から探す活動。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"ops-ti","name":"脅威インテリジェンス","terms":[{"id":"ops-ti-1","name":"脅威インテリジェンス","desc":"攻撃者や手口に関する情報を集めて分析し、防御に役立てる知見。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-ti-2","name":"IoC","desc":"侵害の痕跡を示す情報。不正な通信先のIPアドレスや、マルウェアのハッシュ値など。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-ti-3","name":"STIX／TAXII","desc":"脅威情報を構造化して書く形式（STIX）と、それを自動で交換する手順（TAXII）。","sup":false,"new":false,"aka":["STIX","TAXII"],"note":null},{"id":"ops-ti-4","name":"TLP","desc":"共有した情報をどこまで広めてよいかを、色で示すルール。","sup":false,"new":false,"aka":["TLP","Traffic Light Protocol"],"note":null},{"id":"ops-ti-5","name":"OSINT","desc":"公開されている情報源から集める情報や、その手法。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"ops-data","name":"データ保護・DLP","terms":[{"id":"ops-data-1","name":"DLP","desc":"機密データの送信やコピーを監視し、外部への持出しを防ぐ仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-data-2","name":"データマスキング","desc":"データの一部を伏せ字などに置き換え、必要以上に見せないようにすること。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-data-3","name":"情報の削除","desc":"記憶媒体を廃棄・再利用する前に、復元できない方法でデータを消すこと。","sup":false,"new":false,"aka":["情報の削除"],"note":null},{"id":"ops-data-4","name":"Web分離","desc":"Webの閲覧を隔離した環境で行い、端末にマルウェアが届かないようにする仕組み。","sup":false,"new":false,"aka":["Web 分離","Web アイソレーション"],"note":null}]},{"id":"ops-svc","name":"サービスマネジメント","terms":[{"id":"ops-svc-1","name":"SLA","desc":"サービスの提供者と利用者が、品質の目標（稼働率など）を取り決めた合意。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-svc-2","name":"変更管理","desc":"システムの変更を記録・評価・承認してから行い、障害や不正な変更を防ぐ管理。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-svc-3","name":"サービスデスク","desc":"利用者からの問合せや障害の報告を一元的に受け付ける窓口。","sup":false,"new":false,"aka":[],"note":null},{"id":"ops-svc-4","name":"可用性管理","desc":"合意した稼働率を守るために、冗長化や保守の計画を管理すること。","sup":false,"new":false,"aka":[],"note":null}]}]},{"id":"incident","order":13,"domain":"resp","color":"#A8441A","name":"インシデント対応・フォレンジック・事業継続","short":"インシデント対応","shortLines":["インシデント","対応"],"priority":"high","badges":[],"summary":"事故が起きたときに「被害を止め、原因を突き止め、元に戻し、再発を防ぐ」ための体制と手順。証拠の扱い方と、事業を止めないための備えも含む。","themes":["CSIRTの構築と役割","対応の流れ（準備・検知と分析・封じ込め・根絶・復旧・事後対応）","トリアージと報告・公表の判断","証拠保全とChain of Custody","マルウェア解析の方法","BCPとバックアップ（RTO／RPO、3-2-1ルール）"],"keywords":["CSIRT","トリアージ","封じ込め","証拠保全","Chain of Custody","揮発性データ","デジタルフォレンジック","BCP","RTO","RPO","イミュータブルバックアップ"],"examA2":"CSIRTの役割、対応の手順の順序、フォレンジックの留意点、BCPの指標（RTO／RPO）などを問う。","examB":"直近5回では、R5秋 問1・問3、R6秋 問1・問3、R7秋 問1がインシデントの発生から対応までを題材にしている。R7秋 問4では、迅速な復旧のための平常時の備え（バックアップなど）が問われた。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目B 大項目4 情報セキュリティインシデント管理の推進又は支援"},{"doc":"シラバス Ver.2.1","where":"科目B 4-1〜4-4、3-3 バックアップ"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類25「インシデント管理」「事業継続とレジリエンス」、中分類26「2 フォレンジック」"}],"priorityReason":"科目Bの出題範囲の大項目4（インシデント管理）に当たる。直近の科目Bでは、R5秋 問1・問3、R6秋 問1・問3、R7秋 問1がインシデントの発生から対応までを題材にし、R7秋 問4ではレジリエンス（迅速な復旧）が問われた。新制度でも科目Bの大項目4は大きく変わらず維持される。","textbook":["4.8","4.9"],"subs":[{"id":"incident-csirt","name":"CSIRTと対応体制","terms":[{"id":"incident-csirt-1","name":"CSIRT","desc":"組織の中でセキュリティインシデントに対応するチーム。社内外との連絡の窓口にもなる。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-csirt-2","name":"PSIRT","desc":"自社製品の脆弱性に対応するチーム。外部からの報告を受け、修正と公表を行う。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-csirt-3","name":"インシデントレスポンス計画（IRP）","desc":"インシデントが起きたときの役割分担や手順を、前もって文書にしたもの。","sup":false,"new":true,"aka":["インシデントレスポンス計画"],"note":null},{"id":"incident-csirt-4","name":"机上演習","desc":"想定したシナリオに沿って、関係者が対応の流れを話し合いで確かめる訓練。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"incident-process","name":"対応プロセス","terms":[{"id":"incident-process-1","name":"情報セキュリティ事象とインシデント","desc":"事象は「起きたこと」、インシデントはそのうち事業に悪い影響を与える（おそれがある）もの。","sup":false,"new":false,"aka":["情報セキュリティ事象"],"note":null},{"id":"incident-process-2","name":"トリアージ","desc":"届いた報告を、影響の大きさや緊急度で仕分けし、対応の優先順位を決めること。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-process-3","name":"封じ込め・根絶・復旧","desc":"被害の広がりを止め、原因（マルウェアなど）を取り除き、安全な状態に戻す段階。","sup":false,"new":true,"aka":["封じ込め"],"note":null},{"id":"incident-process-4","name":"事後レビュー","desc":"対応を振り返り、手順や対策の改善につなげること。","sup":false,"new":true,"aka":[],"note":null},{"id":"incident-process-5","name":"報告と公表の判断","desc":"監督官庁や本人への報告、報道発表などを、法令と影響の大きさに応じて判断すること。","sup":false,"new":true,"aka":["公表の判断"],"note":null}]},{"id":"incident-forensics","name":"フォレンジック","terms":[{"id":"incident-forensics-1","name":"デジタルフォレンジック","desc":"電子機器に残る記録を、証拠として使える形で集めて分析する技術。","sup":false,"new":false,"aka":["デジタルフォレンジック","フォレンジックス"],"note":null},{"id":"incident-forensics-2","name":"証拠保全","desc":"記録を変更しないようにコピーし、元の状態を保つこと。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-forensics-3","name":"揮発性データの収集順序","desc":"メモリの内容など電源を切ると消えるデータを、消えやすい順に先に集めること。","sup":false,"new":true,"aka":["揮発性データ"],"note":null},{"id":"incident-forensics-4","name":"Chain of Custody","desc":"証拠を誰がいつどう扱ったかを途切れなく記録し、改ざんがないことを示すこと。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-forensics-5","name":"ハッシュ値による同一性の証明","desc":"原本とコピーのハッシュ値が一致することで、同じデータだと示すこと。","sup":false,"new":true,"aka":[],"note":null}]},{"id":"incident-malanalysis","name":"マルウェア解析","terms":[{"id":"incident-malanalysis-1","name":"静的解析／動的解析","desc":"プログラムを動かさずに中身を調べる方法と、隔離した環境で動かして挙動を観察する方法。","sup":false,"new":false,"aka":["静的解析","動的解析"],"note":null},{"id":"incident-malanalysis-2","name":"逆アセンブル","desc":"機械語のプログラムを、人が読めるアセンブリ言語に戻して解析すること。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-malanalysis-3","name":"パッカー・難読化","desc":"解析を難しくするために、プログラムを圧縮・暗号化したり読みにくくしたりする技術。","sup":false,"new":false,"aka":["パッカー","難読化"],"note":null},{"id":"incident-malanalysis-4","name":"ハニーポット","desc":"わざと攻撃されやすく見せたおとりのシステム。攻撃の手口を観察する。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"incident-bcp","name":"事業継続とバックアップ","terms":[{"id":"incident-bcp-1","name":"BCP（事業継続計画）","desc":"災害や攻撃で業務が止まっても、重要な業務を続け、早く再開するための計画。","sup":false,"new":false,"aka":["事業継続計画"],"note":null},{"id":"incident-bcp-2","name":"RTO／RPO","desc":"何時間以内に復旧するかの目標（RTO）と、どの時点までのデータを取り戻すかの目標（RPO）。","sup":false,"new":false,"aka":["RTO","RPO"],"note":null},{"id":"incident-bcp-3","name":"3-2-1ルール","desc":"バックアップを3つ持ち、2種類の媒体に分け、1つは離れた場所に置くという原則。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-bcp-4","name":"イミュータブルバックアップ","desc":"決めた期間、変更も削除もできないバックアップ。ランサムウェアに消されにくい。","sup":false,"new":false,"aka":[],"note":null},{"id":"incident-bcp-5","name":"ホットサイト／コールドサイト","desc":"すぐに切り替えられる設備を常に用意しておく代替拠点と、場所だけを確保しておく代替拠点。","sup":false,"new":false,"aka":["ホットサイト","コールドサイト"],"note":null}]}]},{"id":"risk","order":14,"domain":"mgmt","color":"#435789","name":"リスクマネジメント","short":"リスクマネジメント","shortLines":["リスク","マネジメント"],"priority":"high","badges":["new-weight"],"summary":"守るべきものを洗い出し、どんなリスクがどれくらいあるかを評価して、対策を選ぶ考え方。委託先や取引先を含めた、サプライチェーン全体のリスクも扱う。","themes":["情報資産台帳と重要度の評価","リスクの特定・分析・評価の流れ","リスク対応の4つの選択肢と残留リスク","定量的分析（ALE）と定性的分析","脅威分析（STRIDE、アタックツリー）と攻撃シナリオ","サプライチェーン・委託先のリスク"],"keywords":["情報資産台帳","リスクアセスメント","リスク基準","リスク回避","リスク低減","リスク移転","リスク保有","残留リスク","ALE","STRIDE","サプライチェーンリスク"],"examA2":"リスクアセスメントの手順や、リスク対応の選択肢、ALEの計算などを問う。","examB":"R5秋 問4で業務委託先を含むリスクアセスメント、R7春 問1でサプライチェーンリスク対策、R7秋 問4でサプライチェーンの中の企業の攻撃シナリオと対策が題材になった。新制度のサンプル問1も情報資産台帳を題材にしている。","official":[{"doc":"試験要綱 Ver.5.6","where":"科目B 大項目1 情報セキュリティマネジメントの推進又は支援"},{"doc":"シラバス Ver.2.1","where":"科目B 1-2 リスクアセスメント、1-3 リスク対応、3-10 サプライチェーン"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類24「2 リスクマネジメント」"}],"priorityReason":"科目Bの出題範囲の大項目1（マネジメント）の中心。直近の科目Bでは、R5秋 問4（リスクアセスメント）、R7春 問1（サプライチェーンリスク対策）、R7秋 問4（サプライチェーンの中の企業の管理体制と攻撃シナリオ）が題材にしている。新制度では科目Bで「マネジメント分野の強化」がうたわれ、サプライチェーンが大項目1に移り、サンプル問1が情報資産台帳を題材にしている。","textbook":["4.1","4.2"],"subs":[{"id":"risk-asset","name":"情報資産の把握","terms":[{"id":"risk-asset-1","name":"情報資産台帳","desc":"守る対象の情報資産を、管理部署・重要度・保存期限などとともに一覧にしたもの。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-asset-2","name":"重要度の評価","desc":"機密性・完全性・可用性の評価値から、情報資産の重要さを決めること。","sup":true,"new":false,"aka":[],"note":null},{"id":"risk-asset-3","name":"リスク所有者","desc":"そのリスクを管理する責任と権限を持つ人。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"risk-assess","name":"リスクアセスメント","terms":[{"id":"risk-assess-1","name":"リスクアセスメント","desc":"リスクを特定し、分析し、評価するまでの一連の流れ。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-assess-2","name":"リスク基準","desc":"どの大きさのリスクなら受け入れるかなど、評価の物差しとなる基準。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-assess-3","name":"定量的／定性的リスク分析","desc":"金額などの数値で表す分析と、大・中・小などの段階で表す分析。","sup":false,"new":false,"aka":["リスクの定量的分析","リスクの定性的分析"],"note":null},{"id":"risk-assess-4","name":"年間予想損失額（ALE）","desc":"1回あたりの損失額（SLE）×1年あたりの発生回数（ARO）で求める、1年分の損失の見込み。","sup":false,"new":false,"aka":["年間予想損失額","ALE"],"note":null},{"id":"risk-assess-5","name":"リスク分析のアプローチ","desc":"ベースライン・非形式的・詳細・組合せの4つのやり方。組合せアプローチは重要な資産だけを詳しく分析する。","sup":false,"new":true,"aka":["ベースラインアプローチ","組合せアプローチ"],"note":null}]},{"id":"risk-treat","name":"リスク対応","terms":[{"id":"risk-treat-1","name":"リスク低減","desc":"対策を講じて、起きる可能性や影響を小さくすること。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-treat-2","name":"リスク回避","desc":"リスクの原因となる業務やサービスそのものをやめること。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-treat-3","name":"リスク移転（共有）","desc":"保険や委託の契約で、損失の負担をほかの組織と分け合うこと。","sup":false,"new":false,"aka":["リスク移転","リスク共有"],"note":null},{"id":"risk-treat-4","name":"リスク保有（受容）","desc":"小さなリスクを、対策をせずに受け入れること。","sup":false,"new":false,"aka":["リスク保有","リスク受容"],"note":null},{"id":"risk-treat-5","name":"残留リスク","desc":"対策を講じた後にも残るリスク。経営者が承知して受け入れる必要がある。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-treat-6","name":"サイバー保険","desc":"サイバー攻撃による損害や対応の費用を補償する保険。リスク移転の手段。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"risk-threatmodel","name":"脅威分析の手法","terms":[{"id":"risk-threatmodel-1","name":"STRIDE","desc":"なりすまし・改ざん・否認・情報漏えい・サービス妨害・権限昇格の6分類で脅威を洗い出す手法。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-threatmodel-2","name":"アタックツリー分析","desc":"攻撃の目的を頂点に置き、達成する手段を木の枝のように分解して分析する手法。","sup":false,"new":false,"aka":["アタックツリー"],"note":null},{"id":"risk-threatmodel-3","name":"攻撃シナリオ","desc":"攻撃者がどこから入り、どう進み、何を狙うかを具体的に描いたもの。","sup":false,"new":true,"aka":["脅威シナリオ","攻撃シナリオ"],"note":null}]},{"id":"risk-supply","name":"サプライチェーンと委託","terms":[{"id":"risk-supply-1","name":"サプライチェーンリスク","desc":"取引先や委託先、使っている製品・サービスを経由して被害を受けるリスク。","sup":false,"new":false,"aka":[],"note":null},{"id":"risk-supply-2","name":"委託先管理","desc":"委託先に求めるセキュリティの要件を契約で定め、守られているかを確かめること。","sup":false,"new":false,"aka":["委託先","供給者関係"],"note":null},{"id":"risk-supply-3","name":"SCS評価制度","desc":"サプライチェーンを強くするため、企業のセキュリティ対策の水準を評価する国の制度。","sup":false,"new":true,"aka":["SCS 評価制度","SCS"],"note":null},{"id":"risk-supply-4","name":"再委託の管理","desc":"委託先がさらに別の会社へ仕事を出す場合の、承認や管理のルール。","sup":true,"new":false,"aka":[],"note":null}]}]},{"id":"isms","order":15,"domain":"mgmt","color":"#3B4C66","name":"ISMS・管理策・セキュリティガバナンス・監査","short":"ISMS・監査","shortLines":["ISMS・","監査"],"priority":"mid","badges":["new-weight"],"summary":"組織としてセキュリティを継続的に回す仕組み（ISMS）と、その中身となる管理策、経営者による方向づけ（ガバナンス）、第三者によるチェック（監査）。","themes":["ISMS（JIS Q 27001）とPDCA","JIS Q 27002の管理策（組織・人・物理・技術）","情報セキュリティ方針と規程類","人的管理（教育・内部不正の防止）と物理的管理（入退管理）","セキュリティガバナンスと内部統制","情報セキュリティ監査・システム監査"],"keywords":["ISMS","JIS Q 27001","JIS Q 27002","情報セキュリティ方針","職務の分離","入退管理","内部不正防止ガイドライン","情報セキュリティガバナンス","内部統制","システム監査"],"examA2":"ISMSの要求事項、管理策の分類、監査の手順や監査人の独立性（システム監査○3）などを問う。","examB":"規程や体制づくりは、各問の対策を立てるときに使う。R7秋 問4（セキュリティ管理体制の構築）が組織的な管理を題材にしている。","official":[{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「2. 情報セキュリティ管理」、中分類16 システム監査（○3）"},{"doc":"シラバス Ver.2.1","where":"科目B 1-1 方針、1-4 諸規程、1-5 監査、3-7 物理、3-9 人的管理"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類24「5 ISMS」「6 情報セキュリティ管理策」、中分類12 ガバナンス・監査"}],"priorityReason":"試験要綱ではセキュリティ（◎4）の「情報セキュリティ管理」に含まれ、システム監査は科目A-2で○3。直近の科目Bでは、R7秋 問4（サプライチェーンの中の企業のセキュリティ管理体制の構築）が組織的な管理を題材にしている。新制度の科目Bでは「マネジメント分野の強化」として、大項目1にセキュリティ運用状況の管理・点検、人的管理、AIの安全な導入・利用に関する規程、デジタルガバナンス確保への対応が加わった。","textbook":["1.3","4.3","4.4","4.6","4.7","4.10"],"subs":[{"id":"isms-isms","name":"ISMSとPDCA","terms":[{"id":"isms-isms-1","name":"ISMS","desc":"組織が情報セキュリティを計画・実行・点検・改善し続けるための仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-isms-2","name":"JIS Q 27001","desc":"ISMSの要求事項を定めた規格（ISO/IEC 27001）。認証の審査の基準になる。","sup":false,"new":false,"aka":["JIS Q 27001","ISO/IEC 27001"],"note":null},{"id":"isms-isms-3","name":"ISMS適合性評価制度","desc":"第三者の審査機関が、組織のISMSが規格に合っているかを審査・認証する制度。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-isms-4","name":"ISMSの適用範囲","desc":"ISMSで管理する組織・場所・資産の範囲。","sup":false,"new":false,"aka":["ISMS 適用範囲","適用範囲"],"note":null}]},{"id":"isms-controls","name":"管理策（組織・人・物理）","terms":[{"id":"isms-controls-1","name":"JIS Q 27002","desc":"ISMSで使う管理策（組織・人・物理・技術の4種類）の手引きとなる規格（ISO/IEC 27002）。","sup":false,"new":false,"aka":["JIS Q 27002","ISO/IEC 27002"],"note":null},{"id":"isms-controls-2","name":"職務の分離","desc":"申請と承認など、一人に権限が集中しないよう担当を分けること。","sup":false,"new":true,"aka":[],"note":null},{"id":"isms-controls-3","name":"入退管理","desc":"部屋や建物に入れる人を制限し、出入りを記録すること。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-controls-4","name":"アンチパスバック","desc":"入室の記録がないと退室できないようにして、共連れを防ぐ入退管理の仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-controls-5","name":"内部不正防止ガイドライン","desc":"組織の中の不正を防ぐための対策をまとめたIPAの指針。","sup":false,"new":false,"aka":["組織における内部不正防止ガイドライン"],"note":null},{"id":"isms-controls-6","name":"セキュリティ教育・訓練","desc":"標的型メール訓練などで、従業員の意識と対応力を高めること。","sup":false,"new":false,"aka":["情報セキュリティ訓練","教育・訓練"],"note":null}]},{"id":"isms-policy","name":"方針と規程","terms":[{"id":"isms-policy-1","name":"情報セキュリティ方針","desc":"経営者が示す、組織の情報セキュリティへの基本的な考え方。情報セキュリティポリシーとも呼ぶ。","sup":false,"new":false,"aka":["情報セキュリティ方針","情報セキュリティポリシー"],"note":null},{"id":"isms-policy-2","name":"対策基準と実施手順","desc":"方針を具体化した守るべきルールと、現場の作業の手順。","sup":true,"new":false,"aka":[],"note":null},{"id":"isms-policy-3","name":"秘密保持契約","desc":"業務で知った秘密を漏らさないことを約束する契約。NDAとも呼ぶ。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-policy-4","name":"懲戒手続","desc":"規程に違反した従業員への処分の手続。違反を思いとどまらせる効果もある。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"isms-gov","name":"ガバナンスと内部統制","terms":[{"id":"isms-gov-1","name":"情報セキュリティガバナンス","desc":"経営者が情報セキュリティの方向を示し、取組みを監督する仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-gov-2","name":"内部統制","desc":"業務を適正かつ効率的に行うために、組織の中に組み込む管理の仕組み。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-gov-3","name":"デジタルガバナンス","desc":"デジタル技術の活用に伴うリスクを、経営として管理・監督すること。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"isms-audit","name":"監査","terms":[{"id":"isms-audit-1","name":"情報セキュリティ監査","desc":"情報セキュリティの対策が適切かを、独立した立場から評価すること。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-audit-2","name":"システム監査","desc":"情報システムの信頼性・安全性・効率性を、独立した監査人が点検・評価すること。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-audit-3","name":"監査証拠","desc":"監査人が意見の根拠として集める記録。ログ、文書、聞き取りの結果など。","sup":false,"new":false,"aka":[],"note":null},{"id":"isms-audit-4","name":"監査人の独立性","desc":"監査人が監査の対象から独立し、公正に判断できる立場にあること。","sup":false,"new":false,"aka":["独立性"],"note":null}]}]},{"id":"law","order":16,"domain":"mgmt","color":"#575B6E","name":"法律・規格・ガイドライン・関連組織","short":"法令・規格・組織","shortLines":["法令・規格・","組織"],"priority":"low","badges":[],"summary":"セキュリティにかかわる法律、国際規格、国のガイドライン、関係する機関。何が違法か、どこに届け出るか、何を根拠にルールを作るかがわかる。","themes":["不正アクセス禁止法と刑法（不正指令電磁的記録に関する罪など）","個人情報保護法（漏えい時の報告と本人への通知）","サイバーセキュリティ基本法と国の推進体制","サイバーセキュリティ経営ガイドライン","JPCERT/CC・IPAなどの関係機関","届出制度・評価制度（ISMAPなど）"],"keywords":["不正アクセス禁止法","個人情報保護法","サイバーセキュリティ基本法","不正競争防止法","電子署名法","サイバーセキュリティ経営ガイドライン","JPCERT/CC","ISMAP"],"examA2":"科目A-2では、セキュリティ分野の中のガイドライン・基準や関連組織として問われる。中分類「法務」そのものは、SCの科目A-2の対象外（科目A-1の範囲）。","examB":"コンプライアンス管理（現行は大項目3、新制度では大項目1）として、対策を立てるときの前提になる。直近5回では、法令そのものを主な題材にした問はない。","official":[{"doc":"シラバス Ver.2.1","where":"科目B 3-11 コンプライアンス管理、1-7 関係者とのコミュニケーション"},{"doc":"シラバス追補版 Ver.4.0","where":"中分類11「2. 情報セキュリティ管理」の(7)組織・機関、(8)基準"},{"doc":"シラバス案 Ver.0.1（新制度）","where":"中分類24「4 情報セキュリティ関連組織・関連制度」"}],"priorityReason":"試験要綱の科目A-2の表では、中分類23「法務」はSCの対象外で、法令はセキュリティ分野の基準・ガイドラインとして扱われる。直近5回の科目Bでは、法令そのものを主な題材にした問はない。新制度では法規（中分類28〜30）は科目A-1（共通知識）の範囲で、SCの科目A-2には含まれていない。ただし科目Bのコンプライアンス管理には、AI関連のガイドラインが加わった。","textbook":["9.1","9.2","9.3","9.4","9.5","9.6"],"subs":[{"id":"law-cyberlaw","name":"サイバー関連の法律","terms":[{"id":"law-cyberlaw-1","name":"不正アクセス禁止法","desc":"他人のIDとパスワードを無断で使うなどの不正アクセス行為や、それを助ける行為を禁じる法律。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-cyberlaw-2","name":"不正指令電磁的記録に関する罪","desc":"正当な理由なくコンピュータウイルスを作る・提供する・保管することなどを罰する刑法の規定。","sup":false,"new":false,"aka":["不正指令電磁的記録"],"note":null},{"id":"law-cyberlaw-3","name":"サイバーセキュリティ基本法","desc":"国・自治体・事業者などの責務と、国の推進体制を定めた法律。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-cyberlaw-4","name":"情報流通プラットフォーム対処法","desc":"大規模なSNSなどに、権利を侵害する投稿への迅速な対応を求める法律（旧プロバイダ責任制限法）。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"law-privacy","name":"個人情報・プライバシー","terms":[{"id":"law-privacy-1","name":"個人情報保護法","desc":"個人情報を扱う事業者のルールを定めた法律。漏えいしたときは委員会への報告と本人への通知が必要な場合がある。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-privacy-2","name":"要配慮個人情報","desc":"病歴や犯罪の経歴など、取り扱いに特に注意が必要な個人情報。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-privacy-3","name":"マイナンバー法","desc":"マイナンバーを使える範囲や管理の方法を厳しく定めた法律。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-privacy-4","name":"JIS Q 15001","desc":"個人情報保護のマネジメントシステムの規格。プライバシーマーク制度の基準になる。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"law-ip","name":"知財・電子文書の法律","terms":[{"id":"law-ip-1","name":"不正競争防止法","desc":"秘密として管理された営業秘密を、不正に取得・使用することなどを禁じる法律。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-ip-2","name":"著作権法","desc":"プログラムなどの著作物を作った人の権利を守る法律。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-ip-3","name":"電子署名法","desc":"本人による電子署名がある電子文書は、本人が作ったものと推定されることを定めた法律。","sup":false,"new":false,"aka":["電子署名及び認証業務"],"note":null},{"id":"law-ip-4","name":"タイムスタンプ","desc":"ある時刻にその電子データが存在し、それ以後改ざんされていないことを証明する仕組み。","sup":false,"new":false,"aka":[],"note":null}]},{"id":"law-standards","name":"規格とガイドライン","terms":[{"id":"law-standards-1","name":"サイバーセキュリティ経営ガイドライン","desc":"経営者が主導してサイバーセキュリティ対策を進めるための、経済産業省とIPAの指針。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-standards-2","name":"NIST サイバーセキュリティフレームワーク","desc":"識別・防御・検知・対応・復旧などの機能で対策を整理する米国の枠組み。","sup":false,"new":false,"aka":["NIST サイバーセキュリティフレームワーク","CSF"],"note":null},{"id":"law-standards-3","name":"NIST SP 800シリーズ","desc":"米国NISTが出しているセキュリティの指針文書。SP 800-61はインシデント対応、SP 800-207はゼロトラスト。","sup":false,"new":false,"aka":["NIST SP 800"],"note":null},{"id":"law-standards-4","name":"政府機関等の統一基準群","desc":"政府機関などが守るべきサイバーセキュリティ対策の基準。","sup":false,"new":false,"aka":["統一基準群"],"note":null}]},{"id":"law-orgs","name":"国内外の関連組織","terms":[{"id":"law-orgs-1","name":"JPCERT/CC","desc":"日本のインシデント対応の調整や、脆弱性情報の流通を担う組織。","sup":false,"new":false,"aka":["JPCERT"],"note":null},{"id":"law-orgs-2","name":"IPA","desc":"情報処理推進機構。試験の実施や脆弱性の届出の受付、セキュリティ情報の発信を行う。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-orgs-3","name":"国家サイバー統括室（NCO）","desc":"国のサイバーセキュリティ政策の中心となる組織（旧NISC）。","sup":false,"new":true,"aka":["国家サイバー統括室"],"note":null},{"id":"law-orgs-4","name":"ISAC","desc":"同じ業界の組織どうしで、脅威や攻撃の情報を共有する組織。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-orgs-5","name":"J-CSIP／J-CRAT","desc":"IPAが運営する、標的型攻撃などの情報共有の枠組み（J-CSIP）と、被害組織を支援するチーム（J-CRAT）。","sup":false,"new":false,"aka":["J-CSIP","J-CRAT"],"note":null}]},{"id":"law-system","name":"届出・評価制度","terms":[{"id":"law-system-1","name":"コンピュータ不正アクセス届出制度","desc":"不正アクセスの被害をIPAに届け出る制度。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-system-2","name":"ISMAP","desc":"政府が使うクラウドサービスの安全性を評価し、登録する制度。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-system-3","name":"情報セキュリティサービス基準","desc":"脆弱性診断や監視などのセキュリティサービスが一定の品質を満たすかを確かめる基準。","sup":false,"new":false,"aka":[],"note":null},{"id":"law-system-4","name":"情報処理安全確保支援士制度","desc":"登録セキスペの名称独占と、秘密保持・講習受講の義務を定めた国家資格の制度。","sup":false,"new":false,"aka":["情報処理安全確保支援士"],"note":null}]}]}],"themes":[{"id":"crypto-auth","title":"暗号技術と認証技術","core":"r-crypto-auth"},{"id":"net-attack","title":"ネットワークとサイバー攻撃","core":"r-netbase-threats"},{"id":"vuln-measure","title":"脆弱性とセキュリティ対策","core":"r-vuln-web"},{"id":"os-db-web","title":"OS・DB・Webアプリケーション","core":"r-osdb-web"},{"id":"log-ir","title":"ログ監視とインシデント対応","core":"r-ops-incident"},{"id":"tech-risk","title":"技術的対策とリスクマネジメント","core":"r-netdef-risk"},{"id":"cloud-legacy","title":"クラウドと従来型インフラ","core":"r-cloud-osdb"}],"relations":[{"id":"r-crypto-auth","from":"crypto","to":"auth","dir":"both","core":true,"theme":"crypto-auth","label":"鍵と署名で本人を確かめる","why":"公開鍵暗号やデジタル署名は、パスワードを送らずに本人を確かめる認証方式（FIDO2、クライアント証明書、JWTの署名）の部品になる。逆に、秘密鍵や暗号鍵を使える人を限るには認証とアクセス制御が要る。","example":"WebAuthnでは、端末の中の秘密鍵でサーバからのチャレンジに署名し、サーバは登録済みの公開鍵で検証する。秘密鍵は端末から出ないので、偽サイトに盗まれない。","exam":"R5秋 問3でWebAuthnとHSM、R6春 問1でJWTの署名の検証、R7秋 問2で署名の生成と検証・鍵の管理が問われた。"},{"id":"r-netbase-threats","from":"netbase","to":"threats","dir":"one","core":true,"theme":"net-attack","label":"しくみの弱点が攻撃の入口に","why":"SMTPには送信者を確かめる機能がない、DNSは応答が本物かを確かめないなど、プロトコルの設計上の性質がそのまま攻撃に使われる。しくみを知らないと攻撃の流れが読めない。","example":"偽の応答を覚えさせるDNSキャッシュポイズニング、送信元を偽るDNSアンプ攻撃、使われなくなったCNAMEレコードを使うサブドメインテイクオーバー。","exam":"R7春 問4でCNAMEレコードの削除漏れによるサブドメインテイクオーバー、R6秋 問2で送信者メールアドレスの詐称とその対策が問われた。"},{"id":"r-vuln-web","from":"vuln","to":"web","dir":"one","core":true,"theme":"vuln-measure","label":"診断結果を実装で直す","why":"診断で見つかった脆弱性は、深刻度と悪用の状況から優先度を決め、コードの修正で根本から直す。どう悪用されるかを理解していないと、正しい直し方を選べない。","example":"診断でセッションフィクセーションが見つかったら、ログインしたときにセッションIDを新しく発行するよう修正する。","exam":"R6秋 問4で診断ツールが検出した脆弱性の悪用と対策、新制度のサンプル問2でセッションフィクセーションの修正方法が問われた。"},{"id":"r-osdb-web","from":"osdb","to":"web","dir":"both","core":true,"theme":"os-db-web","label":"Webアプリは土台の上で動く","why":"WebアプリはOSのコマンドやファイル、データベースに命令を渡して動く。アプリの入力処理に不備があるとOSやDBへの攻撃につながり、逆に土台の権限を絞れば被害を小さくできる。","example":"SQLインジェクションはDBへの命令の組み立てを、OSコマンドインジェクションはOSの機能を悪用する。DBへの接続ユーザーやWebサーバのOSユーザーの権限を最小にすると被害が限られる。","exam":"R6春 問4で、JavaとRDBMSで作ったWebアプリのセキュアコーディングとLinuxの権限設定が問われた。"},{"id":"r-ops-incident","from":"ops","to":"incident","dir":"one","core":true,"theme":"log-ir","label":"検知が対応の起点になる","why":"インシデント対応は、ログや監視による異常の検知から始まる。どのログが残っているかで、原因や影響の範囲をどこまで特定できるかが決まる。","example":"EDRの警報を受けてCSIRTが端末を隔離し、プロキシのログからC2サーバへの通信がほかの端末にもないかを洗い出す。","exam":"R6秋 問1でログの調査と検知の仕組みの設計、R6秋 問3でアクセスログから影響を受けた利用者を特定する方法が問われた。"},{"id":"r-netdef-risk","from":"netdef","to":"risk","dir":"both","core":true,"theme":"tech-risk","label":"対策はリスク対応の手段","why":"ファイアウォールやWAFなどの技術的対策は、リスクアセスメントで選んだ「リスク低減」の手段。導入した後に残るリスク（残留リスク）は、もう一度リスクマネジメントで評価する。","example":"委託先からの侵入リスクを評価し、低減策としてネットワークを分け、それでも残るリスクを経営者に説明して受け入れてもらう。","exam":"R7秋 問4で攻撃シナリオへの対策の立案、R5秋 問4で個々のリスクを低減する対策の立案が問われた。"},{"id":"r-cloud-osdb","from":"cloud","to":"osdb","dir":"both","core":true,"theme":"cloud-legacy","label":"守る作業の分担が変わる","why":"クラウドでも、OSの要塞化・権限管理・パッチ適用といった従来の対策は必要。ただし、どこまでを自分で行うかは責任共有モデルで決まり、IaaSとSaaSで大きく違う。","example":"IaaSではOSのパッチ適用は利用者の責任、SaaSでは事業者の責任。どちらの場合も、アカウントの管理とデータの公開設定は利用者の責任。","exam":"R6春 問3でクラウド上に構築したWebサイト、R5秋 問3でCIサービスとコンテナの動作が問われた。"},{"id":"r-threats-netdef","from":"threats","to":"netdef","dir":"one","theme":"net-attack","label":"攻撃を知り防御を配置する","why":"どの段階でどんな攻撃が来るかを知ることで、ファイアウォールで止めるのか、IPSで検知するのかなど、防御の置き場所と設定を決められる。","example":"DDoS攻撃にはCDNやスクラビングで、リモートアクセスへの総当たり攻撃には多要素認証とIPSのしきい値で備える。","exam":"R6春 問2で、アノマリ型IPSのしきい値やDDoS攻撃への対策が問われた。"},{"id":"r-netbase-netdef","from":"netbase","to":"netdef","dir":"one","theme":"net-attack","label":"しくみを知って制御する","why":"ファイアウォールのルールやVPNの設定は、ポート番号やプロトコルの動きを理解していないと正しく書けない。","example":"VPNにつなぐ前に必要な名前解決や認証の通信を許可し忘れると、そもそもVPNに接続できない。","exam":"R7秋 問3でVPN接続前に必要な通信、R5秋 問2でファイアウォールのフィルタリング設定が問われた。"},{"id":"r-crypto-netdef","from":"crypto","to":"netdef","dir":"one","theme":"crypto-auth","label":"暗号が安全な通信を支える","why":"TLS・IPsec・S/MIME・DKIM・DNSSECなどは、暗号・ハッシュ・署名を組み合わせて通信を守る。","example":"TLSでは鍵交換で共通鍵を作り、サーバ証明書でサーバを確かめ、認証付き暗号でデータを守る。","exam":"R5秋 問2でサーバ証明書の検証、R6秋 問2でDKIMの署名の仕組みが問われた。"},{"id":"r-threats-web","from":"threats","to":"web","dir":"one","theme":"vuln-measure","label":"攻撃手法を実装で防ぐ","why":"XSSやSQLインジェクションなどの攻撃の仕組みを知ると、どこでエスケープし、どこでプレースホルダを使うべきかがわかる。","example":"XSSには出力時のエスケープとCSP、CSRFにはトークン、SQLインジェクションにはプレースホルダ。","exam":"R5秋 問1・R6秋 問3でXSSの種類の区別、R7秋 問1でCSPを回避する攻撃が問われた。"},{"id":"r-devproc-web","from":"devproc","to":"web","dir":"one","theme":"vuln-measure","label":"工程で作り込みを防ぐ","why":"脆弱性は後で直すほど費用がかかる。設計のレビューやSAST・DASTなどの検査を開発の工程に組み込み、作り込みを早く見つける。","example":"コードを登録するたびにSASTを自動で動かし、リリースの前にDASTで画面を検査する。","exam":"R7秋 問1で脆弱性を見つけて直すための開発プロセス、R7春 問1でSAST・DAST・IASTの特徴が問われた。"},{"id":"r-vuln-netdef","from":"vuln","to":"netdef","dir":"one","theme":"vuln-measure","label":"修正までを暫定防御で守る","why":"パッチやプログラムの修正がすぐに出せないとき、WAFやIPSで攻撃を止めて時間をかせぐ。ただし根本的な対策ではない。","example":"公開サーバの脆弱性が公表された直後、修正版を当てるまでの間、WAFのルールで攻撃の通信を遮断する。","exam":"R6春 問1でWAFの利点と課題が問われた。"},{"id":"r-incident-risk","from":"incident","to":"risk","dir":"one","theme":"log-ir","label":"教訓を次の対策へ","why":"インシデントの原因の分析で見つかった弱点は、リスクの評価のやり直しと管理策の見直しにつなげる。","example":"委託先経由の侵入を受けて、委託先を選ぶ基準と契約のセキュリティ条項を見直す。","exam":"R7秋 問4で、被害の後に迅速に復旧するための平常時の備えが問われた。"},{"id":"r-auth-cloud","from":"auth","to":"cloud","dir":"one","theme":"cloud-legacy","label":"IDが新しい境界になる","why":"クラウドでは社内ネットワークの内と外の区別が意味を持ちにくく、「だれがアクセスしているか」を確かめるIDの管理が守りの中心になる。","example":"IDaaSでSSOと多要素認証をまとめて行い、端末の状態も確かめてからSaaSへのアクセスを許可する。","exam":"R7秋 問3でリモートワーク環境の認証基盤が問われた。"},{"id":"r-basics-risk","from":"basics","to":"risk","dir":"one","theme":"tech-risk","label":"CIAで影響の大きさを測る","why":"リスクの大きさは、機密性・完全性・可用性のどれがどれだけ損なわれるかで評価する。","example":"情報資産台帳で、資産ごとに機密性・完全性・可用性の評価値を付け、その最大値を重要度にする。","exam":"新制度のサンプル問1で、情報資産台帳の評価値と重要度の決め方が問われた。"},{"id":"r-isms-ops","from":"isms","to":"ops","dir":"one","theme":"tech-risk","label":"管理策を日々の運用で回す","why":"ISMSで決めた管理策は、ログの点検やアクセス権の見直しなど日々の運用で実行され、その記録が監査の証拠になる。","example":"規程で「特権IDの利用は記録し、毎月見直す」と決め、SIEMに記録を集めて点検する。","exam":"直近5回の科目Bで直接の題材になった問はない。新制度の科目Bに「セキュリティ運用状況の管理・点検」が加わった。"},{"id":"r-law-isms","from":"law","to":"isms","dir":"one","theme":"other","label":"法令が規程の要求事項になる","why":"個人情報保護法などの法令や契約上の義務は、ISMSの要求事項として規程に反映し、守られているかを確かめる。","example":"個人データが漏えいしたときに報告が必要になる場合に備え、インシデント対応の規程に報告の手順と期限を書いておく。","exam":"直近5回の科目Bで直接の題材になった問はない。"}],"tables":{"cloudCompare":{"title":"クラウドと従来型インフラのセキュリティの違い","columns":["観点","従来型（オンプレミス）","クラウド","試験での着眼点"],"rows":[["守る境界","社内ネットワークの外周。ファイアウォールやDMZで内と外を分ける","IDとAPIが境界になる。ネットワークの内か外かより「だれが・何に」アクセスするかが中心","境界型防御とゼロトラストの違い"],["責任の範囲","建物・機器からアプリまで、すべて自組織の責任","責任共有モデルで分担する。IaaS・PaaS・SaaSで境目が変わるが、データとアカウントは常に利用者の責任","どこまでが利用者の責任か"],["典型的なリスク","侵入後の社内での横展開、パッチの適用漏れ、機器の故障や災害","設定不備（公開設定・過大な権限）、アクセスキーの漏えい、事業者側の障害、シャドーIT","R7春 問3（アクセスキーの不正利用）"],["アクセス制御","ディレクトリサービスとファイアウォールのルール、ネットワークの区画","クラウドのID・権限のポリシー、IDaaSによるSSOと多要素認証、条件付きのアクセス","最小権限のポリシー設計"],["リモートアクセス","VPNで社内ネットワークに入れてから使わせる","ZTNAやSASEで、アプリごとに毎回確かめて接続させる","R7秋 問3（VPNサービスの導入）"],["監視とログ","自社の機器のログをsyslogやSIEMに集める","事業者が用意する操作ログを自分で有効にし、保存期間や範囲を設定する。設定の不備はCSPMで監視する","どのログが取れるか・だれが持っているか"],["評価と調達","機器やソフトを自分で選び、検査や脆弱性診断を行う","第三者認証（ISMAP、ISO/IEC 27017など）や事業者の報告書で評価し、契約やSLAで責任を明確にする。診断に事前の申請が要る場合もある","ISMAP・SLA・契約"],["データと鍵","自社の媒体に保存し、暗号化や廃棄も自分で行う","事業者の基盤に保存する。KMSや利用者が管理する鍵で暗号化し、削除の方法を確かめておく","鍵をだれが管理するか"]]},"pairs":{"title":"似た概念の見分け方","items":[{"id":"p-authn-authz","title":"認証／認可","items":[["認証","相手が本人かを確かめる（あなたは誰？）"],["認可","確かめた相手に何を許すかを決める（何をしてよい？）"]],"point":"順番は「認証 → 認可」。OAuth 2.0は認可の仕組みで、本人確認まで行うのはOpenID Connect。","fields":["auth"]},{"id":"p-hash-mac-sig","title":"ハッシュ／MAC／デジタル署名","items":[["ハッシュ","鍵を使わない。改ざんの検知はできるが、作り直されると見抜けない"],["MAC","共通鍵を使う。改ざん検知と、鍵を持つ相手が作ったことの確認ができる"],["デジタル署名","秘密鍵で署名し公開鍵で検証。改ざん検知に加えて否認防止までできる"]],"point":"「鍵なし → 共通鍵 → 公開鍵」の順にできることが増える。否認防止ができるのは署名だけ。","fields":["crypto"]},{"id":"p-fw-ids-ips-waf","title":"FW／IDS／IPS／WAF","items":[["FW","IPアドレスやポートで通信を通す・止める"],["IDS","不正な通信を見つけて知らせる（止めない）"],["IPS","不正な通信を見つけて止める"],["WAF","HTTPの中身を見て、Webアプリへの攻撃を止める"]],"point":"見ている層と「止めるか」で分ける。SQLインジェクションの文字列を見て止めるのはWAF。","fields":["netdef"]},{"id":"p-spf-dkim-dmarc","title":"SPF／DKIM／DMARC","items":[["SPF","送信元のIPアドレスが正規の送信サーバかをDNSで確かめる"],["DKIM","メールの電子署名を、DNSの公開鍵で確かめる"],["DMARC","SPF・DKIMの結果とFromのドメインの一致を見て、失敗時の扱いを送信側が宣言する"]],"point":"SPFは「どこから送ったか」、DKIMは「改ざんされていないか」、DMARCはその2つを束ねる方針。転送ではSPFが失敗しやすい。","fields":["netdef"]},{"id":"p-dnssec-doh","title":"DNSSEC／DoH・DoT","items":[["DNSSEC","応答に署名を付けて「本物か（改ざんされていないか）」を確かめる"],["DoH・DoT","問合せと応答を暗号化して「盗み見」を防ぐ"]],"point":"DNSSECは完全性、DoH・DoTは機密性。DNSSECは中身を暗号化しない。","fields":["netdef","netbase"]},{"id":"p-cve-cwe-cvss","title":"CVE／CWE／CVSS","items":[["CVE","個々の脆弱性に付ける識別番号"],["CWE","脆弱性の種類の分類"],["CVSS","脆弱性の深刻度を表す点数"]],"point":"「どの脆弱性か（CVE）」「どんな種類か（CWE）」「どれくらい深刻か（CVSS）」。","fields":["vuln"]},{"id":"p-cvss-epss-kev","title":"CVSS／EPSS／KEV","items":[["CVSS","脆弱性そのものの深刻度"],["EPSS","近いうちに悪用される確率の見積り"],["KEV","実際に悪用が確認された脆弱性のカタログ"]],"point":"CVSSが高くても悪用されていないものはある。優先度は深刻度に、悪用の可能性や実績を組み合わせて決める。","fields":["vuln"]},{"id":"p-diag-pentest","title":"脆弱性診断／ペネトレーションテスト","items":[["脆弱性診断","既知の種類の脆弱性を、ツールと手作業で網羅的に洗い出す"],["ペネトレーションテスト","攻撃者の目線で侵入を試み、目的を達成できるかを確かめる"]],"point":"診断は「広く網羅」、ペンテストは「目的に向けて深く」。","fields":["vuln"]},{"id":"p-sast-dast-sca","title":"SAST／DAST／IAST／SCA","items":[["SAST","ソースコードを動かさずに解析する"],["DAST","動いているアプリに外から入力して調べる"],["IAST","アプリの内部に仕組みを入れ、動かしながら調べる"],["SCA","使っているOSSなどの部品とその既知の脆弱性を調べる"]],"point":"自分が書いたコードを見るのがSAST・DAST・IAST、他人が作った部品を見るのがSCA。","fields":["devproc"]},{"id":"p-csirt-psirt-soc","title":"CSIRT／PSIRT／SOC","items":[["CSIRT","組織で起きたインシデントに対応する"],["PSIRT","自社製品の脆弱性に対応する"],["SOC","監視して攻撃を検知・分析する"]],"point":"SOCが見つけ、CSIRTが対応する。PSIRTは「製品」が対象。","fields":["incident","ops"]},{"id":"p-rto-rpo","title":"RTO／RPO","items":[["RTO","どれだけの時間で復旧するかの目標"],["RPO","どの時点までのデータを取り戻すかの目標"]],"point":"RTOは「時間（いつまでに直すか）」、RPOは「データ（どこまで戻るか）」。RPOを小さくするにはバックアップを頻繁に取る。","fields":["incident"]},{"id":"p-acmodels","title":"DAC／MAC／RBAC／ABAC","items":[["DAC","所有者が自由に権限を与える"],["MAC","システムが決めたラベルで強制する"],["RBAC","役割に権限を付ける"],["ABAC","属性の組合せのルールで決める"]],"point":"「だれが決めるか（所有者かシステムか）」と「何に権限を付けるか（役割か属性か）」で区別する。","fields":["auth"]},{"id":"p-sym-pub","title":"共通鍵暗号／公開鍵暗号","items":[["共通鍵暗号","暗号化と復号に同じ鍵を使う。速いが、鍵を安全に渡すのが難しい"],["公開鍵暗号","公開鍵で暗号化し秘密鍵で復号する。鍵を渡しやすいが遅い"]],"point":"実際の通信では両方を組み合わせる（ハイブリッド暗号）。","fields":["crypto"]},{"id":"p-oauth-oidc-saml","title":"OAuth 2.0／OpenID Connect／SAML","items":[["OAuth 2.0","アクセス権を委ねる（認可）。アクセストークンを使う"],["OpenID Connect","OAuth 2.0に本人確認を加えた認証。IDトークン（JWT）を使う"],["SAML","XMLのアサーションで認証結果を渡す。主に企業向けSSO"]],"point":"「認可だけ」がOAuth、「認証もする」のがOIDCとSAML。","fields":["auth"]},{"id":"p-xss-csrf","title":"XSS／CSRF","items":[["XSS","攻撃者のスクリプトが、利用者のブラウザで正規サイトとして動く"],["CSRF","利用者のブラウザから、正規サイトに意図しないリクエストを送らせる"]],"point":"XSSは「スクリプトを動かす」、CSRFは「リクエストを送らせる」。XSSが動くとCSRFトークンも盗めてしまう。","fields":["web"]},{"id":"p-xss-types","title":"反射型／格納型／DOM型XSS","items":[["反射型","リクエストに含めたスクリプトが、そのまま応答に返る"],["格納型","サーバに保存されたスクリプトが、見た人全員のページに出る"],["DOM型","サーバを通らず、ブラウザ側のJavaScriptの処理だけで起きる"]],"point":"どこで（サーバかブラウザか）、いつ（その場か保存後か）埋め込まれるかで区別する。","fields":["web"]},{"id":"p-hijack-fixation","title":"セッションハイジャック／セッションフィクセーション","items":[["セッションハイジャック","利用者のセッションIDを後から盗む"],["セッションフィクセーション","攻撃者が用意したIDを先に使わせておく"]],"point":"ハイジャックは「盗む」、フィクセーションは「先に押しつける」。フィクセーションはログイン時にIDを作り直して防ぐ。","fields":["web"]},{"id":"p-smime-starttls","title":"S/MIME／STARTTLS","items":[["S/MIME","メールの本文や添付ファイルそのものを暗号化・署名する（送信者から受信者まで）"],["STARTTLS","サーバ間などの通信路をTLSで暗号化する（区間ごと）"]],"point":"S/MIMEは「中身」、STARTTLSは「通り道」。S/MIMEはSMTPの通信を暗号化する方式ではない。","fields":["netdef"]},{"id":"p-sig-anomaly","title":"シグネチャ型／アノマリ型","items":[["シグネチャ型","既知の攻撃パターンと照合する。誤検知は少ないが未知の攻撃に弱い"],["アノマリ型","ふだんの状態から外れたものを異常とする。未知の攻撃も見つけられるが誤検知が増えやすい"]],"point":"しきい値を厳しくすると見逃し（偽陰性）が減る代わりに、誤検知（偽陽性）が増える。","fields":["netdef"]},{"id":"p-edr-ndr-xdr","title":"EDR／NDR／XDR／SIEM／SOAR","items":[["EDR","端末を見張る"],["NDR","ネットワークを見張る"],["XDR","端末・ネットワーク・クラウドの検知をまとめて分析する"],["SIEM","いろいろな機器のログを集めて相関分析する"],["SOAR","対応の手順を自動化する"]],"point":"「どこを見るか」がEDR・NDR・XDR、「集めて分析する」のがSIEM、「動かす（自動対応）」のがSOAR。","fields":["ops","osdb"]},{"id":"p-risk-treat","title":"リスク回避／低減／移転／保有","items":[["回避","原因となる業務そのものをやめる"],["低減","対策で可能性や影響を小さくする"],["移転","保険や委託で負担を分け合う"],["保有","対策せずに受け入れる"]],"point":"「やめる・減らす・渡す・受け入れる」。サイバー保険の加入は移転。","fields":["risk"]},{"id":"p-event-incident","title":"情報セキュリティ事象／インシデント","items":[["事象","セキュリティに関係がありそうな出来事すべて"],["インシデント","事象のうち、事業に悪い影響を与える（おそれがある）もの"]],"point":"すべての事象がインシデントではない。インシデントかどうかを判断して、優先順位を付ける（トリアージ）。","fields":["incident"]},{"id":"p-three-mac","title":"3つの「MAC」","items":[["メッセージ認証符号","改ざんを検知するための値（暗号技術）"],["強制アクセス制御","システムが決めたラベルで権限を強制する方式（アクセス制御）"],["MACアドレス","ネットワーク機器に付いている物理的な番号（ネットワーク）"]],"point":"同じ略語でも分野が違う。問題文の文脈で見分ける。","fields":["crypto","auth","netbase"]}]}}}</script>
+<script>
+/* RISS 試験範囲マップ（素の JavaScript）。データは <script id="map-data"> の JSON。 */
+(function () {
+  "use strict";
+
+  const DATA = JSON.parse(document.getElementById("map-data").textContent);
+  const META = DATA.meta;
+  const L = META.layout;
+  const FIELDS = DATA.fields;
+  const RELS = DATA.relations;
+  const N = FIELDS.length;
+  const C = L.size / 2;
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const PRI = { high: "高", mid: "中", low: "低" };
+  const byId = Object.fromEntries(FIELDS.map((f) => [f.id, f]));
+  const domainById = Object.fromEntries(DATA.domains.map((d) => [d.id, d]));
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- 小さな道具 ----------
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const zen = (s) => Array.from(s).reduce((n, ch) => n + (/[\x20-\x7e｡-ﾟ]/.test(ch) ? 0.5 : 1), 0);
+  const norm = (s) => String(s || "").normalize("NFKC").toLowerCase().replace(/\s+/g, "");
+  function el(tag, attrs = {}, parent) {
+    const e = document.createElementNS(SVGNS, tag);
+    for (const [k, v] of Object.entries(attrs)) if (v !== undefined && v !== null) e.setAttribute(k, v);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  const rad = (deg) => (deg * Math.PI) / 180;
+  const fcolor = (id) => `var(--f-${id})`;
+  const dcolor = (id) => `var(--d-${id})`;
+  const termCount = (f) => f.subs.reduce((n, s) => n + s.terms.length, 0);
+  const store = {
+    get(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* 保存できなくても動く */ } },
+  };
+  function pillHTML(p) { return `<span class="pill ${p}">優先度 ${PRI[p]}</span>`; }
+  function badgeHTML(f) {
+    return (f.badges || []).map((b) => `<span class="badge weight" title="${esc(META.badges[b].desc)}">${esc(META.badges[b].label)}</span>`).join("");
+  }
+  function termBadges(t) {
+    if (t.sup) return ` <span class="badge sup" title="${esc(META.badges.sup.desc)}">補</span>`;
+    if (t.new) return ` <span class="badge new" title="${esc(META.badges.new.desc)}">新案</span>`;
+    return "";
+  }
+  function chipHTML(fid) {
+    const f = byId[fid];
+    return `<a class="chip" href="#detail" data-goto-field="${f.id}"><span class="swatch" style="--c:${fcolor(f.id)}"></span>${esc(f.short)}</a>`;
+  }
+  function noteLink(t) {
+    if (!t.note) return "";
+    const href = META.siteUrl + t.note.replace(/\.md$/, "/");
+    return ` <a class="note-link" href="${esc(href)}" target="_blank" rel="noopener">ノートを読む↗</a>`;
+  }
+  function textbookHTML(f) {
+    if (!f.textbook || !f.textbook.length) return "";
+    const chapters = [...new Set(f.textbook.map((x) => x.split(".")[0]))];
+    const links = chapters.map((ch) => {
+      const n = String(ch).padStart(2, "0");
+      const secs = f.textbook.filter((x) => x.split(".")[0] === ch).join("・");
+      return `<a href="${esc(META.siteUrl)}ch${n}/" target="_blank" rel="noopener">第${ch}章（${esc(secs)}）</a>`;
+    });
+    return links.join("、");
+  }
+
+  // ---------- 配置の計算（tools/check.py と同じ式） ----------
+  function cardHeight(f) { return L.cardHeader + L.cardPad + L.cardRow * f.subs.length + L.cardFooter; }
+  const POS = FIELDS.map((f, i) => {
+    const ang = L.startAngle + (360 * i) / N;
+    const cx = C + L.radius * Math.cos(rad(ang));
+    const cy = C + L.radius * Math.sin(rad(ang));
+    const w = L.cardWidth, h = cardHeight(f);
+    return { id: f.id, i, ang, cx, cy, w, h, x: cx - w / 2, y: cy - h / 2 };
+  });
+  const posById = Object.fromEntries(POS.map((p) => [p.id, p]));
+
+  // カードの中心から地図の中心へ向かう線と、カードの縁との交点（少し内側へ離す）
+  function anchor(p, gap = 16, tangent = 0) {
+    const dx = C - p.cx, dy = C - p.cy;
+    const tx = dx !== 0 ? (p.w / 2) / Math.abs(dx) : Infinity;
+    const ty = dy !== 0 ? (p.h / 2) / Math.abs(dy) : Infinity;
+    const t = Math.min(tx, ty);
+    const len = Math.hypot(dx, dy);
+    const ux = dx / len, uy = dy / len;
+    return { x: p.cx + dx * t + ux * gap - uy * tangent, y: p.cy + dy * t + uy * gap + ux * tangent };
+  }
+
+  // 関係の曲線：中心寄りに膨らむ二次ベジェ。離れた分野ほど中心に近い所を通る（中心の円は避ける）
+  const MID_R = [0, 700, 660, 600, 530, 450, 385, 330, 300];
+  function relGeometry(r, scale = 1, center = C, getPos = (id) => posById[id], anchorFn = anchor) {
+    const a = getPos(r.from), b = getPos(r.to);
+    let s = (b.i - a.i + N) % N;           // 時計回りのステップ数
+    const cw = s <= N / 2;
+    const steps = cw ? s : N - s;
+    const sign = cw ? 1 : -1;
+    const off = (18 + 7 * steps) * scale;
+    const p0 = anchorFn(a, 16 * scale, sign * off);
+    const p2 = anchorFn(b, 16 * scale, -sign * off);
+    const phi = rad(a.ang + sign * (steps * 360 / N) / 2);
+    const ux = Math.cos(phi), uy = Math.sin(phi);
+    const sx = (p0.x - center) + (p2.x - center), sy = (p0.y - center) + (p2.y - center);
+    const proj = sx * ux + sy * uy;
+    const m = MID_R[Math.min(steps, MID_R.length - 1)] * scale;
+    const rc = 2 * (m - 0.25 * proj);
+    const c = { x: center + rc * ux, y: center + rc * uy };
+    const mid = { x: 0.25 * p0.x + 0.5 * c.x + 0.25 * p2.x, y: 0.25 * p0.y + 0.5 * c.y + 0.25 * p2.y };
+    return { p0, p2, c, mid };
+  }
+  function arrowHead(tip, from, size) {
+    const dx = tip.x - from.x, dy = tip.y - from.y;
+    const len = Math.hypot(dx, dy) || 1;
+    const ux = dx / len, uy = dy / len;
+    const bx = tip.x - ux * size, by = tip.y - uy * size;
+    const w = size * 0.55;
+    return `${tip.x.toFixed(1)},${tip.y.toFixed(1)} ${(bx - uy * w).toFixed(1)},${(by + ux * w).toFixed(1)} ${(bx + uy * w).toFixed(1)},${(by - ux * w).toFixed(1)}`;
+  }
+  function arcPath(r, a0, a1, reverse) {
+    const p = (a) => [C + r * Math.cos(rad(a)), C + r * Math.sin(rad(a))];
+    const [x0, y0] = p(reverse ? a1 : a0), [x1, y1] = p(reverse ? a0 : a1);
+    const large = Math.abs(a1 - a0) > 180 ? 1 : 0;
+    return `M${x0.toFixed(1)},${y0.toFixed(1)} A${r},${r} 0 ${large} ${reverse ? 0 : 1} ${x1.toFixed(1)},${y1.toFixed(1)}`;
+  }
+  function splitShort(f) {
+    if (f.shortLines && f.shortLines.length) return f.shortLines;
+    if (zen(f.short) <= 6) return [f.short];
+    const i = Math.ceil(f.short.length / 2);
+    return [f.short.slice(0, i), f.short.slice(i)];
+  }
+
+  // ---------- 地図を描く ----------
+  const svg = $("#map");
+  const wrap = $("#map-wrap");
+  const vp = el("g", { id: "viewport" }, svg);
+  const gBack = el("g", { class: "layer-back" }, vp);
+  const gTrunk = el("g", { class: "layer-trunk" }, vp);
+  const gRel = el("g", { class: "layer-rel" }, vp);
+  const gCenter = el("g", { class: "layer-center" }, vp);
+  const gCard = el("g", { class: "layer-card" }, vp);
+  const gLabel = el("g", { class: "layer-label" }, vp);
+  const step = 360 / N;
+
+  function drawBackground() {
+    // 領域ごとの扇形
+    const groups = [];
+    FIELDS.forEach((f, i) => {
+      const g = groups[groups.length - 1];
+      if (g && g.domain === f.domain) g.last = i; else groups.push({ domain: f.domain, first: i, last: i });
+    });
+    const R = L.ringLabel - 50;
+    groups.forEach((g) => {
+      const a0 = L.startAngle + g.first * step - step / 2;
+      const a1 = L.startAngle + g.last * step + step / 2;
+      const p = (r, a) => `${(C + r * Math.cos(rad(a))).toFixed(1)},${(C + r * Math.sin(rad(a))).toFixed(1)}`;
+      const r0 = L.centerRadius + 20;
+      const d = `M${p(r0, a0)} L${p(R, a0)} A${R},${R} 0 0 1 ${p(R, a1)} L${p(r0, a1)} A${r0},${r0} 0 0 0 ${p(r0, a0)} Z`;
+      el("path", { d, class: "sector", style: `--c:${dcolor(g.domain)}` }, gBack);
+      el("path", { d: arcPath(R, a0 + 0.6, a1 - 0.6), class: "sector-edge", style: `--c:${dcolor(g.domain)}` }, gBack);
+      // 円弧に沿った領域名（下半分は文字が逆さにならないよう逆向きに）
+      const mid = ((a0 + a1) / 2 + 360) % 360;
+      const lower = mid > 0 && mid < 180;
+      const pid = `arc-${g.domain}`;
+      el("path", { id: pid, d: arcPath(lower ? L.ringLabel + 34 : L.ringLabel, a0, a1, lower), fill: "none" }, gBack);
+      const t = el("text", { class: "domain-label", style: `--c:${dcolor(g.domain)}` }, gBack);
+      const tp = el("textPath", { href: `#${pid}`, startOffset: "50%", "text-anchor": "middle" }, t);
+      tp.textContent = domainById[g.domain].name;
+    });
+    // 測量図風の同心円と目盛り
+    [320, 560, 800, L.ringLabel - 50].forEach((r, i) => el("circle", { cx: C, cy: C, r, class: i % 2 ? "ring" : "ring dash" }, gBack));
+    el("circle", { cx: C, cy: C, r: L.ringTick, class: "ring" }, gBack);
+    for (let a = 0; a < 360; a += 2.5) {
+      const major = a % 22.5 === 0;
+      const r0 = L.ringTick, r1 = L.ringTick + (major ? 34 : 14);
+      el("line", {
+        x1: C + r0 * Math.cos(rad(a)), y1: C + r0 * Math.sin(rad(a)),
+        x2: C + r1 * Math.cos(rad(a)), y2: C + r1 * Math.sin(rad(a)), class: major ? "tick major" : "tick",
+      }, gBack);
+    }
+    for (let a = 0; a < 360; a += 45) {
+      const bearing = (a + 90) % 360;  // 真上を000とする方位
+      const r = L.ringTick - 30;
+      el("text", {
+        x: C + r * Math.cos(rad(a)), y: C + r * Math.sin(rad(a)) + 8, class: "tick-label", "text-anchor": "middle",
+      }, gBack).textContent = String(bearing).padStart(3, "0");
+    }
+  }
+
+  function drawCenter() {
+    el("circle", { cx: C, cy: C, r: L.centerRadius + 26, class: "center-ring2" }, gCenter);
+    el("circle", { cx: C, cy: C, r: L.centerRadius, class: "center-disc" }, gCenter);
+    ["情報処理", "安全確保", "支援士"].forEach((s, i) => {
+      el("text", { x: C, y: C - 46 + i * 60, class: "center-title" }, gCenter).textContent = s;
+    });
+    el("text", { x: C, y: C + 128, class: "center-sub" }, gCenter).textContent = "RISS · SC";
+  }
+
+  function drawTrunks() {
+    POS.forEach((p) => {
+      const a = anchor(p, 10);
+      const ang = rad(p.ang);
+      const s = { x: C + (L.centerRadius + 8) * Math.cos(ang), y: C + (L.centerRadius + 8) * Math.sin(ang) };
+      const rm = (L.centerRadius + Math.hypot(a.x - C, a.y - C)) / 2;
+      const ca = rad(p.ang + 7);
+      const c = { x: C + rm * Math.cos(ca), y: C + rm * Math.sin(ca) };
+      el("path", {
+        d: `M${s.x.toFixed(1)},${s.y.toFixed(1)} Q${c.x.toFixed(1)},${c.y.toFixed(1)} ${a.x.toFixed(1)},${a.y.toFixed(1)}`,
+        class: "trunk", "data-id": p.id, style: `--c:${fcolor(p.id)}`,
+      }, gTrunk);
+    });
+  }
+
+  function drawRelations() {
+    RELS.forEach((r) => {
+      const g = el("g", {
+        class: `rel${r.core ? " core" : ""}`, "data-id": r.id, "data-from": r.from, "data-to": r.to,
+        tabindex: "0", role: "button",
+        "aria-label": `${byId[r.from].short}${r.dir === "both" ? "と" : "から"}${byId[r.to].short}${r.dir === "both" ? "の相互" : "へ"}の関係：${r.label}。Enterで説明を開く`,
+      }, gRel);
+      const { p0, p2, c, mid } = relGeometry(r);
+      const d = `M${p0.x.toFixed(1)},${p0.y.toFixed(1)} Q${c.x.toFixed(1)},${c.y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+      el("path", { d, class: "rel-hit" }, g);
+      el("path", { d, class: "rel-line" }, g);
+      const size = r.core ? 34 : 26;
+      el("polygon", { points: arrowHead(p2, c, size), class: "rel-head" }, g);
+      if (r.dir === "both") el("polygon", { points: arrowHead(p0, c, size), class: "rel-head" }, g);
+      const w = Math.max(120, zen(r.label) * 24 + 28);
+      const lg = el("g", { class: "rel-label", "data-x": mid.x, "data-y": mid.y, "data-w": w }, g);
+      el("rect", { x: -w / 2, y: -21, width: w, height: 40, rx: 20 }, lg);
+      el("text", { x: 0, y: 8 }, lg).textContent = r.label;
+    });
+  }
+
+  function drawCards() {
+    FIELDS.forEach((f) => {
+      const p = posById[f.id];
+      const g = el("g", {
+        class: "card", transform: `translate(${p.x.toFixed(1)},${p.y.toFixed(1)})`, "data-id": f.id,
+        tabindex: "0", role: "button", style: `--c:${fcolor(f.id)}`,
+        "aria-label": `${f.name}（${domainById[f.domain].name}、優先度${PRI[f.priority]}）。中分類${f.subs.length}、小分類${termCount(f)}語。Enterで詳細を開く`,
+      }, gCard);
+      const W = p.w, H = p.h;
+      // 縮小時：分野色で塗った簡略表示
+      const cg = el("g", { class: "lod-compact-only" }, g);
+      el("rect", { width: W, height: H, rx: 18, class: "card-compact-bg" }, cg);
+      const lines = splitShort(f);
+      const maxLen = Math.max(...lines.map(zen));
+      const fs = Math.min(58, Math.floor(262 / maxLen));
+      const blockH = lines.length * fs * 1.18;
+      const top = (H - 64) / 2 - blockH / 2 + fs * 0.92;
+      lines.forEach((ln, i) => {
+        el("text", { x: W / 2, y: top + i * fs * 1.18, class: "card-big", "font-size": fs }, cg).textContent = ln;
+      });
+      const pw = 132, ph = 40;
+      el("rect", { x: W / 2 - pw / 2, y: H - 58, width: pw, height: ph, rx: 20, class: `pill-bg ${f.priority}`, stroke: "#FFFFFF", "stroke-width": 3 }, cg);
+      el("text", { x: W / 2, y: H - 31, class: `pill-text ${f.priority}`, "font-size": 21 }, cg).textContent = `優先度 ${PRI[f.priority]}`;
+      // 拡大時：中分類の一覧
+      const dg = el("g", { class: "lod-detail-only" }, g);
+      el("rect", { width: W, height: H, rx: 14, class: "card-bg" }, dg);
+      el("rect", { width: W, height: L.cardHeader, rx: 14, class: "card-band" }, dg);
+      el("rect", { y: L.cardHeader - 16, width: W, height: 16, class: "card-band-sq" }, dg);
+      el("text", { x: W / 2, y: 40, class: "card-short" }, dg).textContent = f.short;
+      f.subs.forEach((s, i) => {
+        const y = L.cardHeader + L.cardPad / 2 + i * L.cardRow;
+        el("rect", { x: 18, y: y + 9, width: 14, height: 14, rx: 2, class: "sub-sq" }, dg);
+        el("text", { x: 42, y: y + 23, class: "sub-name" }, dg).textContent = s.name;
+      });
+      const fy = H - L.cardFooter;
+      el("line", { x1: 14, y1: fy, x2: W - 14, y2: fy, class: "card-foot-sep" }, dg);
+      el("rect", { x: 14, y: fy + 11, width: 96, height: 30, rx: 15, class: `pill-bg ${f.priority}` }, dg);
+      el("text", { x: 62, y: fy + 32, class: `pill-text ${f.priority}` }, dg).textContent = `優先度 ${PRI[f.priority]}`;
+      el("text", { x: W - 16, y: fy + 32, class: "card-open" }, dg).textContent = `小分類 ${termCount(f)}語を開く ›`;
+      if ((f.badges || []).includes("new-weight")) {
+        el("rect", { x: W - 136, y: -16, width: 128, height: 28, rx: 8, class: "card-weight-bg" }, g);
+        el("text", { x: W - 72, y: 4, class: "card-weight", "text-anchor": "middle" }, g).textContent = "新制度で重み増";
+      }
+      el("rect", { x: -7, y: -7, width: W + 14, height: H + 14, rx: 20, class: "card-ring" }, g);
+    });
+  }
+
+  // 簡略表示の大きな文字：フォントの実際の幅を測ってカードに収める
+  function fitCompactText() {
+    $$(".card-big", gCard).forEach((t) => {
+      if (!t.dataset.fs0) t.dataset.fs0 = t.getAttribute("font-size");
+      t.setAttribute("font-size", t.dataset.fs0);
+    });
+    $$(".card", gCard).forEach((c) => {
+      const texts = $$(".card-big", c);
+      const w = Math.max(...texts.map((t) => t.getComputedTextLength() || 0));
+      if (w > 266) texts.forEach((t) => t.setAttribute("font-size", (Number(t.dataset.fs0) * 266 / w).toFixed(1)));
+    });
+  }
+
+  drawBackground();
+  drawTrunks();
+  drawRelations();
+  drawCenter();
+  drawCards();
+  // ラベルは最前面に移す（カードの下に隠れないように）
+  $$(".rel", gRel).forEach((g) => {
+    const lg = $(".rel-label", g);
+    const holder = el("g", { class: "rel-label-holder", "data-for": g.dataset.id }, gLabel);
+    holder.appendChild(lg);
+  });
+
+  // ---------- 拡大・移動 ----------
+  const view = { k: 0.3, x: 0, y: 0, auto: true };
+  let fitK = 0.3;
+  function applyView() {
+    vp.setAttribute("transform", `translate(${view.x.toFixed(2)},${view.y.toFixed(2)}) scale(${view.k.toFixed(5)})`);
+    svg.classList.toggle("lod-detail", view.k >= L.lodThreshold);
+    layoutLabels();
+  }
+  // 表示中の関係ラベルを、重ならないように上下へずらして置く
+  // ラベルを置かない場所：カードと中心の円（座標空間での矩形）
+  const OBSTACLES = POS.map((p) => ({ x: p.cx, y: p.cy, w: p.w + 24, h: p.h + 24 }))
+    .concat([{ x: C, y: C, w: (L.centerRadius + 30) * 2, h: (L.centerRadius + 30) * 2 }]);
+  function layoutLabels() {
+    const s = Math.max(1, 0.52 / view.k);
+    const placed = OBSTACLES.slice();
+    const holders = $$(".rel-label-holder", gLabel);
+    const vis = holders.filter((h) => h.style.display !== "none");
+    const isOn = (h) => (gRel.querySelector(`[data-id="${h.dataset.for}"]`) || h).classList.contains("on");
+    // 強調中の関係のラベルを先に置く。同じ組の中は上から順に
+    vis.sort((a, b) => (isOn(b) - isOn(a)) || (Number($(".rel-label", a).dataset.y) - Number($(".rel-label", b).dataset.y)));
+    holders.forEach((h) => {
+      const lg = $(".rel-label", h);
+      lg.setAttribute("transform", `translate(${lg.dataset.x},${lg.dataset.y}) scale(${s.toFixed(3)})`);
+    });
+    vis.forEach((h) => {
+      const lg = $(".rel-label", h);
+      const y0 = Number(lg.dataset.y);
+      const w = (Number(lg.dataset.w) + 8) * s, hh = 44 * s;
+      const x0 = Number(lg.dataset.x);
+      const len = Math.hypot(C - x0, C - y0) || 1;
+      const ix = (C - x0) / len, iy = (C - y0) / len;   // 中心へ向かう向き
+      let x = x0, y = y0, best = null;
+      search:
+      for (let r = 0; r < 16; r++) {
+        for (const v of [0, -1, 1, -2, 2]) {
+          for (const hs of [0, -0.5, 0.5]) {
+            x = x0 + ix * r * hh * 0.6 + hs * w;
+            y = y0 + iy * r * hh * 0.6 + v * hh * 0.9;
+            if (Math.hypot(x - C, y - C) > L.radius + 120) continue;
+            const hit = placed.some((p) => Math.abs(p.x - x) < (p.w + w) / 2 && Math.abs(p.y - y) < (p.h + hh) / 2);
+            if (!hit) { best = { x, y }; break search; }
+          }
+        }
+      }
+      // どこにも置けないとき：強調中なら元の位置に重ねて出し、常時表示のラベルは省略する
+      if (!best) {
+        if (!isOn(h)) { h.style.display = "none"; return; }
+        best = { x: x0, y: y0 };
+      }
+      x = best.x; y = best.y;
+      placed.push({ x, y, w, h: hh });
+      lg.setAttribute("transform", `translate(${x.toFixed(1)},${y.toFixed(1)}) scale(${s.toFixed(3)})`);
+    });
+  }
+  function fit() {
+    const r = wrap.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const ext = (L.ringTick + 46) * 2;
+    fitK = Math.min((r.width - 16) / ext, (r.height - 16) / ext);
+    view.k = fitK;
+    view.x = r.width / 2 - C * fitK;
+    view.y = r.height / 2 - C * fitK;
+    // 左上の凡例パネルが開いているときは、重ならない範囲で地図を右へ寄せる
+    const lgd = $("#legend");
+    if (r.width > 860 && lgd.open) {
+      const lr = lgd.getBoundingClientRect(), zr = $(".zoom-ctl").getBoundingClientRect();
+      const half = (ext / 2) * fitK;
+      const left = r.width / 2 - half;
+      const want = lr.right - r.left + 10 - left;
+      const room = (zr.left - r.left - 10) - (r.width / 2 + half);
+      let shift = Math.max(0, Math.min(want, room));
+      // 右下の注記に地図の外周がかからないよう、寄せる量を減らす
+      const nr = $("#a1-note").getBoundingClientRect();
+      const cy = r.height / 2;
+      const clear = (sh) => {
+        const cx = r.width / 2 + sh;
+        const nx = Math.min(Math.max(cx, nr.left - r.left), nr.right - r.left);
+        const ny = Math.min(Math.max(cy, nr.top - r.top), nr.bottom - r.top);
+        return Math.hypot(nx - cx, ny - cy) > half - 30;
+      };
+      while (shift > 0 && !clear(shift)) shift -= 2;
+      view.x += Math.max(0, shift);
+    }
+    view.auto = true;
+    applyView();
+  }
+  function zoomAt(px, py, factor) {
+    const k2 = Math.min(Math.max(view.k * factor, fitK * 0.6), 3);
+    const f = k2 / view.k;
+    view.x = px - (px - view.x) * f;
+    view.y = py - (py - view.y) * f;
+    view.k = k2;
+    view.auto = false;
+    applyView();
+  }
+  function zoomCenter(factor) {
+    const r = wrap.getBoundingClientRect();
+    zoomAt(r.width / 2, r.height / 2, factor);
+  }
+  $("#zoom-in").addEventListener("click", () => zoomCenter(1.45));
+  $("#zoom-out").addEventListener("click", () => zoomCenter(1 / 1.45));
+  $("#zoom-fit").addEventListener("click", fit);
+
+  wrap.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const r = wrap.getBoundingClientRect();
+    const factor = Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0016));
+    zoomAt(e.clientX - r.left, e.clientY - r.top, factor);
+  }, { passive: false });
+
+  const pointers = new Map();
+  let drag = null;
+  let suppressClick = false;
+  wrap.addEventListener("pointerdown", (e) => {
+    if (e.button !== undefined && e.button !== 0) return;
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 1) {
+      drag = { sx: e.clientX, sy: e.clientY, vx: view.x, vy: view.y, moved: false, id: e.pointerId };
+    } else if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      drag = { pinch: true, dist: Math.hypot(a.x - b.x, a.y - b.y), mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2, moved: true };
+    }
+  });
+  wrap.addEventListener("pointermove", (e) => {
+    if (!pointers.has(e.pointerId) || !drag) return;
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    const r = wrap.getBoundingClientRect();
+    if (drag.pinch && pointers.size >= 2) {
+      const [a, b] = [...pointers.values()];
+      const dist = Math.hypot(a.x - b.x, a.y - b.y);
+      const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      view.x += mx - drag.mx;
+      view.y += my - drag.my;
+      zoomAt(mx - r.left, my - r.top, dist / (drag.dist || dist));
+      drag.dist = dist; drag.mx = mx; drag.my = my;
+      return;
+    }
+    const dx = e.clientX - drag.sx, dy = e.clientY - drag.sy;
+    if (!drag.moved && Math.hypot(dx, dy) > 5) {
+      drag.moved = true;
+      wrap.classList.add("dragging");
+      try { wrap.setPointerCapture(e.pointerId); } catch (err) { /* 無視 */ }
+    }
+    if (drag.moved) {
+      view.x = drag.vx + dx;
+      view.y = drag.vy + dy;
+      view.auto = false;
+      applyView();
+    }
+  });
+  function endPointer(e) {
+    pointers.delete(e.pointerId);
+    if (drag && drag.moved) suppressClick = true;
+    if (pointers.size === 0) { drag = null; wrap.classList.remove("dragging"); }
+    else if (pointers.size === 1) {
+      const [p] = [...pointers.values()];
+      drag = { sx: p.x, sy: p.y, vx: view.x, vy: view.y, moved: true };
+    }
+  }
+  wrap.addEventListener("pointerup", endPointer);
+  wrap.addEventListener("pointercancel", endPointer);
+  wrap.addEventListener("click", (e) => {
+    if (suppressClick) { e.stopPropagation(); e.preventDefault(); suppressClick = false; }
+  }, true);
+
+  // ---------- 強調表示 ----------
+  const state = { selected: null, selectedRel: null, hover: null, hoverRel: null, hits: new Set() };
+  function relatedOf(fid) {
+    const rels = RELS.filter((r) => r.from === fid || r.to === fid);
+    return { rels: new Set(rels.map((r) => r.id)), fields: new Set(rels.flatMap((r) => [r.from, r.to])) };
+  }
+  function refreshFocus() {
+    const fid = state.hover || (state.hoverRel ? null : state.selected);
+    const rid = state.hoverRel || (state.hover ? null : state.selectedRel);
+    let onRels = new Set(), onFields = new Set(), focusId = null;
+    if (fid) {
+      const r = relatedOf(fid);
+      onRels = r.rels; onFields = r.fields; onFields.add(fid); focusId = fid;
+    } else if (rid) {
+      const r = RELS.find((x) => x.id === rid);
+      onRels = new Set([rid]); onFields = new Set([r.from, r.to]);
+    }
+    const active = !!(fid || rid);
+    svg.classList.toggle("focusing", active);
+    $$(".card", gCard).forEach((c) => {
+      const id = c.dataset.id;
+      c.classList.toggle("is-focus", id === focusId);
+      c.classList.toggle("is-dim", active && !onFields.has(id));
+      c.classList.toggle("hit", state.hits.has(id));
+    });
+    $$(".trunk", gTrunk).forEach((t) => {
+      t.classList.toggle("is-dim", active && !onFields.has(t.dataset.id));
+      t.classList.toggle("is-on", active && onFields.has(t.dataset.id));
+    });
+    $$(".rel", gRel).forEach((g) => {
+      const on = onRels.has(g.dataset.id);
+      g.classList.toggle("on", on);
+      g.classList.toggle("is-dim", active && !on);
+    });
+    $$(".rel-label-holder", gLabel).forEach((h) => {
+      const g = gRel.querySelector(`[data-id="${h.dataset.for}"]`);
+      const visible = svg.classList.contains("labels-on") || onRels.has(h.dataset.for);
+      const hidden = g && getComputedStyle(g).display === "none";
+      h.style.display = visible && !hidden ? "" : "none";
+      $(".rel-label", h).style.display = "inline";
+    });
+    layoutLabels();
+  }
+  $$(".card", gCard).forEach((c) => {
+    c.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { state.hover = c.dataset.id; refreshFocus(); } });
+    c.addEventListener("pointerleave", () => { state.hover = null; refreshFocus(); });
+    c.addEventListener("focus", () => { state.hover = c.dataset.id; refreshFocus(); });
+    c.addEventListener("blur", () => { state.hover = null; refreshFocus(); });
+    c.addEventListener("click", () => openField(c.dataset.id, c));
+    c.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openField(c.dataset.id, c); }
+    });
+  });
+  $$(".rel", gRel).forEach((g) => {
+    g.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") { state.hoverRel = g.dataset.id; refreshFocus(); } });
+    g.addEventListener("pointerleave", () => { state.hoverRel = null; refreshFocus(); });
+    g.addEventListener("focus", () => { state.hoverRel = g.dataset.id; refreshFocus(); });
+    g.addEventListener("blur", () => { state.hoverRel = null; refreshFocus(); });
+    g.addEventListener("click", () => openRelation(g.dataset.id, g));
+    g.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openRelation(g.dataset.id, g); }
+    });
+  });
+
+  // ---------- 右側パネル ----------
+  const panel = $("#panel");
+  const panelBody = $("#panel-body");
+  let lastFocus = null;
+  function openPanel(html, opener) {
+    panelBody.innerHTML = html;
+    panelBody.scrollTop = 0;
+    panel.classList.add("open");
+    panel.setAttribute("aria-hidden", "false");
+    lastFocus = opener || document.activeElement;
+    const title = $("#panel-title", panel);
+    if (title) { title.setAttribute("tabindex", "-1"); title.focus({ preventScroll: true }); }
+  }
+  function closePanel() {
+    if (!panel.classList.contains("open")) return;
+    panel.classList.remove("open");
+    panel.setAttribute("aria-hidden", "true");
+    state.selected = null; state.selectedRel = null;
+    refreshFocus();
+    if (savedView) { Object.assign(view, savedView); savedView = null; applyView(); }
+    if (lastFocus && document.body.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+  }
+  $("#panel-close").addEventListener("click", closePanel);
+
+  function treeHTML(f, withIds) {
+    const subs = f.subs.map((s) => {
+      const terms = s.terms.map((t) => `<li><div class="t-term"${withIds ? ` id="t-${t.id}"` : ""}><span class="t-name">${esc(t.name)}</span>${termBadges(t)}<span class="t-desc">：${esc(t.desc)}</span>${noteLink(t)}</div></li>`).join("");
+      return `<li><span class="t-sub"><span class="swatch" style="--c:${fcolor(f.id)}"></span>${esc(s.name)}</span><ul>${terms}</ul></li>`;
+    }).join("");
+    return `<ul class="tree"><li><span class="t-root"><span class="swatch" style="--c:${fcolor(f.id)}"></span>${esc(f.name)}</span><ul>${subs}</ul></li></ul>`;
+  }
+  function examInfoHTML(f) {
+    const official = f.official.map((o) => `<li>${esc(o.doc)}：${esc(o.where)}</li>`).join("");
+    return `<dl class="info">
+      <dt>主なテーマ</dt><dd><ul>${f.themes.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></dd>
+      <dt>重要キーワード</dt><dd>${f.keywords.map((k) => `<span class="kw">${esc(k)}</span>`).join("")}</dd>
+      <dt>科目A-2での出方</dt><dd>${esc(f.examA2)}</dd>
+      <dt>科目Bでの使われ方</dt><dd>${esc(f.examB)}</dd>
+      <dt>公式文書での対応箇所</dt><dd><ul>${official}</ul></dd>
+      <dt>優先度の根拠 ${pillHTML(f.priority)}</dt><dd>${esc(f.priorityReason)}</dd>
+      ${f.textbook && f.textbook.length ? `<dt>参考書の章（このサイトのノート）</dt><dd>${textbookHTML(f)}</dd>` : ""}
+    </dl>`;
+  }
+  function linkListHTML(f) {
+    const rels = RELS.filter((r) => r.from === f.id || r.to === f.id);
+    if (!rels.length) return "<p>つながりのデータはありません。</p>";
+    return `<ul class="link-list">${rels.map((r) => {
+      const other = r.from === f.id ? r.to : r.from;
+      const arrow = r.dir === "both" ? "⇄" : (r.from === f.id ? "→" : "←");
+      return `<li><button type="button" data-open-rel="${r.id}"><span class="lk-to">${arrow} ${esc(byId[other].short)}</span><span class="kind${r.core ? " core" : ""}">${r.core ? "重要な7関係" : "関係"}</span><span class="lk-label">${esc(r.label)}</span></button></li>`;
+    }).join("")}</ul>`;
+  }
+  let savedView = null;
+  function keepVisible(fid) {
+    if ($("#view-map").hidden || window.innerWidth <= 860) return;
+    const c = gCard.querySelector(`[data-id="${fid}"]`);
+    if (!c) return;
+    const cr = c.getBoundingClientRect();
+    const limit = window.innerWidth - Math.min(460, window.innerWidth) - 24;
+    if (cr.right > limit) {
+      if (!savedView) savedView = { ...view };
+      view.x -= cr.right - limit;
+      applyView();
+    }
+  }
+  function openField(fid, opener) {
+    const f = byId[fid];
+    state.selected = fid; state.selectedRel = null;
+    refreshFocus();
+    keepVisible(fid);
+    const dom = domainById[f.domain];
+    openPanel(`
+      <p class="crumb">RISS › <b>${esc(dom.name)}</b> › <b>${esc(f.short)}</b></p>
+      <h2 class="panel-title" id="panel-title"><span class="swatch" style="--c:${fcolor(f.id)}"></span><span>${esc(f.name)}</span></h2>
+      <div class="pills">${pillHTML(f.priority)}${badgeHTML(f)}<span class="badge sup">補</span><small>＝補足の知識</small> <span class="badge new">新案</span><small>＝新制度の案だけ</small></div>
+      <p>${esc(f.summary)}</p>
+      <p><button type="button" class="btn" data-goto-field="${f.id}">分野別詳細で見る</button></p>
+      <h3>樹形図（大分類 › 中分類 › 用語）</h3>
+      ${treeHTML(f, false)}
+      <h3>他分野とのつながり</h3>
+      ${linkListHTML(f)}
+      <h3>試験対策</h3>
+      ${examInfoHTML(f)}
+    `, opener);
+  }
+  function relationHTML(r, withTitleId) {
+    const a = byId[r.from], b = byId[r.to];
+    const arrow = r.dir === "both" ? "⇄" : "→";
+    return `
+      <p class="crumb">RISS › 分野間の関係 › <b>${r.core ? "重要な7関係" : "そのほかの関係"}</b></p>
+      <h2 class="panel-title"${withTitleId ? ' id="panel-title"' : ""}><span>${esc(a.short)} ${arrow} ${esc(b.short)}</span></h2>
+      <div class="pills"><span class="kind${r.core ? " core" : ""}">${r.core ? "重要な7関係（太い実線）" : "そのほかの関係（破線）"}</span><span class="kind">${r.dir === "both" ? "双方向" : "片方向"}</span></div>
+      <p style="font-size:17px;font-weight:700;color:var(--link-on)">${esc(r.label)}</p>
+      <dl class="info">
+        <dt>なぜつながるか</dt><dd>${esc(r.why)}</dd>
+        <dt>具体例</dt><dd>${esc(r.example)}</dd>
+        <dt>試験での現れ方</dt><dd>${esc(r.exam)}</dd>
+      </dl>`;
+  }
+  function openRelation(rid, opener) {
+    const r = RELS.find((x) => x.id === rid);
+    state.selectedRel = rid; state.selected = null;
+    refreshFocus();
+    openPanel(`${relationHTML(r, true)}
+      <h3>両端の分野</h3>
+      <p class="pills"><button type="button" class="btn ghost" data-open-field="${r.from}">${esc(byId[r.from].short)}を開く</button>
+      <button type="button" class="btn ghost" data-open-field="${r.to}">${esc(byId[r.to].short)}を開く</button></p>`, opener);
+  }
+
+  // ---------- 左上のパネルと右下の注記 ----------
+  function buildLegend() {
+    const doms = DATA.domains.map((d) => `<li><span class="swatch" style="--c:${dcolor(d.id)}"></span>${esc(d.name)}</li>`).join("");
+    $("#legend-body").innerHTML = `
+      <h3>使い方</h3>
+      <ol>
+        <li>ドラッグで移動、ホイールやピンチで拡大・縮小</li>
+        <li>拡大すると、カードに中分類の一覧が出る</li>
+        <li>カードを選ぶ（Tab → Enter）と、右に樹形図と試験対策</li>
+        <li>矢印を選ぶと、分野どうしの関係の説明</li>
+        <li>右上の検索で用語を探せる</li>
+      </ol>
+      <h3>表示設定</h3>
+      <label><input type="checkbox" id="opt-links" checked> 関係の矢印を表示</label>
+      <label><input type="checkbox" id="opt-core"> 重要な7つの関係だけ</label>
+      <label><input type="checkbox" id="opt-labels"> 矢印のラベルを常に表示</label>
+      <p class="legend-note" style="margin-top:2px;padding-top:0;border:0">重なって置けないラベルは省略する。拡大すると増える。</p>
+      <h3>凡例</h3>
+      <ul class="legend-list cols">${doms}</ul>
+      <ul class="legend-list" style="margin-top:6px">
+        <li><span class="pill high">優先度 高</span><span class="pill mid">中</span><span class="pill low">低</span></li>
+        <li><span class="badge weight">新制度で重み増</span>新制度の案で強化される分野</li>
+        <li><span class="badge sup">補</span>公式文書にない補足の知識</li>
+        <li><span class="badge new">新案</span>新制度のシラバス案だけにある用語</li>
+        <li><span class="line-sample"></span>重要な7つの関係（太い実線）</li>
+        <li><span class="line-sample dash"></span>そのほかの関係（破線）</li>
+        <li><span aria-hidden="true">▶</span>矢じりの向き＝影響の向き（両端は双方向）</li>
+      </ul>
+      <p class="legend-note">作成日（調査日）：${esc(META.created)}<br>${esc(META.notice)}</p>`;
+    const sync = () => {
+      svg.classList.toggle("no-links", !$("#opt-links").checked);
+      svg.classList.toggle("core-only", $("#opt-core").checked);
+      svg.classList.toggle("labels-on", $("#opt-labels").checked);
+      refreshFocus();
+    };
+    ["#opt-links", "#opt-core", "#opt-labels"].forEach((s) => $(s).addEventListener("change", sync));
+    if (window.matchMedia("(max-width: 860px)").matches) $("#legend").open = false;
+    $("#legend").addEventListener("toggle", () => { if (view.auto) fit(); });
+  }
+  function buildA1Note() {
+    $("#a1-note").innerHTML = `<strong>${esc(META.a1Note.title)}</strong><p>${esc(META.a1Note.text)}</p><p class="a1-new">${esc(META.a1Note.newText)}</p>`;
+  }
+
+  // ---------- 分野別詳細 ----------
+  let detailFilter = "all";
+  function buildDetail() {
+    const groups = DATA.domains.map((d) => {
+      const items = FIELDS.filter((f) => f.domain === d.id).map((f) =>
+        `<li data-pri="${f.priority}"><a href="#detail" data-goto-field="${f.id}"><span class="swatch" style="--c:${fcolor(f.id)}"></span>${esc(f.short)}<span class="pill ${f.priority}">${PRI[f.priority]}</span></a></li>`).join("");
+      return `<div><div class="nav-domain"><span class="swatch" style="--c:${dcolor(d.id)}"></span>${esc(d.name)}</div><ul class="nav-list">${items}</ul></div>`;
+    }).join("");
+    const sections = FIELDS.map((f) => `
+      <section class="fsec" id="f-${f.id}" data-pri="${f.priority}" style="--c:${fcolor(f.id)}" aria-labelledby="fh-${f.id}">
+        <div class="fsec-head">
+          <div><div class="dom">${esc(domainById[f.domain].name)} › ${esc(f.short)}</div><h2 id="fh-${f.id}">${esc(f.name)}</h2></div>
+          <div class="pills">${pillHTML(f.priority)}${badgeHTML(f)}</div>
+        </div>
+        <div class="fsec-body">
+          <p class="fsec-summary">${esc(f.summary)}</p>
+          <div><h3>樹形図</h3>${treeHTML(f, true)}</div>
+          <div><h3>試験対策</h3>${examInfoHTML(f)}</div>
+          <div class="fsec-links"><h3>つながり</h3>${linkListHTML(f)}</div>
+        </div>
+      </section>`).join("");
+    $("#view-detail").innerHTML = `
+      <div class="detail-layout">
+        <nav class="detail-nav" aria-label="分野の一覧">
+          <h2>分野の一覧</h2>
+          <div class="filter" role="group" aria-label="優先度で絞り込む">
+            <button type="button" data-filter="all" aria-pressed="true">すべて</button>
+            <button type="button" data-filter="high" aria-pressed="false">高</button>
+            <button type="button" data-filter="mid" aria-pressed="false">中</button>
+            <button type="button" data-filter="low" aria-pressed="false">低</button>
+          </div>
+          <div class="nav-groups">${groups}</div>
+        </nav>
+        <div class="detail-body">
+          <div class="page-head">
+            <h1>分野別詳細</h1>
+            <p>16分野それぞれの、中分類と用語（1文の説明つき）・試験対策・ほかの分野とのつながり。<span class="badge sup">補</span>は公式文書にない補足、<span class="badge new">新案</span>は新制度のシラバス案だけにある用語。</p>
+            <p class="notice">作成日（調査日）：${esc(META.created)}。${esc(META.notice)}</p>
+          </div>
+          ${sections}
+        </div>
+      </div>`;
+    $$("[data-filter]", $("#view-detail")).forEach((b) => b.addEventListener("click", () => setFilter(b.dataset.filter)));
+  }
+  function setFilter(v) {
+    detailFilter = v;
+    $$("[data-filter]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === v)));
+    $$(".fsec, .nav-list li").forEach((x) => { x.hidden = v !== "all" && x.dataset.pri !== v; });
+  }
+
+  // ---------- 分野間の関係 ----------
+  const MINI = { size: 640, r: 236 };
+  function miniPos(id) {
+    const p = posById[id];
+    const c = MINI.size / 2;
+    return { i: p.i, ang: p.ang, cx: c + MINI.r * Math.cos(rad(p.ang)), cy: c + MINI.r * Math.sin(rad(p.ang)) };
+  }
+  function miniAnchor(p, gap, tangent) {
+    const c = MINI.size / 2;
+    const dx = c - p.cx, dy = c - p.cy, len = Math.hypot(dx, dy);
+    const ux = dx / len, uy = dy / len;
+    const rr = 20 + gap;
+    return { x: p.cx + ux * rr - uy * tangent, y: p.cy + uy * rr + ux * tangent };
+  }
+  function buildLinks() {
+    const s = MINI.size, c = s / 2, scale = MINI.r / L.radius;
+    let mini = `<svg class="mini" id="mini" viewBox="-160 -10 ${s + 320} ${s + 20}" role="img" aria-label="16分野を円に並べ、関係を矢印で示した縮小図">`;
+    mini += `<circle cx="${c}" cy="${c}" r="${MINI.r}" fill="none" stroke="var(--grid)" stroke-dasharray="4 6"/>`;
+    mini += `<circle cx="${c}" cy="${c}" r="44" fill="var(--center)"/><text x="${c}" y="${c + 6}" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">RISS</text>`;
+    RELS.forEach((r) => {
+      const g = relGeometry(r, scale * 0.95, c, miniPos, (p, gap, tan) => miniAnchor(p, gap * 0.4, tan * 0.5));
+      const size = r.core ? 13 : 10;
+      mini += `<g class="mini-rel${r.core ? " core" : ""}" data-id="${r.id}"><path d="M${g.p0.x.toFixed(1)},${g.p0.y.toFixed(1)} Q${g.c.x.toFixed(1)},${g.c.y.toFixed(1)} ${g.p2.x.toFixed(1)},${g.p2.y.toFixed(1)}"/>`;
+      mini += `<polygon points="${arrowHead(g.p2, g.c, size)}"/>`;
+      if (r.dir === "both") mini += `<polygon points="${arrowHead(g.p0, g.c, size)}"/>`;
+      mini += `</g>`;
+    });
+    FIELDS.forEach((f) => {
+      const p = miniPos(f.id);
+      const lx = c + (MINI.r + 30) * Math.cos(rad(p.ang)), ly = c + (MINI.r + 30) * Math.sin(rad(p.ang));
+      const cosv = Math.cos(rad(p.ang));
+      const anchorTxt = Math.abs(cosv) < 0.3 ? "middle" : (cosv > 0 ? "start" : "end");
+      mini += `<g class="mini-node" data-id="${f.id}" style="--c:${fcolor(f.id)}"><circle cx="${p.cx.toFixed(1)}" cy="${p.cy.toFixed(1)}" r="18"/>`;
+      mini += `<text x="${lx.toFixed(1)}" y="${(ly + 7).toFixed(1)}" text-anchor="${anchorTxt}">${esc(f.short)}</text></g>`;
+    });
+    mini += `</svg>`;
+
+    const card = (r) => `
+      <button type="button" class="rel-card" data-rel-card="${r.id}" aria-pressed="false">
+        <span class="rc-head"><span class="chip"><span class="swatch" style="--c:${fcolor(r.from)}"></span>${esc(byId[r.from].short)}</span>
+        <span class="rc-arrow">${r.dir === "both" ? "⇄" : "→"}</span>
+        <span class="chip"><span class="swatch" style="--c:${fcolor(r.to)}"></span>${esc(byId[r.to].short)}</span>
+        <span class="kind${r.core ? " core" : ""}">${r.core ? "重要な7関係" : "関係"}</span></span>
+        <span class="rc-label">${esc(r.label)}</span>
+        <dl><dt>なぜつながるか</dt><dd>${esc(r.why)}</dd><dt>具体例</dt><dd>${esc(r.example)}</dd><dt>試験での現れ方</dt><dd>${esc(r.exam)}</dd></dl>
+      </button>`;
+    const themed = DATA.themes.map((t, i) => {
+      const rels = [RELS.find((r) => r.id === t.core), ...RELS.filter((r) => r.theme === t.id && r.id !== t.core)];
+      return `<div class="rel-group"><h2><span class="num">${i + 1}</span>${esc(t.title)}</h2><div class="rel-cards">${rels.map(card).join("")}</div></div>`;
+    }).join("");
+    const others = RELS.filter((r) => r.theme === "other");
+    const otherHTML = others.length ? `<div class="rel-group"><h2><span class="num">＋</span>そのほかの関係</h2><div class="rel-cards">${others.map(card).join("")}</div></div>` : "";
+
+    const T = DATA.tables;
+    const cloud = `<div><h2>${esc(T.cloudCompare.title)}</h2><div class="tbl-wrap"><table>
+      <thead><tr>${T.cloudCompare.columns.map((c2) => `<th scope="col">${esc(c2)}</th>`).join("")}</tr></thead>
+      <tbody>${T.cloudCompare.rows.map((r) => `<tr><th scope="row">${esc(r[0])}</th>${r.slice(1).map((x) => `<td>${esc(x)}</td>`).join("")}</tr>`).join("")}</tbody>
+    </table></div></div>`;
+    const pairs = `<div><h2>${esc(T.pairs.title)}（${T.pairs.items.length}組）</h2><div class="pairs">${T.pairs.items.map((p) => `
+      <div class="pair"><h3>${esc(p.title)}</h3><dl>${p.items.map(([n, d]) => `<dt>${esc(n)}</dt><dd>${esc(d)}</dd>`).join("")}</dl>
+      <p class="point">${esc(p.point)}</p><div class="chips" style="margin-top:6px">${(p.fields || []).map(chipHTML).join("")}</div></div>`).join("")}</div></div>`;
+
+    $("#view-links").innerHTML = `
+      <div class="links-layout">
+        <div class="page-head">
+          <h1>分野間の関係</h1>
+          <p>16分野をつなぐ${RELS.length}本の関係。はじめに重要な7つのテーマごとに並べ、そのあとに比較表を載せた。カードを選ぶと、縮小図の該当する矢印と両端の分野が強調される。</p>
+        </div>
+        <div class="mini-wrap">${mini}<p>太い実線＝重要な7関係、破線＝そのほかの関係。矢じりは影響の向き。</p></div>
+        <div class="rel-groups">${themed}${otherHTML}</div>
+        <div class="tables">${cloud}${pairs}</div>
+      </div>`;
+    $$("[data-rel-card]").forEach((b) => b.addEventListener("click", () => selectMini(b.dataset.relCard)));
+  }
+  function selectMini(rid) {
+    const mini = $("#mini");
+    const cur = $(".rel-card.sel");
+    const same = cur && cur.dataset.relCard === rid;
+    $$(".rel-card").forEach((b) => { b.classList.toggle("sel", !same && b.dataset.relCard === rid); b.setAttribute("aria-pressed", String(!same && b.dataset.relCard === rid)); });
+    if (same) { mini.classList.remove("sel"); $$(".on", mini).forEach((x) => x.classList.remove("on")); return; }
+    const r = RELS.find((x) => x.id === rid);
+    mini.classList.add("sel");
+    $$(".mini-rel", mini).forEach((g) => g.classList.toggle("on", g.dataset.id === rid));
+    $$(".mini-node", mini).forEach((g) => g.classList.toggle("on", g.dataset.id === r.from || g.dataset.id === r.to));
+    if (window.matchMedia("(max-width: 860px)").matches) {
+      $(".mini-wrap").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    }
+  }
+
+  // ---------- 試験制度と根拠 ----------
+  function buildExam() {
+    const statusLabel = { done: "実施済み", next: "次回", plan: "予定" };
+    const sysLabel = { current: "現行制度", new: "新制度" };
+    const tl = META.timeline.map((t) => `
+      <li class="${t.status}"><div class="tl-when">${esc(t.when)}</div>
+      <div class="tl-name">${esc(t.name)} <span class="status ${t.status}">${statusLabel[t.status]}</span><span class="sys ${t.system}">${sysLabel[t.system]}</span></div>
+      <p class="tl-text">${esc(t.text)}</p></li>`).join("");
+    const cmp = META.compare.map((r) => `<tr><th scope="row">${esc(r.aspect)}</th><td>${esc(r.current)}</td><td>${esc(r.new)}</td></tr>`).join("");
+    const a2 = (rows) => `<div class="tbl-wrap"><table><thead><tr><th scope="col">中分類</th><th scope="col">記号</th><th scope="col">この地図の分野</th></tr></thead><tbody>${rows.map((r) =>
+      `<tr><th scope="row">${esc(r.code)} ${esc(r.name)}${r.note ? `<div style="font-weight:400;font-size:12px;color:var(--ink-3);white-space:normal">${esc(r.note)}</div>` : ""}</th><td>${esc(r.mark)}</td><td><div class="chips">${r.fields.map(chipHTML).join("")}</div></td></tr>`).join("")}</tbody></table></div>`;
+    const bs = META.bScope.map((r) => `<tr><th scope="row">${r.no}. ${esc(r.current)}</th><td>${esc(r.items)}</td><td><div class="chips">${r.fields.map(chipHTML).join("")}</div></td><td>${esc(r.newChange)}</td></tr>`).join("");
+    const pri = FIELDS.map((f) => `<tr><th scope="row"><a class="chip" href="#detail" data-goto-field="${f.id}"><span class="swatch" style="--c:${fcolor(f.id)}"></span>${esc(f.short)}</a></th><td>${pillHTML(f.priority)} ${badgeHTML(f)}</td><td>${esc(f.priorityReason)}</td></tr>`).join("");
+    const recent = META.recentB.map((q) => `<tr><th scope="row">${esc(q.label)}</th><td>${esc(q.theme)}</td><td>${esc(q.tech)}</td><td><div class="chips">${q.fields.map(chipHTML).join("")}</div></td><td>${esc(q.note)}</td></tr>`).join("");
+    const guide = META.readingGuide.map((g) => `<div><span class="lv">${esc(g.level)}</span><b>${esc(g.name)}</b>${esc(g.text)}</div>`).join("");
+    const src = META.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a> <span class="src-note">— ${esc(s.note)}</span></li>`).join("");
+    $("#view-exam").innerHTML = `
+      <div class="exam-wrap">
+        <div class="page-head">
+          <h1>試験制度と根拠</h1>
+          <p>この地図の前提にした試験制度・日程・出題範囲と、優先度の根拠。<strong>現行制度</strong>と<strong>新制度（検討段階）</strong>は分けて書いている。</p>
+          <p class="notice">作成日（調査日）：${esc(META.created)}。${esc(META.notice)}</p>
+        </div>
+        <section aria-labelledby="ex-tl"><h2 id="ex-tl">受験時期のタイムライン</h2><ol class="timeline">${tl}</ol></section>
+        <section aria-labelledby="ex-cmp"><h2 id="ex-cmp">現行制度と新制度の比較</h2>
+          <div class="tbl-wrap"><table><thead><tr><th scope="col">観点</th><th scope="col">現行制度（令和8年度まで）</th><th scope="col">新制度（2027年度〜予定・検討段階）</th></tr></thead><tbody>${cmp}</tbody></table></div></section>
+        <section aria-labelledby="ex-a2"><h2 id="ex-a2">科目A-2の出題分野と、この地図の分野</h2>
+          <div class="two-col"><div><h3>現行制度（試験要綱 Ver.5.6）</h3>${a2(META.a2Current)}</div><div><h3>新制度（出題範囲等の改定案 Ver.1.0）</h3>${a2(META.a2New)}</div></div>
+          <ul>${META.a2Notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul></section>
+        <section aria-labelledby="ex-b"><h2 id="ex-b">科目Bの出題範囲（大項目）と、この地図の分野</h2>
+          <div class="tbl-wrap"><table><thead><tr><th scope="col">大項目（現行）</th><th scope="col">主な内容</th><th scope="col">この地図の分野</th><th scope="col">新制度での変更（改定案）</th></tr></thead><tbody>${bs}</tbody></table></div></section>
+        <section aria-labelledby="ex-pri"><h2 id="ex-pri">優先度の決め方</h2>
+          <ul class="method">${META.priorityMethod.map((m) => `<li>${esc(m)}</li>`).join("")}</ul>
+          <div class="tbl-wrap" style="margin-top:10px"><table><thead><tr><th scope="col">分野</th><th scope="col">優先度</th><th scope="col">根拠</th></tr></thead><tbody>${pri}</tbody></table></div></section>
+        <section aria-labelledby="ex-recent"><h2 id="ex-recent">直近5回の科目B（午後）の出題テーマ</h2>
+          <p>令和5年度秋期〜令和7年度秋期（午後Ⅰ・Ⅱの統合後）。テーマは各回の出題趣旨と採点講評を要約したもの。令和8年度以降はCBT化により問題が公開されない。</p>
+          <div class="tbl-wrap"><table><thead><tr><th scope="col">回・問</th><th scope="col">テーマ</th><th scope="col">主な技術要素</th><th scope="col">この地図の分野</th><th scope="col">採点講評から</th></tr></thead><tbody>${recent}</tbody></table></div></section>
+        <section aria-labelledby="ex-guide"><h2 id="ex-guide">地図の読み方</h2><div class="guide">${guide}</div></section>
+        <section aria-labelledby="ex-src"><h2 id="ex-src">出典（いずれも ${esc(META.created)} に確認）</h2><ol class="src-list">${src}</ol></section>
+        <p class="footer-note">IPAの文書は要点を自分の言葉でまとめ、出典をリンクで示している。用語の説明もオリジナル。最新情報は必ずIPAの公式サイトで確認すること。</p>
+      </div>`;
+  }
+
+  // ---------- 用語検索 ----------
+  const INDEX = [];
+  FIELDS.forEach((f) => {
+    INDEX.push({ kind: "field", label: f.name, keys: [f.name, f.short], field: f });
+    f.subs.forEach((s) => {
+      INDEX.push({ kind: "sub", label: s.name, keys: [s.name], field: f, sub: s });
+      s.terms.forEach((t) => INDEX.push({ kind: "term", label: t.name, keys: [t.name, ...t.aka], desc: t.desc, field: f, sub: s, term: t }));
+    });
+  });
+  INDEX.forEach((x) => { x.nk = x.keys.map(norm); x.nd = norm(x.desc || ""); });
+  const qInput = $("#q"), qList = $("#q-list");
+  let qResults = [], qActive = -1;
+  function searchItems(q) {
+    const n = norm(q);
+    if (!n) return [];
+    const scored = [];
+    INDEX.forEach((x) => {
+      let s = 0;
+      if (x.nk.some((k) => k === n)) s = 100;
+      else if (x.nk.some((k) => k.startsWith(n))) s = 80;
+      else if (x.nk.some((k) => k.includes(n))) s = 60;
+      else if (n.length >= 2 && x.nd.includes(n)) s = 20;
+      if (s) scored.push({ x, s: s + (x.kind === "term" ? 2 : x.kind === "sub" ? 1 : 0) });
+    });
+    scored.sort((a, b) => b.s - a.s || a.x.label.length - b.x.label.length);
+    return scored.map((o) => o.x);
+  }
+  function renderSearch() {
+    const q = qInput.value.trim();
+    const all = searchItems(q);
+    state.hits = new Set(all.filter((x) => x.kind !== "term" || x.nd !== undefined).filter((x) => x.nk.some((k) => k.includes(norm(q)))).map((x) => x.field.id));
+    refreshFocus();
+    qResults = all.slice(0, 12);
+    qActive = -1;
+    if (!q) { qList.hidden = true; qInput.setAttribute("aria-expanded", "false"); return; }
+    const info = `<li class="q-info" role="presentation">${all.length ? `${all.length}件${all.length > 12 ? "（上位12件）" : ""}。地図上で該当する分野をオレンジの破線で囲んでいる` : "見つかりませんでした"}</li>`;
+    qList.innerHTML = info + qResults.map((x, i) => {
+      const path = x.kind === "term" ? `${x.field.short} › ${x.sub.name}` : x.kind === "sub" ? `${x.field.short}（中分類）` : "大分類";
+      return `<li role="option" id="qo-${i}" data-i="${i}" aria-selected="false"><span class="q-name">${esc(x.label)}</span>${x.term ? termBadges(x.term) : ""}<span class="q-path">${esc(path)}</span></li>`;
+    }).join("");
+    qList.hidden = false;
+    qInput.setAttribute("aria-expanded", "true");
+  }
+  function setActive(i) {
+    const opts = $$("[role=option]", qList);
+    if (!opts.length) return;
+    qActive = (i + opts.length) % opts.length;
+    opts.forEach((o, j) => o.setAttribute("aria-selected", String(j === qActive)));
+    qInput.setAttribute("aria-activedescendant", `qo-${qActive}`);
+    opts[qActive].scrollIntoView({ block: "nearest" });
+  }
+  function chooseResult(i) {
+    const x = qResults[i];
+    if (!x) return;
+    qList.hidden = true;
+    qInput.setAttribute("aria-expanded", "false");
+    if (x.kind === "term") gotoTerm(x.term.id, x.field.id);
+    else gotoField(x.field.id);
+  }
+  qInput.addEventListener("input", renderSearch);
+  qInput.addEventListener("focus", () => { if (qInput.value.trim()) renderSearch(); });
+  qInput.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); setActive(qActive + 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); setActive(qActive - 1); }
+    else if (e.key === "Enter") { e.preventDefault(); chooseResult(qActive >= 0 ? qActive : 0); }
+    else if (e.key === "Escape") { if (!qList.hidden) { e.stopPropagation(); qList.hidden = true; qInput.setAttribute("aria-expanded", "false"); } }
+  });
+  qList.addEventListener("pointerdown", (e) => e.preventDefault());
+  qList.addEventListener("click", (e) => {
+    const li = e.target.closest("[role=option]");
+    if (li) chooseResult(Number(li.dataset.i));
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search")) { qList.hidden = true; qInput.setAttribute("aria-expanded", "false"); }
+  });
+
+  // ---------- 画面の切り替え（#map #detail #links #exam） ----------
+  const TABS = ["map", "detail", "links", "exam"];
+  const built = {};
+  let pendingScroll = null;
+  function showTab(name) {
+    if (!TABS.includes(name)) name = "map";
+    if (name !== "map" && !built[name]) {
+      ({ detail: buildDetail, links: buildLinks, exam: buildExam })[name]();
+      built[name] = true;
+    }
+    TABS.forEach((t) => {
+      $(`#view-${t}`).hidden = t !== name;
+      const tab = $(`#tab-${t}`);
+      tab.setAttribute("aria-selected", String(t === name));
+      tab.setAttribute("tabindex", t === name ? "0" : "-1");
+    });
+    if (name !== "map") closePanel();
+    if (name === "map" && view.auto) requestAnimationFrame(fit);
+    if (pendingScroll) { const fn = pendingScroll; pendingScroll = null; requestAnimationFrame(fn); }
+  }
+  function currentTab() { return (location.hash || "#map").slice(1).split("/")[0]; }
+  function goTab(name, after) {
+    pendingScroll = after || null;
+    if (currentTab() === name) showTab(name);
+    else location.hash = name;
+  }
+  function gotoField(fid) {
+    goTab("detail", () => {
+      if (detailFilter !== "all") setFilter("all");
+      const sec = $(`#f-${fid}`);
+      if (sec) { sec.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); $("h2", sec).setAttribute("tabindex", "-1"); $("h2", sec).focus({ preventScroll: true }); }
+    });
+  }
+  function gotoTerm(tid) {
+    goTab("detail", () => {
+      if (detailFilter !== "all") setFilter("all");
+      const t = $(`#t-${tid}`);
+      if (!t) return;
+      t.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      t.classList.add("flash");
+      setTimeout(() => t.classList.remove("flash"), 2600);
+    });
+  }
+  window.addEventListener("hashchange", () => showTab(currentTab()));
+  $(".tabs").addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const i = TABS.indexOf(currentTab());
+    const next = TABS[(i + (e.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length];
+    location.hash = next;
+    $(`#tab-${next}`).focus();
+  });
+
+  // パネル・各画面の中のボタン（委譲）
+  document.addEventListener("click", (e) => {
+    const gf = e.target.closest("[data-goto-field]");
+    if (gf) { e.preventDefault(); gotoField(gf.dataset.gotoField); return; }
+    const of = e.target.closest("[data-open-field]");
+    if (of) { e.preventDefault(); openField(of.dataset.openField); return; }
+    const orl = e.target.closest("[data-open-rel]");
+    if (orl) { e.preventDefault(); openRelation(orl.dataset.openRel); }
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closePanel();
+  });
+
+  // ---------- 表示色の切り替え ----------
+  const root = document.documentElement;
+  const saved = store.get("riss-map-theme");
+  if (saved === "light" || saved === "dark") root.dataset.theme = saved;
+  $("#theme-toggle").addEventListener("click", () => {
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    store.set("riss-map-theme", root.dataset.theme);
+  });
+
+  // ---------- 開始 ----------
+  function syncTopbar() {
+    const h = $("#topbar").getBoundingClientRect().height;
+    root.style.setProperty("--topbar-actual", `${h}px`);
+  }
+  buildLegend();
+  buildA1Note();
+  syncTopbar();
+  window.addEventListener("resize", () => { syncTopbar(); if (view.auto) fit(); });
+  showTab(currentTab());
+  fit();
+  fitCompactText();
+  refreshFocus();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fitCompactText(); if (view.auto) fit(); });
+  // 検証用：外から状態を読めるようにする（画面の動作には影響しない）
+  window.__rissMap = { view, fit, openField, openRelation, gotoTerm, POS, closePanel };
+})();
+
+</script>
+</body>
+</html>

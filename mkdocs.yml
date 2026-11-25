@@ -77,6 +77,7 @@ extra_css:
 
 nav:
   - ホーム: index.md
+  - 試験範囲マップ: map/index.html
   - 試験ガイド: exam/guide.md
   - 章ごとのノート:
       - chapters/index.md

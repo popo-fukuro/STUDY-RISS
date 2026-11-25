@@ -10,6 +10,14 @@ hide:
 
 <div class="grid cards" markdown>
 
+-   :material-map-search-outline:{ .lg .middle } **RISS 試験範囲マップ**
+
+    ---
+
+    試験範囲を16分野の放射状の地図で俯瞰。分野どうしのつながり、学習優先度、用語の検索まで。
+
+    [:octicons-arrow-right-24: 地図を開く](map/index.html)
+
 -   :material-book-open-variant:{ .lg .middle } **章ごとのノート**
 
     ---

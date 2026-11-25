@@ -24,6 +24,10 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: 試験範囲マップのデータを検査
+        run: python map/tools/check.py
+      - name: 試験範囲マップの生成物が最新か確認
+        run: python map/tools/build.py --check
       - run: mkdocs build --strict
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

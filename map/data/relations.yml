@@ -1,0 +1,188 @@
+# 分野間の関係。
+# core: true は「必ず含める7つの関係」（地図では太い実線）。それ以外は細い破線。
+# dir: one（from → to）／ both（双方向）
+# exam の「R7春 問4」のような参照は meta.yml の recentB / sampleB に載っている問だけを使う（tools/check.py が確認）。
+
+# 7つのテーマ（関係タブでこの順に並べる）
+themes:
+  - {id: crypto-auth, title: 暗号技術と認証技術, core: r-crypto-auth}
+  - {id: net-attack, title: ネットワークとサイバー攻撃, core: r-netbase-threats}
+  - {id: vuln-measure, title: 脆弱性とセキュリティ対策, core: r-vuln-web}
+  - {id: os-db-web, title: OS・DB・Webアプリケーション, core: r-osdb-web}
+  - {id: log-ir, title: ログ監視とインシデント対応, core: r-ops-incident}
+  - {id: tech-risk, title: 技術的対策とリスクマネジメント, core: r-netdef-risk}
+  - {id: cloud-legacy, title: クラウドと従来型インフラ, core: r-cloud-osdb}
+
+relations:
+  # ---- 必ず含める7つ ----
+  - id: r-crypto-auth
+    from: crypto
+    to: auth
+    dir: both
+    core: true
+    theme: crypto-auth
+    label: 鍵と署名で本人を確かめる
+    why: 公開鍵暗号やデジタル署名は、パスワードを送らずに本人を確かめる認証方式（FIDO2、クライアント証明書、JWTの署名）の部品になる。逆に、秘密鍵や暗号鍵を使える人を限るには認証とアクセス制御が要る。
+    example: WebAuthnでは、端末の中の秘密鍵でサーバからのチャレンジに署名し、サーバは登録済みの公開鍵で検証する。秘密鍵は端末から出ないので、偽サイトに盗まれない。
+    exam: R5秋 問3でWebAuthnとHSM、R6春 問1でJWTの署名の検証、R7秋 問2で署名の生成と検証・鍵の管理が問われた。
+  - id: r-netbase-threats
+    from: netbase
+    to: threats
+    dir: one
+    core: true
+    theme: net-attack
+    label: しくみの弱点が攻撃の入口に
+    why: SMTPには送信者を確かめる機能がない、DNSは応答が本物かを確かめないなど、プロトコルの設計上の性質がそのまま攻撃に使われる。しくみを知らないと攻撃の流れが読めない。
+    example: 偽の応答を覚えさせるDNSキャッシュポイズニング、送信元を偽るDNSアンプ攻撃、使われなくなったCNAMEレコードを使うサブドメインテイクオーバー。
+    exam: R7春 問4でCNAMEレコードの削除漏れによるサブドメインテイクオーバー、R6秋 問2で送信者メールアドレスの詐称とその対策が問われた。
+  - id: r-vuln-web
+    from: vuln
+    to: web
+    dir: one
+    core: true
+    theme: vuln-measure
+    label: 診断結果を実装で直す
+    why: 診断で見つかった脆弱性は、深刻度と悪用の状況から優先度を決め、コードの修正で根本から直す。どう悪用されるかを理解していないと、正しい直し方を選べない。
+    example: 診断でセッションフィクセーションが見つかったら、ログインしたときにセッションIDを新しく発行するよう修正する。
+    exam: R6秋 問4で診断ツールが検出した脆弱性の悪用と対策、新制度のサンプル問2でセッションフィクセーションの修正方法が問われた。
+  - id: r-osdb-web
+    from: osdb
+    to: web
+    dir: both
+    core: true
+    theme: os-db-web
+    label: Webアプリは土台の上で動く
+    why: WebアプリはOSのコマンドやファイル、データベースに命令を渡して動く。アプリの入力処理に不備があるとOSやDBへの攻撃につながり、逆に土台の権限を絞れば被害を小さくできる。
+    example: SQLインジェクションはDBへの命令の組み立てを、OSコマンドインジェクションはOSの機能を悪用する。DBへの接続ユーザーやWebサーバのOSユーザーの権限を最小にすると被害が限られる。
+    exam: R6春 問4で、JavaとRDBMSで作ったWebアプリのセキュアコーディングとLinuxの権限設定が問われた。
+  - id: r-ops-incident
+    from: ops
+    to: incident
+    dir: one
+    core: true
+    theme: log-ir
+    label: 検知が対応の起点になる
+    why: インシデント対応は、ログや監視による異常の検知から始まる。どのログが残っているかで、原因や影響の範囲をどこまで特定できるかが決まる。
+    example: EDRの警報を受けてCSIRTが端末を隔離し、プロキシのログからC2サーバへの通信がほかの端末にもないかを洗い出す。
+    exam: R6秋 問1でログの調査と検知の仕組みの設計、R6秋 問3でアクセスログから影響を受けた利用者を特定する方法が問われた。
+  - id: r-netdef-risk
+    from: netdef
+    to: risk
+    dir: both
+    core: true
+    theme: tech-risk
+    label: 対策はリスク対応の手段
+    why: ファイアウォールやWAFなどの技術的対策は、リスクアセスメントで選んだ「リスク低減」の手段。導入した後に残るリスク（残留リスク）は、もう一度リスクマネジメントで評価する。
+    example: 委託先からの侵入リスクを評価し、低減策としてネットワークを分け、それでも残るリスクを経営者に説明して受け入れてもらう。
+    exam: R7秋 問4で攻撃シナリオへの対策の立案、R5秋 問4で個々のリスクを低減する対策の立案が問われた。
+  - id: r-cloud-osdb
+    from: cloud
+    to: osdb
+    dir: both
+    core: true
+    theme: cloud-legacy
+    label: 守る作業の分担が変わる
+    why: クラウドでも、OSの要塞化・権限管理・パッチ適用といった従来の対策は必要。ただし、どこまでを自分で行うかは責任共有モデルで決まり、IaaSとSaaSで大きく違う。
+    example: IaaSではOSのパッチ適用は利用者の責任、SaaSでは事業者の責任。どちらの場合も、アカウントの管理とデータの公開設定は利用者の責任。
+    exam: R6春 問3でクラウド上に構築したWebサイト、R5秋 問3でCIサービスとコンテナの動作が問われた。
+
+  # ---- そのほかの関係 ----
+  - id: r-threats-netdef
+    from: threats
+    to: netdef
+    dir: one
+    theme: net-attack
+    label: 攻撃を知り防御を配置する
+    why: どの段階でどんな攻撃が来るかを知ることで、ファイアウォールで止めるのか、IPSで検知するのかなど、防御の置き場所と設定を決められる。
+    example: DDoS攻撃にはCDNやスクラビングで、リモートアクセスへの総当たり攻撃には多要素認証とIPSのしきい値で備える。
+    exam: R6春 問2で、アノマリ型IPSのしきい値やDDoS攻撃への対策が問われた。
+  - id: r-netbase-netdef
+    from: netbase
+    to: netdef
+    dir: one
+    theme: net-attack
+    label: しくみを知って制御する
+    why: ファイアウォールのルールやVPNの設定は、ポート番号やプロトコルの動きを理解していないと正しく書けない。
+    example: VPNにつなぐ前に必要な名前解決や認証の通信を許可し忘れると、そもそもVPNに接続できない。
+    exam: R7秋 問3でVPN接続前に必要な通信、R5秋 問2でファイアウォールのフィルタリング設定が問われた。
+  - id: r-crypto-netdef
+    from: crypto
+    to: netdef
+    dir: one
+    theme: crypto-auth
+    label: 暗号が安全な通信を支える
+    why: TLS・IPsec・S/MIME・DKIM・DNSSECなどは、暗号・ハッシュ・署名を組み合わせて通信を守る。
+    example: TLSでは鍵交換で共通鍵を作り、サーバ証明書でサーバを確かめ、認証付き暗号でデータを守る。
+    exam: R5秋 問2でサーバ証明書の検証、R6秋 問2でDKIMの署名の仕組みが問われた。
+  - id: r-threats-web
+    from: threats
+    to: web
+    dir: one
+    theme: vuln-measure
+    label: 攻撃手法を実装で防ぐ
+    why: XSSやSQLインジェクションなどの攻撃の仕組みを知ると、どこでエスケープし、どこでプレースホルダを使うべきかがわかる。
+    example: XSSには出力時のエスケープとCSP、CSRFにはトークン、SQLインジェクションにはプレースホルダ。
+    exam: R5秋 問1・R6秋 問3でXSSの種類の区別、R7秋 問1でCSPを回避する攻撃が問われた。
+  - id: r-devproc-web
+    from: devproc
+    to: web
+    dir: one
+    theme: vuln-measure
+    label: 工程で作り込みを防ぐ
+    why: 脆弱性は後で直すほど費用がかかる。設計のレビューやSAST・DASTなどの検査を開発の工程に組み込み、作り込みを早く見つける。
+    example: コードを登録するたびにSASTを自動で動かし、リリースの前にDASTで画面を検査する。
+    exam: R7秋 問1で脆弱性を見つけて直すための開発プロセス、R7春 問1でSAST・DAST・IASTの特徴が問われた。
+  - id: r-vuln-netdef
+    from: vuln
+    to: netdef
+    dir: one
+    theme: vuln-measure
+    label: 修正までを暫定防御で守る
+    why: パッチやプログラムの修正がすぐに出せないとき、WAFやIPSで攻撃を止めて時間をかせぐ。ただし根本的な対策ではない。
+    example: 公開サーバの脆弱性が公表された直後、修正版を当てるまでの間、WAFのルールで攻撃の通信を遮断する。
+    exam: R6春 問1でWAFの利点と課題が問われた。
+  - id: r-incident-risk
+    from: incident
+    to: risk
+    dir: one
+    theme: log-ir
+    label: 教訓を次の対策へ
+    why: インシデントの原因の分析で見つかった弱点は、リスクの評価のやり直しと管理策の見直しにつなげる。
+    example: 委託先経由の侵入を受けて、委託先を選ぶ基準と契約のセキュリティ条項を見直す。
+    exam: R7秋 問4で、被害の後に迅速に復旧するための平常時の備えが問われた。
+  - id: r-auth-cloud
+    from: auth
+    to: cloud
+    dir: one
+    theme: cloud-legacy
+    label: IDが新しい境界になる
+    why: クラウドでは社内ネットワークの内と外の区別が意味を持ちにくく、「だれがアクセスしているか」を確かめるIDの管理が守りの中心になる。
+    example: IDaaSでSSOと多要素認証をまとめて行い、端末の状態も確かめてからSaaSへのアクセスを許可する。
+    exam: R7秋 問3でリモートワーク環境の認証基盤が問われた。
+  - id: r-basics-risk
+    from: basics
+    to: risk
+    dir: one
+    theme: tech-risk
+    label: CIAで影響の大きさを測る
+    why: リスクの大きさは、機密性・完全性・可用性のどれがどれだけ損なわれるかで評価する。
+    example: 情報資産台帳で、資産ごとに機密性・完全性・可用性の評価値を付け、その最大値を重要度にする。
+    exam: 新制度のサンプル問1で、情報資産台帳の評価値と重要度の決め方が問われた。
+  - id: r-isms-ops
+    from: isms
+    to: ops
+    dir: one
+    theme: tech-risk
+    label: 管理策を日々の運用で回す
+    why: ISMSで決めた管理策は、ログの点検やアクセス権の見直しなど日々の運用で実行され、その記録が監査の証拠になる。
+    example: 規程で「特権IDの利用は記録し、毎月見直す」と決め、SIEMに記録を集めて点検する。
+    exam: 直近5回の科目Bで直接の題材になった問はない。新制度の科目Bに「セキュリティ運用状況の管理・点検」が加わった。
+  - id: r-law-isms
+    from: law
+    to: isms
+    dir: one
+    theme: other
+    label: 法令が規程の要求事項になる
+    why: 個人情報保護法などの法令や契約上の義務は、ISMSの要求事項として規程に反映し、守られているかを確かめる。
+    example: 個人データが漏えいしたときに報告が必要になる場合に備え、インシデント対応の規程に報告の手順と期限を書いておく。
+    exam: 直近5回の科目Bで直接の題材になった問はない。

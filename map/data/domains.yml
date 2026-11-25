@@ -1,0 +1,20 @@
+# 6つの領域。order は円周上の並び（大分類の order と矛盾しないこと）。
+# color は白文字を載せても読める濃さにする（tools/check.py がコントラスト比 4.5 以上を確認する）。
+- id: base
+  name: 基礎と脅威
+  color: "#963A45"
+- id: cryptoauth
+  name: 暗号と認証
+  color: "#6A3F96"
+- id: infra
+  name: インフラと基盤
+  color: "#1D5C93"
+- id: dev
+  name: 開発と評価
+  color: "#2C6E4C"
+- id: resp
+  name: 運用と対応
+  color: "#9A4A12"
+- id: mgmt
+  name: マネジメントと法
+  color: "#45556E"

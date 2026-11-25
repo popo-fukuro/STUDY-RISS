@@ -18,6 +18,25 @@
 4. `docs/index.md` の「最近追加したノート」の**一番上**に、日付付きで追加する。
 5. `mkdocs build --strict` が警告なしで通ることを確認してから、`main` にコミットして push する。push すると GitHub Actions が自動で公開する。
 
+## 試験範囲マップ（`docs/map/index.html`）
+
+試験範囲全体を16分野の放射状の地図で示す単体のHTML。内容はデータから生成している。
+
+- **直すのはデータ（`map/data/*.yml`）と画面の部品（`map/src/`）だけ**。`docs/map/index.html` は生成物なので直接編集しない。
+  - `meta.yml`：試験制度・日程・出題範囲の対応表・直近の科目Bの出題テーマ・出典・作成日
+  - `domains.yml`：6領域／`fields/NN-*.yml`：16分野（中分類・用語）／`relations.yml`：分野間の関係／`tables.yml`：比較表
+  - 用語は `[名前, 1文の説明, {オプション}]`。オプションは `sup: true`（補：公式文書にない補足）、`new: true`（新案：新制度のシラバス案だけにある）、`aka`（検索・照合用の別名）、`note`（このサイトのノートへのリンク）。
+- 直したら次を実行し、生成物もいっしょにコミットする。
+  ```bash
+  python map/tools/check.py              # データの整合性・カードの重なり・調査メモとの照合
+  python map/tools/build.py              # docs/map/index.html を作り直す
+  python map/tools/verify_official.py    # 用語の「補」「新案」をIPAの文書と照合（ネットにつながる手元で）
+  node map/tools/screenshot.mjs <出力先>  # スクリーンショットと表示の自動チェック（Playwright）
+  ```
+- 試験制度・日程を更新するときは、先に `map/research/` に調査メモ（出典URLと確認日つき）を書き、`meta.yml` の `created` と `researchMemo` を合わせる。公式文書で確かめられないことは「未確認」と書く。
+- ノートを追加したら、関係する用語に `note: chXX/slug.md` を付けて地図からリンクする。
+- 優先度の根拠は「試験要綱の重点分野」「直近の科目Bの題材」「新制度での変更点」だけで書き、出題頻度を断定しない。
+
 ## 解説の書き方
 
 - 結論を最初に一言で → たとえ話 → 図解 → 仕組みのステップ → 似た用語との比較表 → 試験での出方（科目A-2／科目B／ひっかけ） → 参考資料 → 確認ミニ問題、の順。

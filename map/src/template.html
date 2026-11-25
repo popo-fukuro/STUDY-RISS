@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&amp;family=Dela+Gothic+One&amp;display=swap">
+<!-- このファイルは map/tools/build.py で生成している。直接編集せず、map/data と map/src を直すこと。 -->
+<style>
+/*{{VARS}}*/
+/*{{CSS}}*/
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="topbar" id="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <div>
+      <div class="brand-title">{{TITLE}}</div>
+      <div class="brand-sub">{{SUBTITLE}}</div>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="表示の切り替え">
+    <a role="tab" id="tab-map" href="#map" aria-controls="view-map" aria-label="全体俯瞰マップ"><span class="tl">全体俯瞰マップ</span><span class="ts" aria-hidden="true">地図</span></a>
+    <a role="tab" id="tab-detail" href="#detail" aria-controls="view-detail" aria-label="分野別詳細"><span class="tl">分野別詳細</span><span class="ts" aria-hidden="true">分野別</span></a>
+    <a role="tab" id="tab-links" href="#links" aria-controls="view-links" aria-label="分野間の関係"><span class="tl">分野間の関係</span><span class="ts" aria-hidden="true">関係</span></a>
+    <a role="tab" id="tab-exam" href="#exam" aria-controls="view-exam" aria-label="試験制度と根拠"><span class="tl">試験制度と根拠</span><span class="ts" aria-hidden="true">試験制度</span></a>
+  </nav>
+  <div class="search">
+    <label for="q" class="sr-only">用語検索</label>
+    <input id="q" type="search" placeholder="用語を検索（例：DMARC）" autocomplete="off" spellcheck="false"
+      role="combobox" aria-expanded="false" aria-controls="q-list" aria-autocomplete="list">
+    <ul id="q-list" role="listbox" aria-label="検索結果" hidden></ul>
+  </div>
+  <button type="button" id="theme-toggle" class="icon-btn" aria-label="ライトモードとダークモードを切り替える" title="表示色の切り替え">◐</button>
+</header>
+
+<main id="main">
+  <section id="view-map" class="view" role="tabpanel" aria-labelledby="tab-map">
+    <div id="map-wrap">
+      <svg id="map" aria-label="情報処理安全確保支援士試験の範囲を、中心から16分野へ放射状に描いた地図。カードはTabキーで選び、Enterキーで詳細を開ける。"></svg>
+    </div>
+    <div class="zoom-ctl" role="group" aria-label="拡大縮小">
+      <button type="button" id="zoom-in" aria-label="拡大">＋</button>
+      <button type="button" id="zoom-out" aria-label="縮小">－</button>
+      <button type="button" id="zoom-fit" class="fit" aria-label="全体を表示">全体</button>
+    </div>
+    <details class="legend-panel" id="legend" open>
+      <summary>使い方・表示設定・凡例</summary>
+      <div class="legend-body" id="legend-body"></div>
+    </details>
+    <aside class="a1-note" id="a1-note" aria-label="科目A-1についての注記"></aside>
+  </section>
+
+  <section id="view-detail" class="view" role="tabpanel" aria-labelledby="tab-detail" hidden></section>
+  <section id="view-links" class="view" role="tabpanel" aria-labelledby="tab-links" hidden></section>
+  <section id="view-exam" class="view" role="tabpanel" aria-labelledby="tab-exam" hidden></section>
+</main>
+
+<aside id="panel" class="panel" role="dialog" aria-modal="false" aria-labelledby="panel-title" aria-hidden="true" tabindex="-1">
+  <div class="panel-head">
+    <span class="panel-grip" aria-hidden="true"></span>
+    <span></span>
+    <button type="button" class="panel-close" id="panel-close" aria-label="パネルを閉じる（Escキー）">×</button>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</aside>
+
+<script type="application/json" id="map-data">{{DATA}}</script>
+<script>
+/*{{JS}}*/
+</script>
+</body>
+</html>
